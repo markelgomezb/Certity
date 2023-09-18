@@ -1,24 +1,54 @@
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-public class InicioSesion {
+public class InicioSesion extends JFrame {
+	private JPanel pCentro;
+	private JLabel lblNombre, lblContra;
+	private JTextField txtNombre, txtContra;
+	
+	
+	
+	
+	
+	
+	
+	public InicioSesion() {
+		
+		super();
+		setBounds(150, 200, 900, 600);
+		
 
-	public static void main(String[] args) {
-		
-		JFrame inicioSesion = new JFrame("Inicio Sesion");
-		
-		inicioSesion.setSize(1280,720);
-		inicioSesion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	
-		JPanel panel = new JPanel();
-		inicioSesion.add(panel);
-		panel.setLayout(new GridLayout(2,3));
+		pCentro = new JPanel(new GridLayout(3,3));
+		
+		getContentPane().add(pCentro,BorderLayout.CENTER);
+		
+		
 
 		
-		inicioSesion.setVisible(true);
+		lblNombre = new JLabel("Nombre");
+		pCentro.add(lblNombre);
+		
+		lblContra = new JLabel("Contraseña");
+		pCentro.add(lblContra);
+		
+		txtNombre = new JTextField();
+		pCentro.add(txtNombre);
+		
+		txtContra = new JTextField();
+		pCentro.add(txtContra);
+		
+		
+		setVisible(true);
+		
+		setTitle("Certity");
 		
 		
 	}
