@@ -53,5 +53,6 @@ public class Usuario {
                ", nombre='" + nombre + '\'' +
                ", localidad='" + localidad + '\'' +
                '}';
+        
     }
 }
