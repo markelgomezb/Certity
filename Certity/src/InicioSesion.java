@@ -42,10 +42,14 @@ public class InicioSesion extends JFrame {
 		pSur = new JPanel(new FlowLayout());
 		getContentPane().add(pSur,BorderLayout.SOUTH);
 		
+		
 		btn_inicio = new JButton("Inicar Sesion");
 		btn_salir = new JButton("Inicar Sesion");
 		btn_registro = new JButton("Inicar Sesion");
 		
+		pSur.add(btn_inicio);
+		pSur.add(btn_registro);
+		pSur.add(btn_salir);
 		
 		
 		ImageIcon logo = new ImageIcon("Resources/Imagenes/LOGO_CERTITY.jpg");
