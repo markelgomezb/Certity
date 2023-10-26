@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -44,9 +45,12 @@ public class InicioSesion extends JFrame {
 		
 		
 		btn_inicio = new JButton("Inicar Sesion");
-		btn_salir = new JButton("Inicar Sesion");
-		btn_registro = new JButton("Inicar Sesion");
+		btn_salir = new JButton("Salir de la app");
+		btn_registro = new JButton("Registrarse");
 		
+		btn_inicio.setBackground(Color.GREEN);
+		btn_salir.setBackground(Color.ORANGE);
+		btn_registro.setBackground(Color.CYAN);
 		pSur.add(btn_inicio);
 		pSur.add(btn_registro);
 		pSur.add(btn_salir);
