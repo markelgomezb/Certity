@@ -4,6 +4,7 @@ public class Usuario {
     private String dni;
     private Date fecha;
     private String nombre;
+    private String nombre_usuario;
     private String localidad;
 
     public Usuario(String dni, Date fecha, String nombre, String localidad) {
@@ -11,6 +12,7 @@ public class Usuario {
         this.fecha = fecha;
         this.nombre = nombre;
         this.localidad = localidad;
+        this.nombre_usuario = nombre_usuario;
     }
 
     public String getDni() {
@@ -52,7 +54,16 @@ public class Usuario {
                ", fecha=" + fecha +
                ", nombre='" + nombre + '\'' +
                ", localidad='" + localidad + '\'' +
+               ", nombre de usuario ='" + nombre_usuario + '\'' +
                '}';
         
     }
+
+	public String getNombre_usuario() {
+		return nombre_usuario;
+	}
+
+	public void setNombre_usuario(String nombre_usuario) {
+		this.nombre_usuario = nombre_usuario;
+	}
 }
