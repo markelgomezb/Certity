@@ -6,13 +6,15 @@ public class Usuario {
     private String nombre;
     private String nombre_usuario;
     private String localidad;
+    private String email;
 
-    public Usuario(String dni, Date fecha, String nombre, String localidad) {
+    public Usuario(String dni, Date fecha, String nombre, String localidad, String nombre_usuario, String email) {
         this.dni = dni;
         this.fecha = fecha;
         this.nombre = nombre;
         this.localidad = localidad;
         this.nombre_usuario = nombre_usuario;
+        this.email = email;
     }
 
     public String getDni() {
@@ -46,6 +48,14 @@ public class Usuario {
     public void setLocalidad(String localidad) {
         this.localidad = localidad;
     }
+    
+	public String getNombre_usuario() {
+		return nombre_usuario;
+	}
+
+	public void setNombre_usuario(String nombre_usuario) {
+		this.nombre_usuario = nombre_usuario;
+	}
 
     @Override
     public String toString() {
@@ -59,11 +69,13 @@ public class Usuario {
         
     }
 
-	public String getNombre_usuario() {
-		return nombre_usuario;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setNombre_usuario(String nombre_usuario) {
-		this.nombre_usuario = nombre_usuario;
+	public void setEmail(String email) {
+		this.email = email;
 	}
+
+
 }

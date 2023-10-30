@@ -1,5 +1,10 @@
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -8,7 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.border.TitledBorder;
 
 public class VentanaInicioSesion2 extends JFrame{
 	
@@ -23,7 +27,7 @@ public class VentanaInicioSesion2 extends JFrame{
 	private JPasswordField JPsswd = new JPasswordField(20);
 	private JButton btn_inicio = new JButton("Inicar Sesion");
 	private JButton btn_salir =  new JButton("Salir de la app");
-	private JButton btn_registro = new JButton("Registrarse");
+	private JLabel lblregistro = new JLabel("<html><a href =''>Registrarse</a></html>");
 	private ImageIcon logo = new ImageIcon("Resources/Imagenes/LOGO_CERTITY.jpg");
 	
 	public VentanaInicioSesion2() {
@@ -49,19 +53,37 @@ public class VentanaInicioSesion2 extends JFrame{
 		JPanel pBotones = new JPanel();
 		btn_inicio.setBackground(Color.GREEN);
 		btn_salir.setBackground(Color.ORANGE);
-		btn_registro.setBackground(Color.CYAN);
 		pBotones.add(btn_inicio);
-		pBotones.add(btn_registro);
 		pBotones.add(btn_salir);
+		pBotones.add(lblregistro);
 		
-		JPanel pSearch = new JPanel();
-		pSearch.setLayout(new GridLayout(4, 1));
-		pSearch.add(pArriba);
-		pSearch.add(pNombre);
-		pSearch.add(pContrasenia);
-		pSearch.add(pBotones);
+		JPanel pTodo = new JPanel();
+		pTodo.setLayout(new GridLayout(4, 1));
+		pTodo.add(pArriba);
+		pTodo.add(pNombre);
+		pTodo.add(pContrasenia);
+		pTodo.add(pBotones);
 		
-		add(pSearch);
+		add(pTodo);
+		
+		lblregistro.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				dispose();
+				VentanaRegistro vr = new VentanaRegistro();
+				vr.setVisible(true);
+			}
+		});
+		
+		btn_salir.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.exit(0);
+			}
+		});
 		
 	     setVisible(true);
 	}

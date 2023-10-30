@@ -2,11 +2,13 @@ public class Anuncio {
     private String id;
     private String nombre;
     private Usuario usuario;
+    private String descripcion;
 
-    public Anuncio(String id, String nombre, Usuario usuario) {
+    public Anuncio(String id, String nombre, Usuario usuario, String descripcion) {
         this.id = id;
         this.nombre = nombre;
         this.usuario = usuario;
+        this.descripcion = descripcion;
     }
 
     public String getId() {
@@ -41,4 +43,12 @@ public class Anuncio {
                ", usuario=" + usuario +
                '}';
     }
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 }
