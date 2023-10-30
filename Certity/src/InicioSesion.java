@@ -63,6 +63,7 @@ public class InicioSesion extends JFrame {
 		
 		lblTitle = new JLabel("INICIO DE SESION");
 		lblTitle.setFont(new Font("Action Man Shaded", Font.BOLD, 19));
+		lblTitle.setHorizontalAlignment(JLabel.CENTER);
 		pNorte.add(lblTitle, BorderLayout.CENTER);
 
 		
