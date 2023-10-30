@@ -55,7 +55,6 @@ public class VentanaInicioSesion2 extends JFrame{
 		pBotones.add(btn_salir);
 		
 		JPanel pSearch = new JPanel();
-		pSearch.setBorder(new TitledBorder("Búsqueda de vuelos"));
 		pSearch.setLayout(new GridLayout(4, 1));
 		pSearch.add(pArriba);
 		pSearch.add(pNombre);
