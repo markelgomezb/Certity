@@ -84,6 +84,16 @@ public class VentanaInicioSesion2 extends JFrame{
 				System.exit(0);
 			}
 		});
+
+		btn_inicio.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				dispose();
+				VentanaPrincipal vp = new VentanaPrincipal(null);
+			}
+		});
 		
 	     setVisible(true);
 	}
