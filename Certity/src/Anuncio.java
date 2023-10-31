@@ -1,14 +1,20 @@
+import java.util.ArrayList;
+
 public class Anuncio {
     private String id;
     private String nombre;
     private Usuario usuario;
     private String descripcion;
+    private float precio;
+    private ArrayList<String> fotos;
 
-    public Anuncio(String id, String nombre, Usuario usuario, String descripcion) {
+    public Anuncio(String id, String nombre, Usuario usuario, String descripcion, float precio, ArrayList<String> fotos) {
         this.id = id;
         this.nombre = nombre;
         this.usuario = usuario;
         this.descripcion = descripcion;
+        this.precio = precio;
+        this.fotos = new ArrayList<>();
     }
 
     public String getId() {
@@ -35,6 +41,30 @@ public class Anuncio {
         this.usuario = usuario;
     }
 
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public float getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(float precio) {
+		this.precio = precio;
+	}
+	
+	public ArrayList<String> getFotos() {
+		return fotos;
+	}
+
+	public void setFotos(ArrayList<String> fotos) {
+		this.fotos = fotos;
+	}
+	
     @Override
     public String toString() {
         return "Anuncio{" +
@@ -44,11 +74,4 @@ public class Anuncio {
                '}';
     }
 
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
 }
