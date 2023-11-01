@@ -38,7 +38,7 @@ public class ProgramaPrincipal {
         anuncios.add(anuncio1Usuario3);
         anuncios.add(anuncio2Usuario3);
         
-        new VentanaPrincipal(anuncios);
+        new VentanaPrincipal(anuncios, usuario1);
 	}
 
 }

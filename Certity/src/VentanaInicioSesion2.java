@@ -91,7 +91,7 @@ public class VentanaInicioSesion2 extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				dispose();
-				VentanaPrincipal vp = new VentanaPrincipal(null);
+				
 			}
 		});
 		

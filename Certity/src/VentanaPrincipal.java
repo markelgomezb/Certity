@@ -3,7 +3,9 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Vector;
@@ -20,17 +22,36 @@ public class VentanaPrincipal extends JFrame {
 	private DefaultTableModel modeloAnuncios;
 	private JTable tablaAnuncios;
 	private JScrollPane scrollAnuncios;
+	private JLabel lblUsuario, lblBusca;
+	private JTextField txtBusqueda;
 	
-    public VentanaPrincipal(ArrayList<Anuncio> anuncios) {
+    public VentanaPrincipal(ArrayList<Anuncio> anuncios, Usuario u) {
         super("Anuncios");
         this.anuncios = anuncios;
         
         this.initTable();
+        JPanel panelNorte = new JPanel(new GridLayout(2,1));
+        
+        JPanel panelArriba = new JPanel();
+        lblUsuario = new JLabel("¡Bienvenido " + u.toString() + "!");
+        panelArriba.add(lblUsuario);
+        
+        JPanel panelFiltro = new JPanel();
+        lblBusca = new JLabel("Busca productos/ofertas:");
+        txtBusqueda = new JTextField(14);
+        panelFiltro.add(lblBusca);
+        panelFiltro.add(txtBusqueda);
+        
+        panelNorte.add(panelArriba);
+        panelNorte.add(panelFiltro);
         
         this.scrollAnuncios = new JScrollPane(this.tablaAnuncios);
         scrollAnuncios.setBorder(new TitledBorder("Anuncios"));
         
-        this.getContentPane().add(this.scrollAnuncios);
+        this.setLayout(new BorderLayout());
+        
+        this.getContentPane().add(BorderLayout.NORTH,panelNorte);
+        this.getContentPane().add(BorderLayout.CENTER, this.scrollAnuncios);
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
