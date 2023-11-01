@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class ProgramaPrincipal {
 	public static void main(String[] args) {
@@ -8,9 +7,9 @@ public class ProgramaPrincipal {
 //		new VentanaInicioSesion2();
 		//IAG DATOS DE PRUEBA
         // Crear usuarios de ejemplo
-        Usuario usuario1 = new Usuario("123456789A", new Date(), "Usuario1", "user1", "Ciudad1", "usuario1@example.com");
-        Usuario usuario2 = new Usuario("987654321B", new Date(), "Usuario2", "user2", "Ciudad2", "usuario2@example.com");
-        Usuario usuario3 = new Usuario("567890123C", new Date(), "Usuario3", "user3", "Ciudad3", "usuario3@example.com");
+        Usuario usuario1 = new Usuario("123456789A", new Date(), "Usuario1", "Ciudad1", "user1",  "usuario1@example.com");
+        Usuario usuario2 = new Usuario("987654321B", new Date(), "Usuario2", "Ciudad2", "user2",  "usuario2@example.com");
+        Usuario usuario3 = new Usuario("567890123C", new Date(), "Usuario3", "Ciudad3", "user3",  "usuario3@example.com");
 
         // Crear anuncios asociados a los usuarios
         ArrayList<String> fotosAnuncio1 = new ArrayList<>();

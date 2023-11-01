@@ -59,13 +59,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" +
-               "dni='" + dni + '\'' +
-               ", fecha=" + fecha +
-               ", nombre='" + nombre + '\'' +
-               ", localidad='" + localidad + '\'' +
-               ", nombre de usuario ='" + nombre_usuario + '\'' +
-               '}';
+        return  nombre_usuario;
         
     }
 
