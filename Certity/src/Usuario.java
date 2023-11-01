@@ -1,20 +1,35 @@
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.text.ParseException;
+
 
 public class Usuario {
     private String dni;
     private Date fecha;
     private String nombre;
     private String nombre_usuario;
+    private String contrasenia;
     private String localidad;
     private String email;
+    private String foto;
+	private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
-    public Usuario(String dni, Date fecha, String nombre, String localidad, String nombre_usuario, String email) {
+    
+
+    public Usuario(String dni, String fecha, String nombre, String localidad, String nombre_usuario, String email, String foto, String contrasenia) {
         this.dni = dni;
-        this.fecha = fecha;
+        try {
+			this.fecha = sdf.parse(fecha);
+		} catch (ParseException e) {
+			this.fecha = new Date(0);
+		}
         this.nombre = nombre;
         this.localidad = localidad;
         this.nombre_usuario = nombre_usuario;
         this.email = email;
+        this.foto= foto;
+        this.contrasenia=contrasenia;
     }
 
     public String getDni() {
@@ -25,8 +40,8 @@ public class Usuario {
         this.dni = dni;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public String getFecha() {
+        return sdf.format(fecha);
     }
 
     public void setFecha(Date fecha) {
@@ -69,6 +84,22 @@ public class Usuario {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public String getContrasenia() {
+		return contrasenia;
+	}
+
+	public void setContrasenia(String contrasenia) {
+		this.contrasenia = contrasenia;
 	}
 
 

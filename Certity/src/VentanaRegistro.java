@@ -2,9 +2,13 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -34,6 +38,10 @@ public class VentanaRegistro extends JFrame{
 	private JButton btnRegistro = new JButton("Registrarse");
 	private JButton btnCancelar = new JButton("Cancelar");
 	private JButton btnRegistroInicio = new JButton("Registrarse e iniciar sesion");
+	private JButton btnCargarFoto = new JButton("Cargar Foto");
+	private JLabel lblFoto = new JLabel("Cargar foto:");
+
+
 	
 	public VentanaRegistro() {
         setTitle("Inicio de sesion");
@@ -45,6 +53,10 @@ public class VentanaRegistro extends JFrame{
         lblLogo.setIcon(logo);
         pArriba.add(lblLogo);
         pArriba.add(lblTitle);
+        
+        JPanel pFoto = new JPanel();
+        pFoto.add(lblFoto);
+        pFoto.add(btnCargarFoto);
         
         JPanel pDni = new JPanel();
         pDni.add(lblDni);
@@ -79,7 +91,7 @@ public class VentanaRegistro extends JFrame{
         pBotones.add(btnCancelar);
         
         JPanel pTodo = new JPanel();
-        pTodo.setLayout(new GridLayout(8,1));
+        pTodo.setLayout(new GridLayout(9,1));
         pTodo.add(pArriba);
         pTodo.add(pUsuario);
         pTodo.add(pNombre);
@@ -88,8 +100,37 @@ public class VentanaRegistro extends JFrame{
         pTodo.add(pFecha);
         pTodo.add(pLocalidad);
         pTodo.add(pBotones);
+        pTodo.add(pFoto);
+
         
         add(pTodo);
+        
+        btnCargarFoto.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                int result = fileChooser.showOpenDialog(null);
+
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    File selectedFile = fileChooser.getSelectedFile();
+
+                    try {
+                        String rutaDestino = "Resources/Imagenes/";
+
+                        File destino = new File(rutaDestino + selectedFile.getName());
+
+                        if (!destino.exists()) {
+                            Files.copy(selectedFile.toPath(), destino.toPath());
+                            System.out.println("Foto guardada en: " + destino.getAbsolutePath());
+                        } else {
+                            System.out.println("Ya existe un archivo con ese nombre en el directorio.");
+                        }
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        });
         
         btnCancelar.addActionListener(new ActionListener() {
 			

@@ -1,20 +1,20 @@
 import java.util.ArrayList;
-import java.util.Date;
+
 
 public class ProgramaPrincipal {
 	public static void main(String[] args) {
 //		InicioSesion v = new InicioSesion();
-//		new VentanaInicioSesion2();
+		new VentanaInicioSesion2();
 		//IAG DATOS DE PRUEBA
         // Crear usuarios de ejemplo
-        Usuario usuario1 = new Usuario("123456789A", new Date(), "Usuario1", "Ciudad1", "user1",  "usuario1@example.com");
-        Usuario usuario2 = new Usuario("987654321B", new Date(), "Usuario2", "Ciudad2", "user2",  "usuario2@example.com");
-        Usuario usuario3 = new Usuario("567890123C", new Date(), "Usuario3", "Ciudad3", "user3",  "usuario3@example.com");
+        Usuario usuario1 = new Usuario("123456789A","10/05/1990" , "Usuario1", "Ciudad1", "user1",  "usuario1@example.com", "Resources/Imagenes/nano.png", "contrasenia123");
+        Usuario usuario2 = new Usuario("987654321B","10/05/1990" , "Usuario2", "Ciudad2", "user2",  "usuario2@example.com", "Resources/Imagenes/nano.png", "contrasenia123");
+        Usuario usuario3 = new Usuario("567890123C","10/05/1990" , "Usuario3", "Ciudad3", "user3",  "usuario3@example.com", "Resources/Imagenes/nano.png", "contrasenia123");
 
         // Crear anuncios asociados a los usuarios
         ArrayList<String> fotosAnuncio1 = new ArrayList<>();
-        fotosAnuncio1.add("foto1.jpg");
-        fotosAnuncio1.add("foto2.jpg");
+        fotosAnuncio1.add("Resources/Imagenes/nano.png");
+        fotosAnuncio1.add("Resources/Imagenes/nano.png");
         Anuncio anuncio1Usuario1 = new Anuncio("1", "Anuncio 1", usuario1, "Descripción del anuncio 1", (float) 100.0, fotosAnuncio1);
         Anuncio anuncio2Usuario1 = new Anuncio("2", "Anuncio 2", usuario1, "Descripción del anuncio 2", (float)150.0, fotosAnuncio1);
 

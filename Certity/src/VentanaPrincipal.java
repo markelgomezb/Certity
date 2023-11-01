@@ -6,8 +6,12 @@ import javax.swing.table.TableCellRenderer;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 import java.util.Vector;
 
 public class VentanaPrincipal extends JFrame {
@@ -24,6 +28,8 @@ public class VentanaPrincipal extends JFrame {
 	private JScrollPane scrollAnuncios;
 	private JLabel lblUsuario, lblBusca;
 	private JTextField txtBusqueda;
+	private static List<Usuario> usuarios = new ArrayList<>();
+
 	
     public VentanaPrincipal(ArrayList<Anuncio> anuncios, Usuario u) {
         super("Anuncios");
@@ -94,4 +100,56 @@ public class VentanaPrincipal extends JFrame {
     		this.modeloAnuncios.addRow(new Object[] {e.getUsuario(),e.getFotos(),e.getDescripcion(),e.getUsuario().getLocalidad(),e.getPrecio()});
     	});
     }
+    
+    
+    
+    public static void cargarClientesEnLista(String nomfich) {
+		//linea = dni;nom;fNac;con
+		try {
+			Scanner sc = new Scanner(new FileReader(nomfich));
+			String linea;
+			while(sc.hasNext()) {
+				linea = sc.nextLine();
+				String [] partes = linea.split(";");
+				String dni = partes[0];
+				String fecha = partes[1];
+				String nombre = partes[2];
+				String nombre_usuario = partes[3];
+				String localidad = partes[4];
+				String email = partes[5];
+				String foto = partes[6];
+				String contrasenia = partes[7];
+				
+				
+				Usuario c = new Usuario(dni, fecha, nombre, nombre_usuario, localidad, email, foto, contrasenia);
+				if(buscarCliente(dni)==null)
+					usuarios.add(c);
+			}
+			sc.close();
+		} catch (FileNotFoundException e) {
+			
+		}
+		
+	}
+    
+    
+    
+    public static Usuario buscarCliente(String dni) {
+		boolean enc = false;
+		int pos = 0;
+		Usuario c = null;
+		while(!enc && pos<usuarios.size()) {
+			c = usuarios.get(pos);
+			if(c.getDni().equals(dni)) {
+				enc = true;
+			}else {
+				pos++;
+			}
+		}
+		if(enc) {
+			return c;
+		}else{
+			return null;
+		}
+	}
 }
