@@ -32,7 +32,10 @@ public class VentanaPrincipal extends JFrame {
 
 	
     public VentanaPrincipal(ArrayList<Anuncio> anuncios, Usuario u) {
+    	
         super("Anuncios");
+        
+		
         this.anuncios = anuncios;
         
         this.initTable();
@@ -104,13 +107,12 @@ public class VentanaPrincipal extends JFrame {
     
     
     public static void cargarClientesEnLista(String nomfich) {
-		//linea = dni;nom;fNac;con
 		try {
 			Scanner sc = new Scanner(new FileReader(nomfich));
 			String linea;
 			while(sc.hasNext()) {
 				linea = sc.nextLine();
-				String [] partes = linea.split(";");
+				String [] partes = linea.split(",");
 				String dni = partes[0];
 				String fecha = partes[1];
 				String nombre = partes[2];

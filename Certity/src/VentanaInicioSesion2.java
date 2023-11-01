@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -18,20 +19,20 @@ public class VentanaInicioSesion2 extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private JLabel lblNombre = new JLabel("Nombre:");
+	private JLabel lbldni = new JLabel("Dni:");
 	private JLabel lblContra = new JLabel("Contraseña:");
 	
 	private JLabel lblTitle =new JLabel("INICIO DE SESION");
 	private JLabel lblLogo = new JLabel();
-	private JTextField txtNombre = new JTextField(20);
+	private JTextField txtdni = new JTextField(20);
 	private JPasswordField JPsswd = new JPasswordField(20);
 	private JButton btn_inicio = new JButton("Inicar Sesion");
 	private JButton btn_salir =  new JButton("Salir de la app");
 	private JLabel lblregistro = new JLabel("<html><a href =''>Registrarse</a></html>");
 	private ImageIcon logo = new ImageIcon("Resources/Imagenes/LOGO_CERTITY.jpg");
+
 	
 	public VentanaInicioSesion2() {
-		
         setTitle("Inicio de sesion");
         setSize(650,650);
         setLocationRelativeTo(null);
@@ -42,9 +43,9 @@ public class VentanaInicioSesion2 extends JFrame{
 		pArriba.add(lblLogo);
 		pArriba.add(lblTitle);
 		
-		JPanel pNombre = new JPanel();
-		pNombre.add(lblNombre);
-		pNombre.add(txtNombre);
+		JPanel pdni = new JPanel();
+		pdni.add(lbldni);
+		pdni.add(txtdni);
 		
 		JPanel pContrasenia = new JPanel();
 		pContrasenia.add(lblContra);
@@ -60,7 +61,7 @@ public class VentanaInicioSesion2 extends JFrame{
 		JPanel pTodo = new JPanel();
 		pTodo.setLayout(new GridLayout(4, 1));
 		pTodo.add(pArriba);
-		pTodo.add(pNombre);
+		pTodo.add(pdni);
 		pTodo.add(pContrasenia);
 		pTodo.add(pBotones);
 		
@@ -85,13 +86,20 @@ public class VentanaInicioSesion2 extends JFrame{
 			}
 		});
 
-		btn_inicio.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				dispose();
-				
+		
+		btn_inicio.addActionListener((e)->{
+			String dni = txtdni.getText();
+			String con = JPsswd.getText();
+			Usuario c = VentanaPrincipal.buscarCliente(dni);
+			if(c == null) {
+				JOptionPane.showMessageDialog(null, "Para poder iniciar sesión tienes que estar registrado","ERROR",JOptionPane.ERROR_MESSAGE);
+			}else {
+				if(c.getContrasenia().equals(con)) {
+					JOptionPane.showMessageDialog(null, "Bienvenido!","SESIÓN INICIADA",JOptionPane.INFORMATION_MESSAGE);
+					new VentanaPrincipal(null, c);
+				}else {
+					JOptionPane.showMessageDialog(null, "Contraseña incorrecta","ERROR",JOptionPane.WARNING_MESSAGE);
+				}
 			}
 		});
 		
