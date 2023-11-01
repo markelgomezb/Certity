@@ -4,13 +4,13 @@ import java.util.List;
 
 public class VentanaPrincipal extends JFrame {
 
-    public VentanaPrincipal(List<Anuncio> anuncios) {
+    public VentanaPrincipal(ArrayList<Anuncio> anuncios) {
         super("Anuncios");
         
-        List<Anuncio> anuncioss = new ArrayList<Anuncio>(); // Supongamos que ya tienes una lista de anuncios.
+        
 
         // Crear el modelo de la tabla
-        AnunciosTableModel tableModel = new AnunciosTableModel(anuncioss);
+        AnunciosTableModel tableModel = new AnunciosTableModel(anuncios);
 
         // Crear la tabla y asignar el modelo
         JTable table = new JTable(tableModel);
