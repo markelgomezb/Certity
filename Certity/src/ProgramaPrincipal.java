@@ -5,7 +5,8 @@ public class ProgramaPrincipal {
 	public static void main(String[] args) {
 //		InicioSesion v = new InicioSesion();
 		new VentanaInicioSesion2();
-		VentanaPrincipal.cargarClientesEnLista("Resources/Ficheros/Usuarios.csv");
+		VentanaPrincipal.cargarUsuarioEnLista("Resources/Ficheros/Usuarios.csv");
+		
 		
 		//IAG DATOS DE PRUEBA
         // Crear usuarios de ejemplo

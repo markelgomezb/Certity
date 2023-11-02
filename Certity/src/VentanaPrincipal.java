@@ -6,6 +6,8 @@ import javax.swing.table.TableCellRenderer;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -29,6 +31,7 @@ public class VentanaPrincipal extends JFrame {
 	private JLabel lblUsuario, lblBusca;
 	private JTextField txtBusqueda;
 	private static List<Usuario> usuarios = new ArrayList<>();
+	private Usuario usuario1;
 
 	
     public VentanaPrincipal(ArrayList<Anuncio> anuncios, Usuario u) {
@@ -62,11 +65,38 @@ public class VentanaPrincipal extends JFrame {
         this.getContentPane().add(BorderLayout.NORTH,panelNorte);
         this.getContentPane().add(BorderLayout.CENTER, this.scrollAnuncios);
         
+        
+        JMenuBar menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
+
+        JMenu menuUsuario = new JMenu("Usuario");
+        menuBar.add(menuUsuario);
+        
+        JMenuItem itemUsuario = new JMenuItem("Usuario");
+        menuUsuario.add(itemUsuario);
+ 
+        itemUsuario.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				usuario1 = guardarUsuarioPorDNI(VentanaInicioSesion2.dniUsuario);
+				System.out.println(usuario1);
+				new VentanaUsuario(usuario1);
+				
+				
+			}
+		});
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setLocationRelativeTo(null); 
         this.setSize(800, 600);
+        try {
         this.loadAnuncios();
+        }catch (Exception e) {
+			// TODO: handle exception
+        	System.out.println(e);
+		}
         setVisible(true);
     }
     
@@ -104,9 +134,19 @@ public class VentanaPrincipal extends JFrame {
     	});
     }
     
+  
+    public Usuario guardarUsuarioPorDNI(String dni) {
+        Usuario usuarioEncontrado = null;
+        for (Usuario usuario : usuarios) {
+            if (usuario.getDni().equals(dni)) {
+                usuarioEncontrado = usuario;
+                break; 
+            }
+        }
+        return usuarioEncontrado;
+    }
     
-    
-    public static void cargarClientesEnLista(String nomfich) {
+    public static void cargarUsuarioEnLista(String nomfich) {
 		try {
 			Scanner sc = new Scanner(new FileReader(nomfich));
 			String linea;

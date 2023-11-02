@@ -30,6 +30,7 @@ public class VentanaInicioSesion2 extends JFrame{
 	private JButton btn_salir =  new JButton("Salir de la app");
 	private JLabel lblregistro = new JLabel("<html><a href =''>Registrarse</a></html>");
 	private ImageIcon logo = new ImageIcon("Resources/Imagenes/LOGO_CERTITY.jpg");
+	static String dniUsuario = " ";
 
 	
 	public VentanaInicioSesion2() {
@@ -96,6 +97,7 @@ public class VentanaInicioSesion2 extends JFrame{
 			}else {
 				if(c.getContrasenia().equals(con)) {
 					JOptionPane.showMessageDialog(null, "Bienvenido!","SESIÓN INICIADA",JOptionPane.INFORMATION_MESSAGE);
+					dniUsuario= dni;
 					new VentanaPrincipal(null, c);
 				}else {
 					JOptionPane.showMessageDialog(null, "Contraseña incorrecta","ERROR",JOptionPane.WARNING_MESSAGE);
