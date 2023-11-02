@@ -27,7 +27,6 @@ public class VentanaInicioSesion2 extends JFrame{
 	private JTextField txtdni = new JTextField(20);
 	private JPasswordField JPsswd = new JPasswordField(20);
 	private JButton btn_inicio = new JButton("Inicar Sesion");
-	private JButton btn_salir =  new JButton("Salir de la app");
 	private JLabel lblregistro = new JLabel("<html><a href =''>Registrarse</a></html>");
 	private ImageIcon logo = new ImageIcon("Resources/Imagenes/LOGO_CERTITY.jpg");
 	static String dniUsuario = " ";
@@ -54,9 +53,8 @@ public class VentanaInicioSesion2 extends JFrame{
 		
 		JPanel pBotones = new JPanel();
 		btn_inicio.setBackground(Color.GREEN);
-		btn_salir.setBackground(Color.ORANGE);
+		
 		pBotones.add(btn_inicio);
-		pBotones.add(btn_salir);
 		pBotones.add(lblregistro);
 		
 		JPanel pTodo = new JPanel();
@@ -75,15 +73,6 @@ public class VentanaInicioSesion2 extends JFrame{
 				dispose();
 				VentanaRegistro vr = new VentanaRegistro();
 				vr.setVisible(true);
-			}
-		});
-		
-		btn_salir.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				System.exit(0);
 			}
 		});
 
