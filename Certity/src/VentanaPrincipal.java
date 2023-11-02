@@ -97,6 +97,46 @@ public class VentanaPrincipal extends JFrame {
 			// TODO: handle exception
         	System.out.println(e);
 		}
+        
+        
+        // boton
+
+        JButton btnAgregar = new JButton("Agregar");
+
+        btnAgregar.setBackground(Color.ORANGE);
+
+
+
+        
+
+        btnAgregar.addActionListener(new ActionListener() {
+
+            @Override
+
+            public void actionPerformed(ActionEvent e) {
+
+                ventanaAnuncio ventanaAnuncio = new ventanaAnuncio();
+
+                ventanaAnuncio.setVisible(true);
+
+            }
+
+        });
+        
+        JPanel panelSur = new JPanel();
+
+        panelSur.add(btnAgregar);
+
+
+
+        
+
+        this.getContentPane().add(BorderLayout.SOUTH, panelSur);
+
+
+        
+        
+        
         setVisible(true);
     }
     
