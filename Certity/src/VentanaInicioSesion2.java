@@ -90,12 +90,13 @@ public class VentanaInicioSesion2 extends JFrame{
 		
 		btn_inicio.addActionListener((e)->{
 			String dni = txtdni.getText();
-			String con = JPsswd.getText();
+			char[] psswd = JPsswd.getPassword();
+			String psswdString = new String(psswd);
 			Usuario c = VentanaPrincipal.buscarCliente(dni);
 			if(c == null) {
 				JOptionPane.showMessageDialog(null, "Para poder iniciar sesión tienes que estar registrado","ERROR",JOptionPane.ERROR_MESSAGE);
 			}else {
-				if(c.getContrasenia().equals(con)) {
+				if(c.getContrasenia().equals(psswdString)) {
 					JOptionPane.showMessageDialog(null, "Bienvenido!","SESIÓN INICIADA",JOptionPane.INFORMATION_MESSAGE);
 					dniUsuario= dni;
 					new VentanaPrincipal(null, c);
