@@ -99,9 +99,20 @@ public class VentanaInicioSesion2 extends JFrame{
 			}
 		};
 		this.JPsswd.addKeyListener(enterinicio);
+		this.txtdni.addKeyListener(enterinicio);
 		
+		KeyAdapter keyregistro = new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_CONTROL && e.getKeyCode() == KeyEvent.VK_R) {
+					dispose();
+					VentanaRegistro vr = new VentanaRegistro();
+					vr.setVisible(true);
+				}
+			}
+		};
 
-		
+		this.JPsswd.addKeyListener(keyregistro);
+		this.txtdni.addKeyListener(keyregistro);
 	     setVisible(true);
 	}
 
