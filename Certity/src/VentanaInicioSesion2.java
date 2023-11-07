@@ -1,13 +1,14 @@
-import java.awt.Color;
 
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,7 +27,6 @@ public class VentanaInicioSesion2 extends JFrame{
 	private JLabel lblLogo = new JLabel();
 	private JTextField txtdni = new JTextField(20);
 	private JPasswordField JPsswd = new JPasswordField(20);
-	private JButton btn_inicio = new JButton("Inicar Sesion");
 	private JLabel lblregistro = new JLabel("<html><a href =''>Registrarse</a></html>");
 	private ImageIcon logo = new ImageIcon("Resources/Imagenes/LOGO_CERTITY.jpg");
 	static String dniUsuario = " ";
@@ -52,9 +52,8 @@ public class VentanaInicioSesion2 extends JFrame{
 		pContrasenia.add(JPsswd);
 		
 		JPanel pBotones = new JPanel();
-		btn_inicio.setBackground(Color.GREEN);
-		
-		pBotones.add(btn_inicio);
+
+
 		pBotones.add(lblregistro);
 		
 		JPanel pTodo = new JPanel();
@@ -76,24 +75,32 @@ public class VentanaInicioSesion2 extends JFrame{
 			}
 		});
 
-		
-		btn_inicio.addActionListener((e)->{
-			String dni = txtdni.getText();
-			char[] psswd = JPsswd.getPassword();
-			String psswdString = new String(psswd);
-			Usuario c = VentanaPrincipal.buscarCliente(dni);
-			if(c == null) {
-				JOptionPane.showMessageDialog(null, "Para poder iniciar sesión tienes que estar registrado","ERROR",JOptionPane.ERROR_MESSAGE);
-			}else {
-				if(c.getContrasenia().equals(psswdString)) {
-					JOptionPane.showMessageDialog(null, "Bienvenido!","SESIÓN INICIADA",JOptionPane.INFORMATION_MESSAGE);
-					dniUsuario= dni;
-					new VentanaPrincipal(null, c);
-				}else {
-					JOptionPane.showMessageDialog(null, "Contraseña incorrecta","ERROR",JOptionPane.WARNING_MESSAGE);
+
+		KeyAdapter enterinicio = new KeyAdapter() {
+			
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+					String dni = txtdni.getText();
+					char[] psswd = JPsswd.getPassword();
+					String psswdString = new String(psswd);
+					Usuario c = VentanaPrincipal.buscarCliente(dni);
+					if(c == null) {
+						JOptionPane.showMessageDialog(null, "Para poder iniciar sesión tienes que estar registrado","ERROR",JOptionPane.ERROR_MESSAGE);
+					}else {
+						if(c.getContrasenia().equals(psswdString)) {
+							JOptionPane.showMessageDialog(null, "Bienvenido!","SESIÓN INICIADA",JOptionPane.INFORMATION_MESSAGE);
+							dniUsuario= dni;
+							new VentanaPrincipal(null, c);
+						}else {
+							JOptionPane.showMessageDialog(null, "Contraseña incorrecta","ERROR",JOptionPane.WARNING_MESSAGE);
+						}
+					}
 				}
 			}
-		});
+		};
+		this.JPsswd.addKeyListener(enterinicio);
+		
+
 		
 	     setVisible(true);
 	}
