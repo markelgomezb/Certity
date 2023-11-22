@@ -1,5 +1,8 @@
+package Main;
 import java.util.ArrayList;
-
+import Domain.*;
+import Gui.VentanaInicioSesion2;
+import Gui.VentanaPrincipal;
 
 public class ProgramaPrincipal {
 	public static void main(String[] args) {

@@ -1,6 +1,7 @@
+package Gui;
 import javax.swing.*;
 import java.awt.*;
-
+import Domain.*;
 public class VentanaUsuario extends JFrame {
 
     public VentanaUsuario(Usuario usuario) {
