@@ -73,5 +73,7 @@ public class Anuncio {
                ", usuario=" + usuario +
                '}';
     }
+    //prueba conexion
+    
 
 }
