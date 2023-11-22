@@ -30,6 +30,9 @@ public class VentanaUsuario extends JFrame {
         JLabel lblFotoPerfil = new JLabel();
         ImageIcon img = new ImageIcon("Resources/Imagenes/"+usuario.getFoto());
         lblFotoPerfil.setIcon(img);
+        lblFotoPerfil.setHorizontalAlignment(JLabel.CENTER);
+        lblFotoPerfil.setVerticalAlignment(JLabel.CENTER);
+        lblFotoPerfil.setIconTextGap(0);
        
         panel.add(lblFotoPerfil); 
         panel.add(lblNombre);
