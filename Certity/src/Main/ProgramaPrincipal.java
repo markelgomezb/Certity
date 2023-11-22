@@ -49,7 +49,7 @@ public class ProgramaPrincipal {
         });
         
         new VentanaInicioSesion2(anuncios);
-        new VentanaPrincipal(anuncios, usuario1);
+//        new VentanaPrincipal(anuncios, usuario1);
 	}
 
 }
