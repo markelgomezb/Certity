@@ -1,5 +1,6 @@
 package Gui;
 import javax.swing.*;
+
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
@@ -11,11 +12,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Vector;
 import Domain.*;
 
 public class VentanaPrincipal extends JFrame {
@@ -190,6 +190,10 @@ public class VentanaPrincipal extends JFrame {
         return usuarioEncontrado;
     }
     
+    public static void aniadirUsuario(Usuario c) {
+		usuarios.add(c);
+	}
+    
     public static void cargarUsuarioEnLista(String nomfich) {
 		try {
 			Scanner sc = new Scanner(new FileReader(nomfich));
@@ -218,7 +222,19 @@ public class VentanaPrincipal extends JFrame {
 		
 	}
     
-    
+    public static void guardarClientesEnFichero(String nomfich) {
+		try {
+			PrintWriter pw = new PrintWriter(nomfich);
+			for(Usuario c : usuarios) {
+				pw.println(c.getDni()+";"+c.getFecha()+";"+c.getNombre()+";"+c.getNombre_usuario()+
+						";"+c.getLocalidad()+";"+c.getEmail()+";"+c.getFoto()+c.getContrasenia());
+			}
+			pw.flush();
+			pw.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
     
     public static Usuario buscarCliente(String dni) {
 		boolean enc = false;

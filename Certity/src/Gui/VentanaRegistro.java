@@ -13,10 +13,12 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Domain.Anuncio;
+import Domain.Usuario;
 
 
 public class VentanaRegistro extends JFrame{
@@ -32,12 +34,14 @@ public class VentanaRegistro extends JFrame{
 	private JLabel lblNombre = new JLabel("Nombre y apellidos:");
 	private JLabel lblUsuario = new JLabel("Nombre de usuario:");
 	private JLabel lblLocalidad = new JLabel("Localidad:");
+	private JLabel lblCon = new JLabel("Contraseña:");
 	private JLabel lblEmail = new JLabel("Email:");
 	private JTextField txtDni = new JTextField(9);
 	private JTextField txtFechaNac = new JTextField("Ej: 21/02/2003", 15);
 	private JTextField txtNombre = new JTextField(30);
 	private JTextField txtUsuario = new JTextField(20);
 	private JTextField txtLocalidad = new JTextField(20);
+	private JTextField txtCon = new JTextField(20);
 	private JTextField txtEmail = new JTextField(20);
 	private JButton btnRegistro = new JButton("Registrarse");
 	private JButton btnCancelar = new JButton("Cancelar");
@@ -45,6 +49,9 @@ public class VentanaRegistro extends JFrame{
 	private JButton btnCargarFoto = new JButton("Cargar Foto");
 	private JLabel lblFoto = new JLabel("Cargar foto:");
 	private ArrayList<Anuncio> anuncios;
+	private String destino1;
+	private static final String nomfichUsuarios = "Resources/Ficheros/Usuarios.csv";
+
 
 
 	
@@ -88,6 +95,10 @@ public class VentanaRegistro extends JFrame{
         pLocalidad.add(lblLocalidad);
         pLocalidad.add(txtLocalidad);
         
+        JPanel pCon = new JPanel();
+        pCon.add(lblCon);
+        pCon.add(txtCon);
+        
         JPanel pBotones = new JPanel();
         btnRegistro.setBackground(Color.GREEN);
         btnRegistroInicio.setBackground(Color.CYAN);
@@ -97,7 +108,7 @@ public class VentanaRegistro extends JFrame{
         pBotones.add(btnCancelar);
         
         JPanel pTodo = new JPanel();
-        pTodo.setLayout(new GridLayout(9,1));
+        pTodo.setLayout(new GridLayout(10,1));
         pTodo.add(pArriba);
         pTodo.add(pUsuario);
         pTodo.add(pNombre);
@@ -105,8 +116,9 @@ public class VentanaRegistro extends JFrame{
         pTodo.add(pEmail);
         pTodo.add(pFecha);
         pTodo.add(pLocalidad);
-        pTodo.add(pBotones);
         pTodo.add(pFoto);
+        pTodo.add(pCon);
+        pTodo.add(pBotones);
 
         
         add(pTodo);
@@ -128,6 +140,7 @@ public class VentanaRegistro extends JFrame{
                         if (!destino.exists()) {
                             Files.copy(selectedFile.toPath(), destino.toPath());
                             System.out.println("Foto guardada en: " + destino.getAbsolutePath());
+                            destino1 = destino.getAbsolutePath();
                         } else {
                             System.out.println("Ya existe un archivo con ese nombre en el directorio.");
                         }
@@ -138,16 +151,28 @@ public class VentanaRegistro extends JFrame{
             }
         });
         
-        btnCancelar.addActionListener(new ActionListener() {
+        
+        btnRegistro.addActionListener((e)->{
+			String dni = txtDni.getText();
+			String nom = txtNombre.getText();
+			String fNac = txtFechaNac.getText();
+			String con = txtCon.getText();
+			String loc = txtLocalidad.getText();
+			String email = txtEmail.getText();
+			String usuario = txtUsuario.getText();
 			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				dispose();
-				VentanaInicioSesion2 vis = new VentanaInicioSesion2(anuncios);
-				vis.setVisible(true);
-			}
+			Usuario c = new Usuario(dni, fNac, nom, loc, usuario, email, destino1, con );
+			
+				VentanaPrincipal.aniadirUsuario(c);
+				JOptionPane.showMessageDialog(null, "Cliente registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
+				VentanaPrincipal.guardarClientesEnFichero(nomfichUsuarios);
+			
+			dispose();
+			VentanaInicioSesion2 vis = new VentanaInicioSesion2(anuncios);
+			vis.setVisible(true);
 		});
+        
+  
      
 
 	}
