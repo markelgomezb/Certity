@@ -94,6 +94,7 @@ public class VentanaInicioSesion2 extends JFrame{
 							JOptionPane.showMessageDialog(null, "Bienvenido!","SESIÓN INICIADA",JOptionPane.INFORMATION_MESSAGE);
 							dniUsuario= dni;
 							new VentanaPrincipal(anuncios, c);
+							dispose();
 						}else {
 							JOptionPane.showMessageDialog(null, "Contraseña incorrecta","ERROR",JOptionPane.WARNING_MESSAGE);
 						}

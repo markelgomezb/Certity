@@ -26,8 +26,12 @@ public class VentanaUsuario extends JFrame {
         JLabel lblLocalidad = new JLabel("Localidad:");
         JTextField txtLocalidad = new JTextField(usuario.getLocalidad());
         txtLocalidad.setEditable(false);
-
         
+        JLabel lblFotoPerfil = new JLabel();
+        ImageIcon img = new ImageIcon("Resources/Imagenes/"+usuario.getFoto());
+        lblFotoPerfil.setIcon(img);
+       
+        panel.add(lblFotoPerfil); 
         panel.add(lblNombre);
         panel.add(txtNombre);
         panel.add(lblDNI);
