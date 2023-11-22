@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Vector;
 import Domain.*;
+
 public class VentanaPrincipal extends JFrame {
 
 	/**
@@ -93,7 +94,7 @@ public class VentanaPrincipal extends JFrame {
         setLocationRelativeTo(null); 
         this.setSize(800, 600);
         try {
-        this.loadAnuncios();
+//        this.loadAnuncios();
         }catch (Exception e) {
 			// TODO: handle exception
         	System.out.println(e);
@@ -142,11 +143,13 @@ public class VentanaPrincipal extends JFrame {
     }
     
     public void initTable() {
-    	Vector<String> cabeceraAnuncios = new Vector<String>(Arrays.asList("USUARIO", "FOTOS", "DESCRIPCION", "LOCALIDAD", "PRECIO"));
-    	
-    	this.modeloAnuncios = new DefaultTableModel(new Vector<Vector<Object>>(),cabeceraAnuncios);
-    	
-    	this.tablaAnuncios = new JTable(this.modeloAnuncios);
+//    	Vector<String> cabeceraAnuncios = new Vector<String>(Arrays.asList("USUARIO", "FOTOS", "DESCRIPCION", "LOCALIDAD", "PRECIO"));
+//    	
+//    	this.modeloAnuncios = new DefaultTableModel(new Vector<Vector<Object>>(),cabeceraAnuncios);
+//    	
+//    	this.tablaAnuncios = new JTable(this.modeloAnuncios);
+//    	
+    	this.tablaAnuncios = new JTable(new AnuncioTableModel(this.anuncios));
     	
     	TableCellRenderer tablerenderer = (table, value, isSelected, hasFocus, row, column) -> {
     		JLabel label = new JLabel(value.toString());
@@ -163,17 +166,17 @@ public class VentanaPrincipal extends JFrame {
     		label.setOpaque(true);
     		return label;
     	};
-    	
+
     	this.tablaAnuncios.setRowHeight(15);
     	this.tablaAnuncios.setDefaultRenderer(Object.class, tablerenderer);
     }
     
-    public void loadAnuncios() {
-    	this.modeloAnuncios.setRowCount(0);
-    	anuncios.forEach(e ->{
-    		this.modeloAnuncios.addRow(new Object[] {e.getUsuario(),e.getFotos(),e.getDescripcion(),e.getUsuario().getLocalidad(),e.getPrecio()});
-    	});
-    }
+//    public void loadAnuncios() {
+//    	this.modeloAnuncios.setRowCount(0);
+//    	anuncios.forEach(e ->{
+//    		this.modeloAnuncios.addRow(new Object[] {e.getUsuario(),e.getFotos(),e.getDescripcion(),e.getUsuario().getLocalidad(),e.getPrecio()});
+//    	});
+//    }
     
   
     public Usuario guardarUsuarioPorDNI(String dni) {

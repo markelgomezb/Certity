@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,6 +15,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import Domain.Anuncio;
 
 
 public class VentanaRegistro extends JFrame{
@@ -41,10 +44,12 @@ public class VentanaRegistro extends JFrame{
 	private JButton btnRegistroInicio = new JButton("Registrarse e iniciar sesion");
 	private JButton btnCargarFoto = new JButton("Cargar Foto");
 	private JLabel lblFoto = new JLabel("Cargar foto:");
+	private ArrayList<Anuncio> anuncios;
 
 
 	
-	public VentanaRegistro() {
+	public VentanaRegistro(ArrayList<Anuncio> anuncios) {
+		this.anuncios = anuncios;
         setTitle("Inicio de sesion");
         setSize(650,650);
         setLocationRelativeTo(null);
@@ -139,7 +144,7 @@ public class VentanaRegistro extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				dispose();
-				VentanaInicioSesion2 vis = new VentanaInicioSesion2();
+				VentanaInicioSesion2 vis = new VentanaInicioSesion2(anuncios);
 				vis.setVisible(true);
 			}
 		});

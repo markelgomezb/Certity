@@ -7,7 +7,7 @@ import Gui.VentanaPrincipal;
 public class ProgramaPrincipal {
 	public static void main(String[] args) {
 //		InicioSesion v = new InicioSesion();
-		new VentanaInicioSesion2();
+		
 		VentanaPrincipal.cargarUsuarioEnLista("Resources/Ficheros/Usuarios.csv");
 		
 		
@@ -44,6 +44,11 @@ public class ProgramaPrincipal {
         anuncios.add(anuncio1Usuario3);
         anuncios.add(anuncio2Usuario3);
         
+        anuncios.forEach(e ->{
+        	System.out.println(e);
+        });
+        
+        new VentanaInicioSesion2(anuncios);
         new VentanaPrincipal(anuncios, usuario1);
 	}
 

@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
@@ -34,7 +35,7 @@ public class VentanaInicioSesion2 extends JFrame{
 	static String dniUsuario = " ";
 
 	
-	public VentanaInicioSesion2() {
+	public VentanaInicioSesion2(ArrayList<Anuncio> anuncios) {
         setTitle("Inicio de sesion");
         setSize(650,650);
         setLocationRelativeTo(null);
@@ -72,7 +73,7 @@ public class VentanaInicioSesion2 extends JFrame{
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
 				dispose();
-				VentanaRegistro vr = new VentanaRegistro();
+				VentanaRegistro vr = new VentanaRegistro(anuncios);
 				vr.setVisible(true);
 			}
 		});
@@ -92,7 +93,7 @@ public class VentanaInicioSesion2 extends JFrame{
 						if(c.getContrasenia().equals(psswdString)) {
 							JOptionPane.showMessageDialog(null, "Bienvenido!","SESIÓN INICIADA",JOptionPane.INFORMATION_MESSAGE);
 							dniUsuario= dni;
-							new VentanaPrincipal(null, c);
+							new VentanaPrincipal(anuncios, c);
 						}else {
 							JOptionPane.showMessageDialog(null, "Contraseña incorrecta","ERROR",JOptionPane.WARNING_MESSAGE);
 						}
@@ -107,7 +108,7 @@ public class VentanaInicioSesion2 extends JFrame{
 			public void keyPressed(KeyEvent e) {
 				if(e.isControlDown() && e.getKeyCode() == KeyEvent.VK_R) {
 					dispose();
-					VentanaRegistro vr = new VentanaRegistro();
+					VentanaRegistro vr = new VentanaRegistro(anuncios);
 					vr.setVisible(true);
 				}
 			}
