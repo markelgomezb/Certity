@@ -45,7 +45,7 @@ public class VentanaUsuario extends JFrame {
         panel.add(txtLocalidad);
 
         add(panel); 
-        setSize(400, 300); 
+        setSize(600, 600); 
         setLocationRelativeTo(null); 
         setVisible(true);
     }
