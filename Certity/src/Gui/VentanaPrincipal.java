@@ -200,7 +200,7 @@ public class VentanaPrincipal extends JFrame {
 			String linea;
 			while(sc.hasNext()) {
 				linea = sc.nextLine();
-				String [] partes = linea.split(",");
+				String [] partes = linea.split(";");
 				String dni = partes[0];
 				String fecha = partes[1];
 				String nombre = partes[2];
@@ -227,7 +227,7 @@ public class VentanaPrincipal extends JFrame {
 			PrintWriter pw = new PrintWriter(nomfich);
 			for(Usuario c : usuarios) {
 				pw.println(c.getDni()+";"+c.getFecha()+";"+c.getNombre()+";"+c.getNombre_usuario()+
-						";"+c.getLocalidad()+";"+c.getEmail()+";"+c.getFoto()+c.getContrasenia());
+						";"+c.getLocalidad()+";"+c.getEmail()+";"+c.getFoto()+";"+c.getContrasenia());
 			}
 			pw.flush();
 			pw.close();

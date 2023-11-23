@@ -28,7 +28,8 @@ public class VentanaUsuario extends JFrame {
         txtLocalidad.setEditable(false);
         
         JLabel lblFotoPerfil = new JLabel();
-        ImageIcon img = new ImageIcon("Resources/Imagenes/"+usuario.getFoto());
+        ImageIcon img = new ImageIcon(usuario.getFoto());
+        System.out.println(usuario.getFoto());
         lblFotoPerfil.setIcon(img);
         lblFotoPerfil.setHorizontalAlignment(JLabel.CENTER);
         lblFotoPerfil.setVerticalAlignment(JLabel.CENTER);

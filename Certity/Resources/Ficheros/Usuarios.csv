@@ -1,5 +1,7 @@
-a;11-10-0015;Juan;juano123;Ciudad A;juan@example.com;nano.pnga
-23456789B;07-04-0021;María;mar321;Ciudad B;maria@example.com;foto2.jpgpassword456
-34567890C;09-12-0025;Carlos;carl99;Ciudad C;carlos@example.com;foto3.jpgclave789
-45678901D;01-08-0030;Laura;lau22;Ciudad D;laura@example.com;foto4.jpgsecreto123
-
+a;11-10-0015;Juan;Ciudad A;juano123;juan@example.com;Resources/Imagenes/nano.png;a
+23456789B;07-04-0021;María;Ciudad B;mar321;maria@example.com;/Resources/Imagenes/nano.png;foto2.jpgpassword456
+34567890C;09-12-0025;Carlos;Ciudad C;carl99;carlos@example.com;/Resources/Imagenes/nano.png;foto3.jpgclave789
+45678901D;01-08-0030;Laura;Ciudad D;lau22;laura@example.com;/Resources/Imagenes/nano.png;foto4.jpgsecreto123
+m;01-01-1970;m;m;m;m;Resources/Imagenes/nano.png;a
+q;12-12-2003;q;q;q;q;Resources/Imagenes/nan.jpeg;q
+w;12-12-1200;w;w;q;w;Resources/Imagenes/67184349.png;w

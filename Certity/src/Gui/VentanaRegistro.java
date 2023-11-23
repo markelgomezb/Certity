@@ -140,7 +140,8 @@ public class VentanaRegistro extends JFrame{
                         if (!destino.exists()) {
                             Files.copy(selectedFile.toPath(), destino.toPath());
                             System.out.println("Foto guardada en: " + destino.getAbsolutePath());
-                            destino1 = destino.getAbsolutePath();
+                            destino1 = destino.getPath();
+                            
                         } else {
                             System.out.println("Ya existe un archivo con ese nombre en el directorio.");
                         }
