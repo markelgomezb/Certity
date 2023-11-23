@@ -97,7 +97,7 @@ public class VentanaUsuario extends JFrame {
 		this.tablaUsuarioAnuncios = new JTable(new AnuncioUsuarioTableModel(this.anuncios, this.usuario));
 		
     	TableCellRenderer tablerenderer = (table, value, isSelected, hasFocus, row, column) -> {
-    		JLabel label = new JLabel(value.toString());
+    		JLabel label = new JLabel(value != null ? value.toString() : "");
     		
     		if(isSelected) {
     			label.setBackground(table.getSelectionBackground());

@@ -35,8 +35,8 @@ public class AnuncioUsuarioTableModel extends DefaultTableModel{
 	
 	public int getRowCount() {
 		if(this.mapAnuncios != null) {
-			System.out.println(mapAnuncios);
-			return mapAnuncios.get(u).size();
+
+			return mapAnuncios.keySet().size();
 		}else {
 			return 0;
 		}
@@ -48,24 +48,48 @@ public class AnuncioUsuarioTableModel extends DefaultTableModel{
 		return 4;
 	}
 	
-	@Override
+//	@Override
+//	public Object getValueAt(int row, int column) {
+//		// TODO Auto-generated method stub
+//		Anuncio anuncio = mapAnuncios.get(u).get(row);
+//		
+//		switch(column) {
+//		case 0: 
+//			return anuncio.getId();
+//		case 1:
+//			return anuncio.getDescripcion();
+//		case 2:
+//			return anuncio.getPrecio();
+//		case 3:
+//			return anuncio.getFotos();
+//		default:
+//			return null;
+//		}
+//		}
+	
 	public Object getValueAt(int row, int column) {
-		// TODO Auto-generated method stub
-		Anuncio anuncio = mapAnuncios.get(u).get(row);
-		
-		switch(column) {
-		case 0: 
-			return anuncio.getId();
-		case 1:
-			return anuncio.getDescripcion();
-		case 2:
-			return anuncio.getPrecio();
-		case 3:
-			return anuncio.getFotos();
-		default:
-			return null;
-		}
-		}
+	    // TODO Auto-generated method stub
+	    ArrayList<Anuncio> anunciosUsuario = mapAnuncios.get(u);
+
+	    if (anunciosUsuario != null && row < anunciosUsuario.size()) {
+	        Anuncio anuncio = anunciosUsuario.get(row);
+
+	        switch(column) {
+	            case 0: 
+	                return anuncio.getId();
+	            case 1:
+	                return anuncio.getDescripcion();
+	            case 2:
+	                return anuncio.getPrecio();
+	            case 3:
+	                return anuncio.getFotos();
+	            default:
+	                return null;
+	        }
+	    } else {
+	        return null;
+	    }
+	}
 	
 	public boolean isCellEditable(int row, int column) {
 		return false;
