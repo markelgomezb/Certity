@@ -25,7 +25,7 @@ public class AnuncioUsuarioTableModel extends DefaultTableModel{
 		});
 	}
 	
-	public ArrayList<Anuncio> getAnuncios(){
+	public ArrayList<Anuncio> getAnunciosUsuario(){
 		return this.anuncios;
 	}
 	
@@ -40,26 +40,22 @@ public class AnuncioUsuarioTableModel extends DefaultTableModel{
 	@Override
 	public int getColumnCount() {
 		// TODO Auto-generated method stub
-		return 6;
+		return 4;
 	}
 	
 	@Override
 	public Object getValueAt(int row, int column) {
 		// TODO Auto-generated method stub
-		Anuncio anuncio = anuncios.get(row);
+		Anuncio anuncio = mapAnuncios.get(u).get(row);
 		
 		switch(column) {
 		case 0: 
 			return anuncio.getId();
 		case 1:
-			return anuncio.getNombre();
-		case 2:
-			return anuncio.getUsuario().getNombre_usuario();
-		case 3:
 			return anuncio.getDescripcion();
-		case 4:
+		case 2:
 			return anuncio.getPrecio();
-		case 5:
+		case 3:
 			return anuncio.getFotos();
 		default:
 			return null;
@@ -75,16 +71,11 @@ public class AnuncioUsuarioTableModel extends DefaultTableModel{
         case 0:
             return "ID";
         case 1:
-            return "Nombre";
+        	return "Descripción";
         case 2:
-            return "Usuario";
+        	return "Precio";
         case 3:
-            return "Descripción";
-        case 4:
-            return "Precio";
-        case 5:
-            return "Fotos";
-        // Agrega más casos según la cantidad de columnas
+        	return "Fotos";
         default:
             return "";
     }

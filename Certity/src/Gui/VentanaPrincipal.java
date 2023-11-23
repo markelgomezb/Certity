@@ -26,8 +26,6 @@ public class VentanaPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private ArrayList<Anuncio> anuncios;
-	
-	private DefaultTableModel modeloAnuncios;
 	private JTable tablaAnuncios;
 	private JScrollPane scrollAnuncios;
 	private JLabel lblUsuario, lblBusca;
@@ -83,7 +81,8 @@ public class VentanaPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				usuario1 = guardarUsuarioPorDNI(VentanaInicioSesion2.dniUsuario);
 				System.out.println(usuario1);
-				new VentanaUsuario(usuario1);
+				new VentanaUsuario(usuario1,anuncios);
+				dispose();
 				
 				
 			}

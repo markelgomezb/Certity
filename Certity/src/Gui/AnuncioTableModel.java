@@ -79,7 +79,6 @@ public class AnuncioTableModel extends DefaultTableModel{
                 return "Precio";
             case 5:
                 return "Fotos";
-            // Agrega más casos según la cantidad de columnas
             default:
                 return "";
         }
