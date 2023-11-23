@@ -1,5 +1,6 @@
 package Gui;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.table.DefaultTableModel;
@@ -19,7 +20,9 @@ public class AnuncioUsuarioTableModel extends DefaultTableModel{
 	public AnuncioUsuarioTableModel(ArrayList<Anuncio> anuncios, Usuario u) {
 		this.anuncios = anuncios;
 		this.u = u;
+		mapAnuncios = new HashMap<Usuario, ArrayList<Anuncio>>();
 		anuncios.forEach(e ->{
+			System.out.println(e);
 			mapAnuncios.putIfAbsent(e.getUsuario(), new ArrayList<Anuncio>());
 			mapAnuncios.get(e.getUsuario()).add(e);
 		});

@@ -23,6 +23,7 @@ public class VentanaUsuario extends JFrame {
         
         this.anuncios = anuncios;
         this.usuario = usuario;
+        initTable();
         
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
 
