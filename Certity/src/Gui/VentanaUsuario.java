@@ -14,7 +14,7 @@ public class VentanaUsuario extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Anuncio> anuncios;
-	private JTable tablaAnuncios;
+	private JTable tablaUsuarioAnuncios;
 	private JScrollPane scrollAnuncios;
 	private Usuario usuario;
 
@@ -52,7 +52,7 @@ public class VentanaUsuario extends JFrame {
         lblFotoPerfil.setVerticalAlignment(JLabel.CENTER);
         lblFotoPerfil.setIconTextGap(0);
         
-        this.scrollAnuncios = new JScrollPane(this.tablaAnuncios);
+        this.scrollAnuncios = new JScrollPane(this.tablaUsuarioAnuncios);
         scrollAnuncios.setBorder(new TitledBorder("Anuncios publicados por ti"));
        
         panel.add(lblFotoPerfil); 
@@ -75,7 +75,7 @@ public class VentanaUsuario extends JFrame {
 	
 
 	public void initTable() {
-		this.tablaAnuncios = new JTable(new AnuncioUsuarioTableModel(anuncios, usuario));
+		this.tablaUsuarioAnuncios = new JTable(new AnuncioUsuarioTableModel(this.anuncios, this.usuario));
 		
     	TableCellRenderer tablerenderer = (table, value, isSelected, hasFocus, row, column) -> {
     		JLabel label = new JLabel(value.toString());
@@ -93,7 +93,7 @@ public class VentanaUsuario extends JFrame {
     		return label;
     	};
 
-    	this.tablaAnuncios.setRowHeight(15);
-    	this.tablaAnuncios.setDefaultRenderer(Object.class, tablerenderer);
+    	this.tablaUsuarioAnuncios.setRowHeight(15);
+    	this.tablaUsuarioAnuncios.setDefaultRenderer(Object.class, tablerenderer);
 	}
 }

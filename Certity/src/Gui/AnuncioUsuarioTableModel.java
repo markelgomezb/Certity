@@ -31,6 +31,7 @@ public class AnuncioUsuarioTableModel extends DefaultTableModel{
 	
 	public int getRowCount() {
 		if(this.mapAnuncios != null) {
+			System.out.println(mapAnuncios);
 			return mapAnuncios.get(u).size();
 		}else {
 			return 0;
