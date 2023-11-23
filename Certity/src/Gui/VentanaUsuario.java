@@ -25,24 +25,14 @@ public class VentanaUsuario extends JFrame {
         this.usuario = usuario;
         
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
-        JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
-        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
+
+        JPanel pnlNombre = new JPanel();
+        JPanel pnllbltxt = new JPanel();
+        pnlNombre.setLayout(new BorderLayout());
         JLabel lblNombre = new JLabel("Nombre:");
         JTextField txtNombre = new JTextField(usuario.getNombre());
-        txtNombre.setEditable(false); 
-
-        JLabel lblDNI = new JLabel("DNI:");
-        JTextField txtDNI = new JTextField(usuario.getDni());
-        txtDNI.setEditable(false);
-
-        JLabel lblFecha = new JLabel("Fecha de nacimiento:");
-        JTextField txtFecha = new JTextField(usuario.getFecha());
-        txtFecha.setEditable(false);
-
-        JLabel lblLocalidad = new JLabel("Localidad:");
-        JTextField txtLocalidad = new JTextField(usuario.getLocalidad());
-        txtLocalidad.setEditable(false);
+        txtNombre.setEditable(false);
         
         JLabel lblFotoPerfil = new JLabel();
         ImageIcon img = new ImageIcon(usuario.getFoto());
@@ -52,22 +42,50 @@ public class VentanaUsuario extends JFrame {
         lblFotoPerfil.setVerticalAlignment(JLabel.CENTER);
         lblFotoPerfil.setIconTextGap(0);
         
+        pnlNombre.add(BorderLayout.WEST,lblFotoPerfil);
+        pnllbltxt.add(lblNombre);
+        pnllbltxt.add(txtNombre);
+        pnlNombre.add(BorderLayout.CENTER,pnllbltxt);
+
+
+        JPanel pnlDNI = new JPanel();
+        JLabel lblDNI = new JLabel("DNI:");
+        JTextField txtDNI = new JTextField(usuario.getDni());
+        txtDNI.setEditable(false);
+        pnlDNI.add(lblDNI);
+        pnlDNI.add(lblDNI);
+
+        JPanel pnlFecha = new JPanel();
+        JLabel lblFecha = new JLabel("Fecha de nacimiento:");
+        JTextField txtFecha = new JTextField(usuario.getFecha());
+        txtFecha.setEditable(false);
+        pnlFecha.add(lblFecha);
+        pnlFecha.add(txtFecha);
+
+        JPanel pnlLocalidad = new JPanel();
+        JLabel lblLocalidad = new JLabel("Localidad:");
+        JTextField txtLocalidad = new JTextField(usuario.getLocalidad());
+        txtLocalidad.setEditable(false);
+        pnlLocalidad.add(lblLocalidad);
+        pnlLocalidad.add(txtLocalidad);
+        
+        
+        
+        
         this.scrollAnuncios = new JScrollPane(this.tablaUsuarioAnuncios);
         scrollAnuncios.setBorder(new TitledBorder("Anuncios publicados por ti"));
+        
+        JPanel pTodo = new JPanel();
+        pTodo.setLayout(new GridLayout(6,1));
+        pTodo.add(pnlNombre);
+        pTodo.add(pnlDNI);
+        pTodo.add(pnlFecha);
+        pTodo.add(pnlLocalidad);
+        pTodo.add(scrollAnuncios);
        
-        panel.add(lblFotoPerfil); 
-        panel.add(lblNombre);
-        panel.add(txtNombre);
-        panel.add(lblDNI);
-        panel.add(txtDNI);
-        panel.add(lblFecha);
-        panel.add(txtFecha);
-        panel.add(lblLocalidad);
-        panel.add(txtLocalidad);
-        panel.add(scrollAnuncios);
         
 
-        add(panel); 
+        add(pTodo); 
         setSize(600, 600); 
         setLocationRelativeTo(null); 
         setVisible(true);

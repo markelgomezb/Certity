@@ -23,6 +23,7 @@ public class AnuncioUsuarioTableModel extends DefaultTableModel{
 			mapAnuncios.putIfAbsent(e.getUsuario(), new ArrayList<Anuncio>());
 			mapAnuncios.get(e.getUsuario()).add(e);
 		});
+		System.out.println(mapAnuncios);
 	}
 	
 	public ArrayList<Anuncio> getAnunciosUsuario(){
