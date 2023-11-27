@@ -101,11 +101,7 @@ public class VentanaUsuario extends JFrame {
         pnlLocalidad.add(lblLocalidad);
         pnlLocalidad.add(txtLocalidad);
         
-        
-        
-        
-        this.scrollAnuncios = new JScrollPane(this.tablaUsuarioAnuncios);
-        scrollAnuncios.setBorder(new TitledBorder("Anuncios publicados por ti"));
+
         
         JPanel pTodo = new JPanel();
         pTodo.setLayout(new GridLayout(6,1));
