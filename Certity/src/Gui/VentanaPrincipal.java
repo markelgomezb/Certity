@@ -2,7 +2,7 @@ package Gui;
 import javax.swing.*;
 
 import javax.swing.border.TitledBorder;
-import javax.swing.table.DefaultTableModel;
+
 import javax.swing.table.TableCellRenderer;
 
 import java.awt.BorderLayout;
@@ -26,7 +26,6 @@ public class VentanaPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private ArrayList<Anuncio> anuncios;
-	private ArrayList<Acuerdo> acuerdos;
 	private JTable tablaAnuncios;
 	private JScrollPane scrollAnuncios;
 	private JLabel lblUsuario, lblBusca;
@@ -41,7 +40,7 @@ public class VentanaPrincipal extends JFrame {
         
 		
         this.anuncios = anuncios;
-        this.acuerdos = acuerdos;
+
         
         this.initTable();
         JPanel panelNorte = new JPanel(new GridLayout(2,1));

@@ -34,6 +34,7 @@ public class VentanaInicioSesion2 extends JFrame{
 	private ImageIcon logo = new ImageIcon("Resources/Imagenes/LOGO_CERTITY.jpg");
 	static String dniUsuario = " ";
 
+
 	
 	public VentanaInicioSesion2(ArrayList<Anuncio> anuncios, ArrayList<Acuerdo> acuerdos) {
         setTitle("Inicio de sesion");
@@ -73,7 +74,7 @@ public class VentanaInicioSesion2 extends JFrame{
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
 				dispose();
-				VentanaRegistro vr = new VentanaRegistro(anuncios);
+				VentanaRegistro vr = new VentanaRegistro(anuncios,acuerdos);
 				vr.setVisible(true);
 			}
 		});
@@ -109,7 +110,7 @@ public class VentanaInicioSesion2 extends JFrame{
 			public void keyPressed(KeyEvent e) {
 				if(e.isControlDown() && e.getKeyCode() == KeyEvent.VK_R) {
 					dispose();
-					VentanaRegistro vr = new VentanaRegistro(anuncios);
+					VentanaRegistro vr = new VentanaRegistro(anuncios,acuerdos);
 					vr.setVisible(true);
 				}
 			}

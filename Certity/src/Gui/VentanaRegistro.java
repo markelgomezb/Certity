@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Domain.Acuerdo;
 import Domain.Anuncio;
 import Domain.Usuario;
 
@@ -50,13 +51,15 @@ public class VentanaRegistro extends JFrame{
 	private JLabel lblFoto = new JLabel("Cargar foto:");
 	private ArrayList<Anuncio> anuncios;
 	private String destino1;
+	private ArrayList<Acuerdo> acuerdos;
 	private static final String nomfichUsuarios = "Resources/Ficheros/Usuarios.csv";
 
 
 
 	
-	public VentanaRegistro(ArrayList<Anuncio> anuncios) {
+	public VentanaRegistro(ArrayList<Anuncio> anuncios, ArrayList<Acuerdo> acuerdos) {
 		this.anuncios = anuncios;
+		this.acuerdos = acuerdos;
         setTitle("Inicio de sesion");
         setSize(650,650);
         setLocationRelativeTo(null);
@@ -169,7 +172,7 @@ public class VentanaRegistro extends JFrame{
 				VentanaPrincipal.guardarClientesEnFichero(nomfichUsuarios);
 			
 			dispose();
-			VentanaInicioSesion2 vis = new VentanaInicioSesion2(anuncios);
+			VentanaInicioSesion2 vis = new VentanaInicioSesion2(this.anuncios, this.acuerdos);
 			vis.setVisible(true);
 		});
         
