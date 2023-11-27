@@ -1,11 +1,15 @@
 package Main;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
 import Domain.*;
 import Gui.VentanaInicioSesion2;
 import Gui.VentanaPrincipal;
 
 public class ProgramaPrincipal {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 //		InicioSesion v = new InicioSesion();
 		
 		VentanaPrincipal.cargarUsuarioEnLista("Resources/Ficheros/Usuarios.csv");
@@ -44,11 +48,29 @@ public class ProgramaPrincipal {
         anuncios.add(anuncio1Usuario3);
         anuncios.add(anuncio2Usuario3);
         
+        
+        // Crear acuerdos con los datos proporcionados
+
+        ArrayList<Acuerdo> acuerdos = new ArrayList<>();
+        
+        String fechaHoraAcuerdo1 = "01/01/2023 10:00";
+		Acuerdo acuerdo1 = new Acuerdo(anuncio1Usuario1, usuario2, fechaHoraAcuerdo1);
+
+		String fechaHoraAcuerdo2 = "02/01/2023 15:30";
+		Acuerdo acuerdo2 = new Acuerdo(anuncio2Usuario2, usuario1, fechaHoraAcuerdo2);
+
+		String fechaHoraAcuerdo3 = "03/01/2023 14:00";
+		Acuerdo acuerdo3 = new Acuerdo(anuncio1Usuario3, usuario2, fechaHoraAcuerdo3);
+		
+		acuerdos.add(acuerdo1);
+		acuerdos.add(acuerdo2);
+		acuerdos.add(acuerdo3);
+        
         anuncios.forEach(e ->{
         	System.out.println(e);
         });
         
-        new VentanaInicioSesion2(anuncios);
+        new VentanaInicioSesion2(anuncios,acuerdos);
 //        new VentanaPrincipal(anuncios, usuario1);
 	}
 

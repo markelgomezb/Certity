@@ -26,6 +26,7 @@ public class VentanaPrincipal extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private ArrayList<Anuncio> anuncios;
+	private ArrayList<Acuerdo> acuerdos;
 	private JTable tablaAnuncios;
 	private JScrollPane scrollAnuncios;
 	private JLabel lblUsuario, lblBusca;
@@ -34,12 +35,13 @@ public class VentanaPrincipal extends JFrame {
 	private Usuario usuario1;
 
 	
-    public VentanaPrincipal(ArrayList<Anuncio> anuncios, Usuario u) {
+    public VentanaPrincipal(ArrayList<Anuncio> anuncios, Usuario u, ArrayList<Acuerdo> acuerdos) {
     	
         super("Anuncios");
         
 		
         this.anuncios = anuncios;
+        this.acuerdos = acuerdos;
         
         this.initTable();
         JPanel panelNorte = new JPanel(new GridLayout(2,1));
@@ -81,7 +83,7 @@ public class VentanaPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				usuario1 = guardarUsuarioPorDNI(VentanaInicioSesion2.dniUsuario);
 				System.out.println(usuario1);
-				new VentanaUsuario(usuario1,anuncios);
+				new VentanaUsuario(usuario1,anuncios,acuerdos);
 				dispose();
 				
 				

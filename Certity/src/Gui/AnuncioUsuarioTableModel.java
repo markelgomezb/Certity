@@ -69,7 +69,7 @@ public class AnuncioUsuarioTableModel extends DefaultTableModel{
 	
 	public Object getValueAt(int row, int column) {
 	    // TODO Auto-generated method stub
-	    ArrayList<Anuncio> anunciosUsuario = mapAnuncios.get(u);
+	    ArrayList<Anuncio> anunciosUsuario = mapAnuncios.get(this.u);
 
 	    if (anunciosUsuario != null && row < anunciosUsuario.size()) {
 	        Anuncio anuncio = anunciosUsuario.get(row);

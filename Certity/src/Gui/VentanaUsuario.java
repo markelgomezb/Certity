@@ -4,6 +4,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.TableCellRenderer;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import Domain.*;
@@ -14,19 +16,48 @@ public class VentanaUsuario extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Anuncio> anuncios;
-	private JTable tablaUsuarioAnuncios;
+	private ArrayList<Acuerdo> acuerdos;
+	private JTable tablaUsuarioAnuncios, tablaVentasUsuario;
 	private JScrollPane scrollAnuncios;
 	private Usuario usuario;
 
-	public VentanaUsuario(Usuario usuario, ArrayList<Anuncio> anuncios) {
+	public VentanaUsuario(Usuario usuario, ArrayList<Anuncio> anuncios, ArrayList<Acuerdo> acuerdos) {
         super("Detalles del Usuario");
         
         this.anuncios = anuncios;
         this.usuario = usuario;
-        initTable();
+        this.acuerdos = acuerdos;
+//        initTable();
         
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
 
+        JMenuBar menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
+
+
+        JMenu menuMostrar = new JMenu("Mostrar");
+        menuBar.add(menuMostrar);
+        
+
+        JMenuItem itemMostrarAnuncios = new JMenuItem("Mostrar Anuncios");
+        menuMostrar.add(itemMostrarAnuncios);
+        
+        itemMostrarAnuncios.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mostrarTablaAnuncios();
+            }
+        });
+        
+        JMenuItem itemMostrarVentas = new JMenuItem("Mostrar Ventas");
+        menuMostrar.add(itemMostrarVentas);
+        
+        itemMostrarVentas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mostrarTablaVentas();
+            }
+        });
 
         JPanel pnlNombre = new JPanel();
         JPanel pnllbltxt = new JPanel();
@@ -87,15 +118,46 @@ public class VentanaUsuario extends JFrame {
         
 
         add(pTodo); 
+        pack();
         setSize(600, 600); 
         setLocationRelativeTo(null); 
         setVisible(true);
     }
 	
 
-	public void initTable() {
-		this.tablaUsuarioAnuncios = new JTable(new AnuncioUsuarioTableModel(this.anuncios, this.usuario));
-		
+//	public void initTable() {
+//		this.tablaUsuarioAnuncios = new JTable(new AnuncioUsuarioTableModel(this.anuncios, this.usuario));
+//		
+//    	TableCellRenderer tablerenderer = (table, value, isSelected, hasFocus, row, column) -> {
+//    		JLabel label = new JLabel(value != null ? value.toString() : "");
+//    		
+//    		if(isSelected) {
+//    			label.setBackground(table.getSelectionBackground());
+//    			label.setForeground(table.getSelectionForeground());
+//    		}
+//    		
+//    		if(row % 2 != 0) {
+//    			label.setBackground(new Color(0,0,139));
+//    			label.setForeground(Color.WHITE);
+//    		}
+//    		label.setOpaque(true);
+//    		return label;
+//    	};
+//
+//    	this.tablaUsuarioAnuncios.setRowHeight(15);
+//    	this.tablaUsuarioAnuncios.setDefaultRenderer(Object.class, tablerenderer);
+//	}
+	
+    private void mostrarTablaAnuncios() {
+        JFrame frame = new JFrame("Anuncios de Usuario");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+
+
+        this.tablaUsuarioAnuncios = new JTable(new AnuncioUsuarioTableModel(this.anuncios, this.usuario));
+        this.scrollAnuncios = new JScrollPane(this.tablaUsuarioAnuncios);
+        scrollAnuncios.setBorder(new TitledBorder("Anuncios publicados por ti"));
+        
     	TableCellRenderer tablerenderer = (table, value, isSelected, hasFocus, row, column) -> {
     		JLabel label = new JLabel(value != null ? value.toString() : "");
     		
@@ -114,5 +176,41 @@ public class VentanaUsuario extends JFrame {
 
     	this.tablaUsuarioAnuncios.setRowHeight(15);
     	this.tablaUsuarioAnuncios.setDefaultRenderer(Object.class, tablerenderer);
-	}
+
+        frame.getContentPane().add(this.scrollAnuncios, BorderLayout.CENTER);
+        frame.setSize(300, 200);
+        frame.setVisible(true);
+    }
+    
+    private void mostrarTablaVentas() {
+        JFrame frame = new JFrame("Ventas de Usuario");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        this.tablaVentasUsuario = new JTable(new VentasUsuarioTableModel(this.usuario, this.acuerdos));
+        this.scrollAnuncios = new JScrollPane(this.tablaVentasUsuario);
+        scrollAnuncios.setBorder(new TitledBorder("Anuncios publicados por ti"));
+        
+        TableCellRenderer tablerenderer = (table, value, isSelected, hasFocus, row, column) -> {
+    		JLabel label = new JLabel(value != null ? value.toString() : "");
+    		
+    		if(isSelected) {
+    			label.setBackground(table.getSelectionBackground());
+    			label.setForeground(table.getSelectionForeground());
+    		}
+    		
+    		if(row % 2 != 0) {
+    			label.setBackground(new Color(0,0,139));
+    			label.setForeground(Color.WHITE);
+    		}
+    		label.setOpaque(true);
+    		return label;
+    	};
+
+    	this.tablaVentasUsuario.setRowHeight(15);
+    	this.tablaVentasUsuario.setDefaultRenderer(Object.class, tablerenderer);
+        
+        frame.getContentPane().add(this.scrollAnuncios, BorderLayout.CENTER);
+        frame.setSize(300, 200);
+        frame.setVisible(true);
+    }
 }

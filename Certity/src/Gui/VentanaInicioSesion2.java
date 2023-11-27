@@ -35,7 +35,7 @@ public class VentanaInicioSesion2 extends JFrame{
 	static String dniUsuario = " ";
 
 	
-	public VentanaInicioSesion2(ArrayList<Anuncio> anuncios) {
+	public VentanaInicioSesion2(ArrayList<Anuncio> anuncios, ArrayList<Acuerdo> acuerdos) {
         setTitle("Inicio de sesion");
         setSize(650,650);
         setLocationRelativeTo(null);
@@ -93,7 +93,7 @@ public class VentanaInicioSesion2 extends JFrame{
 						if(c.getContrasenia().equals(psswdString)) {
 							JOptionPane.showMessageDialog(null, "Bienvenido!","SESIÓN INICIADA",JOptionPane.INFORMATION_MESSAGE);
 							dniUsuario= dni;
-							new VentanaPrincipal(anuncios, c);
+							new VentanaPrincipal(anuncios, c, acuerdos);
 							dispose();
 						}else {
 							JOptionPane.showMessageDialog(null, "Contraseña incorrecta","ERROR",JOptionPane.WARNING_MESSAGE);
