@@ -48,7 +48,7 @@ public class VentasUsuarioTableModel extends DefaultTableModel{
 	@Override
 	public int getColumnCount() {
 		// TODO Auto-generated method stub
-		return 3;
+		return 5;
 	}
 	
 	public Object getValueAt(int row, int column) {

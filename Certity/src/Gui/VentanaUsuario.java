@@ -1,5 +1,6 @@
 package Gui;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.TableCellRenderer;
 
@@ -8,7 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+
 import Domain.*;
+
+
 public class VentanaUsuario extends JFrame {
 
     /**
@@ -58,6 +62,8 @@ public class VentanaUsuario extends JFrame {
                 mostrarTablaVentas();
             }
         });
+        
+        
 
         JPanel pnlNombre = new JPanel();
         JPanel pnllbltxt = new JPanel();
@@ -101,7 +107,12 @@ public class VentanaUsuario extends JFrame {
         pnlLocalidad.add(lblLocalidad);
         pnlLocalidad.add(txtLocalidad);
         
-
+        LineBorder borde = new LineBorder(Color.CYAN);
+        pnlNombre.setBorder(borde);
+        pnlDNI.setBorder(borde);
+        pnlFecha.setBorder(borde);
+        pnlLocalidad.setBorder(borde);
+        
         
         JPanel pTodo = new JPanel();
         pTodo.setLayout(new GridLayout(6,1));
@@ -109,7 +120,7 @@ public class VentanaUsuario extends JFrame {
         pTodo.add(pnlDNI);
         pTodo.add(pnlFecha);
         pTodo.add(pnlLocalidad);
-        pTodo.add(scrollAnuncios);
+
        
         
 
@@ -174,7 +185,7 @@ public class VentanaUsuario extends JFrame {
     	this.tablaUsuarioAnuncios.setDefaultRenderer(Object.class, tablerenderer);
 
         frame.getContentPane().add(this.scrollAnuncios, BorderLayout.CENTER);
-        frame.setSize(300, 200);
+        frame.setSize(600, 400);
         frame.setVisible(true);
     }
     
@@ -206,7 +217,7 @@ public class VentanaUsuario extends JFrame {
     	this.tablaVentasUsuario.setDefaultRenderer(Object.class, tablerenderer);
         
         frame.getContentPane().add(this.scrollAnuncios, BorderLayout.CENTER);
-        frame.setSize(300, 200);
+        frame.setSize(600, 400);
         frame.setVisible(true);
     }
 }
