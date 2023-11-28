@@ -22,7 +22,6 @@ public class AnuncioUsuarioTableModel extends DefaultTableModel{
 		this.u = u;
 		mapAnuncios = new HashMap<Usuario, ArrayList<Anuncio>>();
 		anuncios.forEach(e ->{
-			System.out.println(e);
 			mapAnuncios.putIfAbsent(e.getUsuario(), new ArrayList<Anuncio>());
 			mapAnuncios.get(e.getUsuario()).add(e);
 		});
@@ -35,7 +34,7 @@ public class AnuncioUsuarioTableModel extends DefaultTableModel{
 	
 	public int getRowCount() {
 		if(this.mapAnuncios != null) {
-
+			
 			return mapAnuncios.keySet().size();
 		}else {
 			return 0;
@@ -73,7 +72,7 @@ public class AnuncioUsuarioTableModel extends DefaultTableModel{
 
 	    if (anunciosUsuario != null && row < anunciosUsuario.size()) {
 	        Anuncio anuncio = anunciosUsuario.get(row);
-
+	        System.out.println(anuncio);
 	        switch(column) {
 	            case 0: 
 	                return anuncio.getId();

@@ -91,7 +91,7 @@ public class VentanaUsuario extends JFrame {
         JTextField txtDNI = new JTextField(usuario.getDni());
         txtDNI.setEditable(false);
         pnlDNI.add(lblDNI);
-        pnlDNI.add(lblDNI);
+        pnlDNI.add(txtDNI);
 
         JPanel pnlFecha = new JPanel();
         JLabel lblFecha = new JLabel("Fecha de nacimiento:");
