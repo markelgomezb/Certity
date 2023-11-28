@@ -2,10 +2,12 @@ package Gui;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.table.DefaultTableModel;
 
 import Domain.Acuerdo;
+import Domain.Anuncio;
 import Domain.Usuario;
 
 public class VentasUsuarioTableModel extends DefaultTableModel{
@@ -16,12 +18,13 @@ public class VentasUsuarioTableModel extends DefaultTableModel{
 	private static final long serialVersionUID = 1L;
 	private  ArrayList<Acuerdo> acuerdos;
 	private Usuario usuario;
-	private HashMap<Usuario,ArrayList<Acuerdo>> mapUsuarioVentas;
+	private Map<Usuario,ArrayList<Acuerdo>> mapUsuarioVentas;
 	
 	public VentasUsuarioTableModel(Usuario usuario,  ArrayList<Acuerdo> acuerdos) {
 
 		this.usuario = usuario;
 		this.acuerdos =acuerdos;
+		mapUsuarioVentas = new HashMap<Usuario, ArrayList<Acuerdo>>();
 		
 		acuerdos.forEach(e ->{
 			mapUsuarioVentas.putIfAbsent(e.getContratador(), new ArrayList<Acuerdo>());
