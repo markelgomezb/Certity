@@ -159,7 +159,7 @@ public class VentanaPrincipal extends JFrame {
     	
     	TableCellRenderer tablerenderer = (table, value, isSelected, hasFocus, row, column) -> {
     		JLabel label = new JLabel(value.toString());
-    		
+    		table.setRowHeight(row, 150);
     		if(isSelected) {
     			label.setBackground(table.getSelectionBackground());
     			label.setForeground(table.getSelectionForeground());
