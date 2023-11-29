@@ -44,7 +44,7 @@ public class AnuncioTableModel extends DefaultTableModel{
 	public Object getValueAt(int row, int column) {
 		// TODO Auto-generated method stub
 		Anuncio anuncio = anuncios.get(row);
-		System.out.println(anuncio);
+		//System.out.println(anuncio);
 		
 		switch(column) {
 		case 0: 
@@ -58,7 +58,7 @@ public class AnuncioTableModel extends DefaultTableModel{
 		case 4:
 			return anuncio.getPrecio();
 		case 5:
-			System.out.println(anuncio.getFotos());
+			//System.out.println(anuncio.getFotos());
 			return anuncio.getFotos();
 		default:
 			return null;

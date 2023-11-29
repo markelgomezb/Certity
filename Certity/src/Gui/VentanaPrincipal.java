@@ -45,7 +45,7 @@ public class VentanaPrincipal extends JFrame {
         this.initTable();
         JPanel panelNorte = new JPanel(new GridLayout(2,1));
         for (Anuncio anuncio : anuncios) {
-        	System.out.println(anuncio.getFotos());
+        	//System.out.println(anuncio.getFotos());
 			
 		}
         
@@ -87,7 +87,7 @@ public class VentanaPrincipal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				usuario1 = guardarUsuarioPorDNI(VentanaInicioSesion2.dniUsuario);
-				System.out.println(usuario1);
+				//System.out.println(usuario1);
 				new VentanaUsuario(usuario1,anuncios,acuerdos);
 				dispose();
 				
