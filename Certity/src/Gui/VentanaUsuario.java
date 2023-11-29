@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
+import java.util.List;
 
 import Domain.*;
 
@@ -160,9 +160,19 @@ public class VentanaUsuario extends JFrame {
 	
     private void mostrarTablaAnuncios() {
         JFrame frame = new JFrame("Anuncios de Usuario");
+        ArrayList<Anuncio> anunciosUsuario = new ArrayList<>();
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-
+		for (Anuncio anuncio : this.anuncios) {
+			System.out.println(this.usuario);
+			System.out.println(anuncio);
+			System.out.println(anuncio.getUsuario());
+			if(anuncio.getUsuario().equals(this.usuario)) {
+				System.out.println(anuncio.getFotos());
+				anunciosUsuario.add(anuncio);
+			}
+		}
+		System.out.println(anunciosUsuario);
 
         this.tablaUsuarioAnuncios = new JTable(new AnuncioUsuarioTableModel(this.anuncios, this.usuario));
         this.scrollAnuncios = new JScrollPane(this.tablaUsuarioAnuncios);
@@ -195,6 +205,7 @@ public class VentanaUsuario extends JFrame {
     private void mostrarTablaVentas() {
         JFrame frame = new JFrame("Ventas de Usuario");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
         
         this.tablaVentasUsuario = new JTable(new VentasUsuarioTableModel(this.usuario, this.acuerdos));
         this.scrollAnuncios = new JScrollPane(this.tablaVentasUsuario);
@@ -211,6 +222,25 @@ public class VentanaUsuario extends JFrame {
     		if(row % 2 != 0) {
     			label.setBackground(new Color(0,0,139));
     			label.setForeground(Color.WHITE);
+    		}
+//    		for (Anuncio anuncio : this.anuncios) {
+//				List<String> ftAnuncio  = anuncio.getFotos();
+//				
+//				if(ftAnuncio.size() != 0) {
+//				for (String foto : ftAnuncio) {
+//					ImageIcon img = new ImageIcon(foto);
+//					label.setIcon(img);
+//					
+//				}}
+//				else {
+////					ImageIcon img = new ImageIcon("Resources/Imagenes/nano.png");
+////					label.setIcon(img);
+//					
+//				}
+//				
+//			}
+    		if(column == 3) {
+    			System.out.println(label);
     		}
     		label.setOpaque(true);
     		return label;

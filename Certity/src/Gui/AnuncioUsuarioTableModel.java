@@ -23,11 +23,11 @@ public class AnuncioUsuarioTableModel extends DefaultTableModel{
 		this.u = u;
 		anunciosUsuario = new ArrayList<>();
 		for (Anuncio anuncio : anuncios) {
-			System.out.println(u);
-			System.out.println(anuncio);
-			System.out.println(anuncio.getUsuario());
-			if(u.equals(anuncio.getUsuario())) {
-				System.out.println(anuncio.getUsuario());
+//			System.out.println(u);
+//			System.out.println(anuncio);
+//			System.out.println(anuncio.getUsuario());
+			if(anuncio.getUsuario().equals(u)) {
+//				System.out.println(anuncio.getUsuario());
 				anunciosUsuario.add(anuncio);
 			}
 		}

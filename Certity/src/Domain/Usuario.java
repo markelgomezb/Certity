@@ -2,6 +2,7 @@ package Domain;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 import java.text.ParseException;
 
 
@@ -102,6 +103,20 @@ public class Usuario {
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
 	}
+
+	//IAG
+	@Override
+	public boolean equals(Object obj) {
+	    if (this == obj) {
+	        return true;
+	    }
+	    if (obj == null || getClass() != obj.getClass()) {
+	        return false;
+	    }
+	    Usuario otherUser = (Usuario) obj;
+	    return this.dni.equals(otherUser.dni); // Comparar por el atributo que identifica un usuario de manera única
+	}
+	
 
 
 }
