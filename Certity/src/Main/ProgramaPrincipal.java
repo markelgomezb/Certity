@@ -23,8 +23,8 @@ public class ProgramaPrincipal {
 
         // Crear anuncios asociados a los usuarios
         ArrayList<String> fotosAnuncio1 = new ArrayList<>();
-        fotosAnuncio1.add("Resources/Imagenes/nan.jpg");
-        fotosAnuncio1.add("Resources/Imagenes/nan.jpg");
+        fotosAnuncio1.add("Resources/Imagenes/5.jpg");
+        fotosAnuncio1.add("Resources/Imagenes/5.jpg");
         Anuncio anuncio1Usuario1 = new Anuncio("1", "Anuncio 1", usuario1, "Descripción del anuncio 1", (float) 100.0, fotosAnuncio1);
         Anuncio anuncio2Usuario1 = new Anuncio("2", "Anuncio 2", usuario1, "Descripción del anuncio 2", (float)150.0, fotosAnuncio1);
 
@@ -37,8 +37,8 @@ public class ProgramaPrincipal {
         System.out.println(fotosAnuncio2);
         
         ArrayList<String> fotosAnuncio3 = new ArrayList<>();
-        fotosAnuncio3.add("Resources/Imagenes/nano.png");
-        fotosAnuncio3.add("Resources/Imagenes/nano.png");
+        fotosAnuncio3.add("Resources/Imagenes/5.jpg");
+        fotosAnuncio3.add("Resources/Imagenes/5.jpg");
         Anuncio anuncio1Usuario3 = new Anuncio("5", "Anuncio 1", usuario3, "Descripción del anuncio 1", (float)300.0, fotosAnuncio3);
         Anuncio anuncio2Usuario3 = new Anuncio("6", "Anuncio 2", usuario3, "Descripción del anuncio 2", (float)350.0, fotosAnuncio3);
         

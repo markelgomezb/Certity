@@ -15,17 +15,30 @@ public class AnuncioUsuarioTableModel extends DefaultTableModel{
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Anuncio> anuncios;
 	private Usuario u;
-	private Map<Usuario,ArrayList<Anuncio>> mapAnuncios;
+//	private Map<Usuario,ArrayList<Anuncio>> mapAnuncios;
+	private ArrayList<Anuncio> anunciosUsuario;
 	
 	public AnuncioUsuarioTableModel(ArrayList<Anuncio> anuncios, Usuario u) {
 		this.anuncios = anuncios;
 		this.u = u;
-		mapAnuncios = new HashMap<Usuario, ArrayList<Anuncio>>();
-		anuncios.forEach(e ->{
-			mapAnuncios.putIfAbsent(e.getUsuario(), new ArrayList<Anuncio>());
-			mapAnuncios.get(e.getUsuario()).add(e);
-		});
-		System.out.println(mapAnuncios);
+		anunciosUsuario = new ArrayList<>();
+		for (Anuncio anuncio : anuncios) {
+			System.out.println(u);
+			System.out.println(anuncio);
+			System.out.println(anuncio.getUsuario());
+			if(u.equals(anuncio.getUsuario())) {
+				System.out.println(anuncio.getUsuario());
+				anunciosUsuario.add(anuncio);
+			}
+		}
+		
+		System.out.println(anunciosUsuario);
+//		mapAnuncios = new HashMap<Usuario, ArrayList<Anuncio>>();
+//		anuncios.forEach(e ->{
+//			mapAnuncios.putIfAbsent(e.getUsuario(), new ArrayList<Anuncio>());
+//			mapAnuncios.get(e.getUsuario()).add(e);
+//		});
+//		System.out.println(mapAnuncios);
 	}
 	
 	public ArrayList<Anuncio> getAnunciosUsuario(){
@@ -33,9 +46,9 @@ public class AnuncioUsuarioTableModel extends DefaultTableModel{
 	}
 	
 	public int getRowCount() {
-		if(this.mapAnuncios != null) {
+		if(this.anunciosUsuario != null) {
 			
-			return mapAnuncios.keySet().size();
+			return anunciosUsuario.size();
 		}else {
 			return 0;
 		}
@@ -68,9 +81,7 @@ public class AnuncioUsuarioTableModel extends DefaultTableModel{
 	
 	public Object getValueAt(int row, int column) {
 	    // TODO Auto-generated method stub
-	    ArrayList<Anuncio> anunciosUsuario = mapAnuncios.get(this.u);
 
-	    if (anunciosUsuario != null && row < anunciosUsuario.size()) {
 	        Anuncio anuncio = anunciosUsuario.get(row);
 	        System.out.println(anuncio);
 	        switch(column) {
@@ -85,9 +96,6 @@ public class AnuncioUsuarioTableModel extends DefaultTableModel{
 	            default:
 	                return null;
 	        }
-	    } else {
-	        return null;
-	    }
 	}
 	
 	public boolean isCellEditable(int row, int column) {

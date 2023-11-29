@@ -31,6 +31,9 @@ public class VentanaUsuario extends JFrame {
         this.anuncios = anuncios;
         this.usuario = usuario;
         this.acuerdos = acuerdos;
+        System.out.println(this.usuario);
+        System.out.println(this.anuncios);
+        System.out.println(this.acuerdos);
 //        initTable();
         
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
