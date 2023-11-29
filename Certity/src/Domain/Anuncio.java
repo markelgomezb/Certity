@@ -15,7 +15,7 @@ public class Anuncio {
         this.usuario = usuario;
         this.descripcion = descripcion;
         this.precio = precio;
-        this.fotos = new ArrayList<>();
+        this.fotos = fotos;
     }
 
     public String getId() {

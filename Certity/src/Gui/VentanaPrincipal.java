@@ -170,8 +170,8 @@ public class VentanaPrincipal extends JFrame {
     			label.setForeground(Color.WHITE);
     		}
     	
-    		if (column == 4 ) {
-    			for (Anuncio anuncio : anuncios) {
+    		if (column == 5 ) {
+    			for (Anuncio anuncio : this.anuncios) {
     				List<String> ftAnuncio  = anuncio.getFotos();
     				
     				if(ftAnuncio.size() != 0) {
@@ -181,8 +181,9 @@ public class VentanaPrincipal extends JFrame {
 						
 					}}
     				else {
-    					ImageIcon img = new ImageIcon("Resources/Imagenes/nano.png");
-    					label.setIcon(img);
+//    					ImageIcon img = new ImageIcon("Resources/Imagenes/nano.png");
+//    					label.setIcon(img);
+    					
     				}
 					
 				}
