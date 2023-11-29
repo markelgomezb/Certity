@@ -44,6 +44,12 @@ public class VentanaPrincipal extends JFrame {
         
         this.initTable();
         JPanel panelNorte = new JPanel(new GridLayout(2,1));
+        for (Anuncio anuncio : anuncios) {
+        	System.out.println(anuncio.getFotos());
+			
+		}
+        
+    
         
         JPanel panelArriba = new JPanel();
         lblUsuario = new JLabel("¡Bienvenido " + u.toString() + "!");
@@ -163,6 +169,26 @@ public class VentanaPrincipal extends JFrame {
     			label.setBackground(new Color(0,0,139));
     			label.setForeground(Color.WHITE);
     		}
+    	
+    		if (column == 4 ) {
+    			for (Anuncio anuncio : anuncios) {
+    				List<String> ftAnuncio  = anuncio.getFotos();
+    				
+    				if(ftAnuncio.size() != 0) {
+    				for (String foto : ftAnuncio) {
+    					ImageIcon img = new ImageIcon(foto);
+    					label.setIcon(img);
+						
+					}}
+    				else {
+    					ImageIcon img = new ImageIcon("Resources/Imagenes/nano.png");
+    					label.setIcon(img);
+    				}
+					
+				}
+    			
+            
+            }
     		label.setOpaque(true);
     		return label;
     	};
