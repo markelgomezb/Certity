@@ -7,7 +7,11 @@ import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import Domain.*;
@@ -241,6 +245,28 @@ public class VentanaUsuario extends JFrame {
 //			}
     		if(column == 3) {
     			System.out.println(label);
+    		}
+    		
+    		if(column == 0 || column == 3 || column == 4) {
+    			label.setHorizontalAlignment(JLabel.RIGHT);
+    		}
+    		if(column == 1) {
+    			label.setHorizontalAlignment(JLabel.CENTER);
+    		}
+    		if(column == 2) {
+    			LocalDateTime lcltime = LocalDateTime.now();
+    			Date fechaAcuerdo = (Date) value;
+    			LocalDateTime fechaAcuerdoLocalDateTime = fechaAcuerdo.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+    			
+    			System.out.println("Fecha actual: " + lcltime);
+    	        System.out.println("Fecha acuerdo: " + fechaAcuerdoLocalDateTime);
+    			if(lcltime.isAfter(fechaAcuerdoLocalDateTime)) {
+    				label.setForeground(Color.GREEN);
+    			}else if(lcltime.isBefore(fechaAcuerdoLocalDateTime)) {
+    				label.setForeground(Color.BLUE);
+    			}else {
+    				label.setForeground(Color.CYAN);
+    			}
     		}
     		label.setOpaque(true);
     		return label;

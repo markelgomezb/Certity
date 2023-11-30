@@ -2,14 +2,14 @@ package Domain;
 import java.util.ArrayList;
 
 public class Anuncio {
-    private String id;
+    private int id;
     private String nombre;
     private Usuario usuario;
     private String descripcion;
     private float precio;
     private ArrayList<String> fotos;
 
-    public Anuncio(String id, String nombre, Usuario usuario, String descripcion, float precio, ArrayList<String> fotos) {
+    public Anuncio(int id, String nombre, Usuario usuario, String descripcion, float precio, ArrayList<String> fotos) {
         this.id = id;
         this.nombre = nombre;
         this.usuario = usuario;
@@ -18,11 +18,11 @@ public class Anuncio {
         this.fotos = fotos;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

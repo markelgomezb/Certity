@@ -18,18 +18,24 @@ public class VentasUsuarioTableModel extends DefaultTableModel{
 	private static final long serialVersionUID = 1L;
 	private  ArrayList<Acuerdo> acuerdos;
 	private Usuario usuario;
-	private Map<Usuario,ArrayList<Acuerdo>> mapUsuarioVentas;
+	private ArrayList<Acuerdo> acuerdosUsuario;
 	
 	public VentasUsuarioTableModel(Usuario usuario,  ArrayList<Acuerdo> acuerdos) {
 
 		this.usuario = usuario;
 		this.acuerdos =acuerdos;
-		mapUsuarioVentas = new HashMap<Usuario, ArrayList<Acuerdo>>();
+		acuerdosUsuario = new ArrayList<Acuerdo>();
 		
-		acuerdos.forEach(e ->{
-			mapUsuarioVentas.putIfAbsent(e.getContratador(), new ArrayList<Acuerdo>());
-			mapUsuarioVentas.get(e.getContratador()).add(e);
-		});
+		acuerdosUsuario = new ArrayList<>();
+		for (Acuerdo acuerdo : acuerdos) {
+//			System.out.println(u);
+//			System.out.println(anuncio);
+//			System.out.println(anuncio.getUsuario());
+			if(acuerdo.getAnuncio().getUsuario().equals(usuario)) {
+//				System.out.println(anuncio.getUsuario());
+				acuerdosUsuario.add(acuerdo);
+			}
+		}
 	}
 	
 	public ArrayList<Acuerdo> getAcuerdo(){
@@ -37,9 +43,9 @@ public class VentasUsuarioTableModel extends DefaultTableModel{
 	}
 	
 	public int getRowCount() {
-		if(this.mapUsuarioVentas != null) {
+		if(this.acuerdosUsuario != null) {
 
-			return mapUsuarioVentas.keySet().size();
+			return acuerdosUsuario.size();
 		}else {
 			return 0;
 		}
@@ -53,28 +59,22 @@ public class VentasUsuarioTableModel extends DefaultTableModel{
 	
 	public Object getValueAt(int row, int column) {
 	    // TODO Auto-generated method stub
-	    ArrayList<Acuerdo> VentaUsuario = mapUsuarioVentas.get(this.usuario);
-
-	    if (VentaUsuario != null && row < VentaUsuario.size()) {
-	        Acuerdo venta = VentaUsuario.get(row);
-
+	    Acuerdo acuerdo = acuerdosUsuario.get(row);
 	        switch(column) {
 	            case 0: 
-	                return venta.getAnuncio().getId();
+	                return acuerdo.getAnuncio().getId();
 	            case 1:
-	                return venta.getContratador();
+	                return acuerdo.getContratador();
 	            case 2:
-	                return venta.getFecha_hora_acordada();
+	                return acuerdo.getFecha_hora_acordada();
 	            case 3:
-	            	return venta.getAnuncio().getPrecio();
+	            	return acuerdo.getAnuncio().getPrecio();
 	            case 4:
-	            	return venta.getAnuncio().getDescripcion();
+	            	return acuerdo.getAnuncio().getDescripcion();
 	            default:
 	                return null;
 	        }
-	    } else {
-	        return null;
-	    }
+
 	}
 	
 	public boolean isCellEditable(int row, int column) {
