@@ -247,10 +247,10 @@ public class VentanaUsuario extends JFrame {
     			System.out.println(label);
     		}
     		
-    		if(column == 0 || column == 3 || column == 4) {
+    		if(column == 0 ) {
     			label.setHorizontalAlignment(JLabel.RIGHT);
     		}
-    		if(column == 1) {
+    		if(column == 1 || column == 3) {
     			label.setHorizontalAlignment(JLabel.CENTER);
     		}
     		if(column == 2) {
