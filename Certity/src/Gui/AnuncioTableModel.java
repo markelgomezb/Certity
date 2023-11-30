@@ -40,6 +40,10 @@ public class AnuncioTableModel extends DefaultTableModel{
 		return 6;
 	}
 	
+	public Anuncio getAnuncio(int row) {
+		return anuncios.get(row);
+	}
+	
 	@Override
 	public Object getValueAt(int row, int column) {
 		// TODO Auto-generated method stub
@@ -59,7 +63,8 @@ public class AnuncioTableModel extends DefaultTableModel{
 			return anuncio.getPrecio();
 		case 5:
 			//System.out.println(anuncio.getFotos());
-			return anuncio.getFotos();
+			//return anuncio.getFotos();
+			return anuncio.getFoto();
 		default:
 			return null;
 		}

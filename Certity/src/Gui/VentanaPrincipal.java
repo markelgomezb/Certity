@@ -8,8 +8,12 @@ import javax.swing.table.TableCellRenderer;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
@@ -143,7 +147,40 @@ public class VentanaPrincipal extends JFrame {
 
 
         
-        
+        tablaAnuncios.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Point p = e.getPoint();
+				int fila = tablaAnuncios.rowAtPoint(p);
+				((AnuncioTableModel)tablaAnuncios.getModel()).getAnuncio(fila).siguienteFoto();
+				tablaAnuncios.repaint();
+			}
+		});
         
         setVisible(true);
     }
@@ -159,6 +196,7 @@ public class VentanaPrincipal extends JFrame {
     	
     	TableCellRenderer tablerenderer = (table, value, isSelected, hasFocus, row, column) -> {
     		JLabel label = new JLabel(value.toString());
+    		label.setSize(150, 150);
     		table.setRowHeight(row, 150);
     		if(isSelected) {
     			label.setBackground(table.getSelectionBackground());
@@ -174,17 +212,18 @@ public class VentanaPrincipal extends JFrame {
     			for (Anuncio anuncio : this.anuncios) {
     				List<String> ftAnuncio  = anuncio.getFotos();
     				
-    				if(ftAnuncio.size() != 0) {
-    				for (String foto : ftAnuncio) {
-    					ImageIcon img = new ImageIcon(foto);
-    					label.setIcon(img);
+    				//if(ftAnuncio.size() != 0) {
+    				//for (String foto : ftAnuncio) {
+    					ImageIcon img = new ImageIcon(value.toString());
+    					ImageIcon imdimensiones = new ImageIcon(img.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
+    					label.setIcon(imdimensiones);
 						
-					}}
-    				else {
+					//}}
+    				//else {
 //    					ImageIcon img = new ImageIcon("Resources/Imagenes/nano.png");
 //    					label.setIcon(img);
     					
-    				}
+    				//}
 					
 				}
     			
