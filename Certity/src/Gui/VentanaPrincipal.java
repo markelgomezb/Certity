@@ -48,10 +48,11 @@ public class VentanaPrincipal extends JFrame {
         
         this.initTable();
         JPanel panelNorte = new JPanel(new GridLayout(2,1));
+        /*
         for (Anuncio anuncio : anuncios) {
         	//System.out.println(anuncio.getFotos());
 			
-		}
+		}*/
         
     
         
