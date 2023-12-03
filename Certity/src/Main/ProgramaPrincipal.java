@@ -1,15 +1,23 @@
  package Main;
+import java.sql.Connection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import Database.BD;
 import Domain.*;
 import Gui.VentanaInicioSesion2;
 import Gui.VentanaPrincipal;
 
 public class ProgramaPrincipal {
 	public static void main(String[] args) throws ParseException {
+		
+		Connection con = BD.initBD("certity.db");
+		BD.crearTablas(con);
+		BD.closeBD(con);
+		
+		/*
 //		InicioSesion v = new InicioSesion();
 		
 		VentanaPrincipal.cargarUsuarioEnLista("Resources/Ficheros/Usuarios.csv");
@@ -77,6 +85,8 @@ public class ProgramaPrincipal {
         
         new VentanaInicioSesion2(anuncios,acuerdos);
 //        new VentanaPrincipal(anuncios, usuario1);
+	
+	*/
 	}
 
 }

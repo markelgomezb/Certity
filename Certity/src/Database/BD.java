@@ -2,8 +2,14 @@ package Database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import Domain.Anuncio;
+import Domain.Usuario;
 
 public class BD {
 	
@@ -34,7 +40,8 @@ public class BD {
 	}
 	
 	public static void crearTablas(Connection con) {
-		String sql = "CREATE TABLE IF NOT EXISTS Persona (dni String, nom String)";
+		String sql = "CREATE TABLE IF NOT EXISTS Anuncio (id int, nombre String, "
+				+ "usuario String, descripcion String, precio float, fotos String)";
 		
 		try {
 			Statement st = con.createStatement();
@@ -44,6 +51,38 @@ public class BD {
 			e.printStackTrace();
 		}
 	}
+	
+
+	public static List<Anuncio> obtenerPersonas(Connection con){
+		String sql = "SELECT * FROM Persona";
+		List<Anuncio> l = new ArrayList<>();
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				int id = rs.getInt("id");
+				String nom = rs.getString("nombre");
+				String usu = rs.getString("usuario");
+				String desc = rs.getString("descripcion");
+				Float precio = rs.getFloat("precio");
+				String fotos = rs.getString("fotos");
+				
+				
+				
+				//Anuncio p = new Anuncio(id, nom, usu, desc, precio, fotos);
+				System.out.println(fotos);
+				//l.add(p);
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return l;
+	}
+		
+		
 	
 
 }
