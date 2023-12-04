@@ -2,6 +2,7 @@ package Database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -141,6 +142,16 @@ public class BD {
 		}	
 	}
 	
+	public static void agregarFotoAnuncio(Connection con, int id, String nuevaFoto) {
+        String sql = String.format("UPDATE Anuncio SET foto='%s' WHERE id='%s'",nuevaFoto, id);
+        try  {
+        	Statement st = con.createStatement();
+            st.executeUpdate(sql);
+            st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 	
 	
 
