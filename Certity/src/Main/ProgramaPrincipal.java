@@ -15,9 +15,8 @@ public class ProgramaPrincipal {
 		
 		Connection con = BD.initBD("certity.db");
 		BD.crearTablas(con);
-		BD.closeBD(con);
 		
-		/*
+		
 //		InicioSesion v = new InicioSesion();
 		
 		VentanaPrincipal.cargarUsuarioEnLista("Resources/Ficheros/Usuarios.csv");
@@ -35,6 +34,7 @@ public class ProgramaPrincipal {
         fotosAnuncio1.add("Resources/Imagenes/nano.png");
         Anuncio anuncio1Usuario1 = new Anuncio(1, "Anuncio 1", usuario1, "Descripción del anuncio 1", (float) 100.0, fotosAnuncio1);
         Anuncio anuncio2Usuario1 = new Anuncio(2, "Anuncio 2", usuario1, "Descripción del anuncio 2", (float)150.0, fotosAnuncio1);
+        //BD.insertarAnuncio(con, anuncio1Usuario1);
 
         ArrayList<String> fotosAnuncio2 = new ArrayList<>();
         
@@ -86,7 +86,8 @@ public class ProgramaPrincipal {
         new VentanaInicioSesion2(anuncios,acuerdos);
 //        new VentanaPrincipal(anuncios, usuario1);
 	
-	*/
-	}
+		BD.closeBD(con);
 
+	}
+	
 }

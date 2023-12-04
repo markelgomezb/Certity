@@ -52,8 +52,21 @@ public class BD {
 		}
 	}
 	
+	public static void insertarAnuncio(Connection con, Anuncio p) {
+			String sql = String.format("INSERT INTO Anuncio VALUES('%s','%s','%s','%s');"
+					, p.getId(),p.getNombre(),p.getUsuario(),p.getDescripcion(),p.getPrecio(),p.getFotos().toString());
+			try {
+				Statement st = con.createStatement();
+				st.executeUpdate(sql);
+				st.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+	}
 
-	public static List<Anuncio> obtenerPersonas(Connection con){
+	public static List<Anuncio> obtenerAnuncios(Connection con){
 		String sql = "SELECT * FROM Persona";
 		List<Anuncio> l = new ArrayList<>();
 		try {
