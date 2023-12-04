@@ -210,8 +210,8 @@ public class VentanaPrincipal extends JFrame {
     		}
     	
     		if (column == 5 ) {
-    			for (Anuncio anuncio : this.anuncios) {
-    				List<String> ftAnuncio  = anuncio.getFotos();
+    			//for (Anuncio anuncio : this.anuncios) {
+    				//List<String> ftAnuncio  = anuncio.getFotos();
     				
     				//if(ftAnuncio.size() != 0) {
     				//for (String foto : ftAnuncio) {
@@ -226,7 +226,7 @@ public class VentanaPrincipal extends JFrame {
     					
     				//}
 					
-				}
+				//}
     			
             
             }

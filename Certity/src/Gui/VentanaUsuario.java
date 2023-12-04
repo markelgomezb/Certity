@@ -183,8 +183,9 @@ public class VentanaUsuario extends JFrame {
         scrollAnuncios.setBorder(new TitledBorder("Anuncios publicados por ti"));
         
     	TableCellRenderer tablerenderer = (table, value, isSelected, hasFocus, row, column) -> {
-    		JLabel label = new JLabel(value != null ? value.toString() : "");
-    		
+    		JLabel label = new JLabel(value.toString());
+    		label.setSize(150, 150);
+    		table.setRowHeight(row, 150);
     		if(isSelected) {
     			label.setBackground(table.getSelectionBackground());
     			label.setForeground(table.getSelectionForeground());
@@ -194,6 +195,28 @@ public class VentanaUsuario extends JFrame {
     			label.setBackground(new Color(0,0,139));
     			label.setForeground(Color.WHITE);
     		}
+    		if (column == 3 ) {
+    			//for (Anuncio anuncio : this.anuncios) {
+    				//List<String> ftAnuncio  = anuncio.getFotos();
+    				
+    				//if(ftAnuncio.size() != 0) {
+    				//for (String foto : ftAnuncio) {
+    				
+    					ImageIcon img = new ImageIcon(value.toString());
+    					ImageIcon imdimensiones = new ImageIcon(img.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
+    					label.setIcon(imdimensiones);
+						
+					//}}
+    				//else {
+    					//ImageIcon img = new ImageIcon("Resources/Imagenes/nano.png");
+    					//label.setIcon(img);
+    					
+    				//}
+					
+				//}
+    			
+            
+            }
     		label.setOpaque(true);
     		return label;
     	};
@@ -216,8 +239,8 @@ public class VentanaUsuario extends JFrame {
         scrollAnuncios.setBorder(new TitledBorder("Anuncios publicados por ti"));
         
         TableCellRenderer tablerenderer = (table, value, isSelected, hasFocus, row, column) -> {
-    		JLabel label = new JLabel(value != null ? value.toString() : "");
-    		
+    		JLabel label = new JLabel(value.toString());
+    	
     		if(isSelected) {
     			label.setBackground(table.getSelectionBackground());
     			label.setForeground(table.getSelectionForeground());
