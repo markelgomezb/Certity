@@ -108,7 +108,40 @@ public class BD {
 		}
 	}
 		
-		
+	public static void modificarNombreAnuncio(Connection con, int id, String nuevoNombre) {
+		String sql = String.format("UPDATE Anuncio SET nom='%s' WHERE id='%s'",nuevoNombre,id);
+		try {
+			Statement st = con.createStatement();
+			st.executeUpdate(sql);
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	public static void modificarPrecioAnuncio(Connection con, int id, float nuevoPrecio) {
+		String sql = String.format("UPDATE Anuncio SET precio='%s' WHERE id='%s'",nuevoPrecio,id);
+		try {
+			Statement st = con.createStatement();
+			st.executeUpdate(sql);
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	public static void modificarDescripcioneAnuncio(Connection con, int id, String nuevaDescripcion) {
+		String sql = String.format("UPDATE Anuncio SET descripcion='%s' WHERE id='%s'",nuevaDescripcion,id);
+		try {
+			Statement st = con.createStatement();
+			st.executeUpdate(sql);
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	
 	
 
 }
