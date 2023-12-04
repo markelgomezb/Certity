@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import Domain.*;
+import io.UsuarioLogger;
 
 public class VentanaInicioSesion2 extends JFrame{
 	
@@ -93,6 +94,7 @@ public class VentanaInicioSesion2 extends JFrame{
 					}else {
 						if(c.getContrasenia().equals(psswdString)) {
 							JOptionPane.showMessageDialog(null, "Bienvenido!","SESIÓN INICIADA",JOptionPane.INFORMATION_MESSAGE);
+							UsuarioLogger.inicioUsuario(c);
 							dniUsuario= dni;
 							new VentanaPrincipal(anuncios, c, acuerdos);
 							dispose();
