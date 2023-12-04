@@ -179,7 +179,7 @@ tablaUsuarioAnuncios.addMouseListener(new MouseListener() {
 			}
 		});
     	TableCellRenderer tablerenderer = (table, value, isSelected, hasFocus, row, column) -> {
-    		JLabel label = new JLabel(value != null ? value.toString() : "");
+    		JLabel label = new JLabel(value.toString());
     		
     		if(isSelected) {
     			label.setBackground(table.getSelectionBackground());
@@ -225,20 +225,20 @@ tablaUsuarioAnuncios.addMouseListener(new MouseListener() {
         ArrayList<Anuncio> anunciosUsuario = new ArrayList<>();
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-		for (Anuncio anuncio : anuncios) {
-			//System.out.println(this.usuario);
-			//System.out.println(anuncio);
-			//System.out.println(anuncio.getUsuario());
-			if(anuncio.getUsuario().equals(this.usuario)) {
-				System.out.println(anuncio.getFotos());
-				anunciosUsuario.add(anuncio);
-			}
-		}
-		
-		 
-	        
-	    
-		System.out.println(anunciosUsuario);
+//		for (Anuncio anuncio : anuncios) {
+//			//System.out.println(this.usuario);
+//			//System.out.println(anuncio);
+//			//System.out.println(anuncio.getUsuario());
+//			if(anuncio.getUsuario().equals(this.usuario)) {
+////				System.out.println(anuncio.getFotos());
+//				anunciosUsuario.add(anuncio);
+//			}
+//		}
+//		
+//		 
+//	        
+//	    
+//		System.out.println(anunciosUsuario);
 
         this.tablaUsuarioAnuncios = new JTable(new AnuncioUsuarioTableModel(this.anuncios, this.usuario));
         this.scrollAnuncios = new JScrollPane(this.tablaUsuarioAnuncios);
@@ -260,29 +260,47 @@ tablaUsuarioAnuncios.addMouseListener(new MouseListener() {
     			label.setBackground(new Color(0,0,139));
     			label.setForeground(Color.WHITE);
     		}
-    		if (column == 3 ) {
-    			//for (Anuncio anuncio : this.anuncios) {
-    				//List<String> ftAnuncio  = anuncio.getFotos();
-    				
-    				//if(ftAnuncio.size() != 0) {
-    				//for (String foto : ftAnuncio) {
-    					//System.out.println("hola");
-    				System.out.println(value.toString());
-    					ImageIcon img = new ImageIcon(value.toString());
-    					ImageIcon imdimensiones = new ImageIcon(img.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
-    					label.setIcon(imdimensiones);
-						
-					//}}
-    				//else {
-    					//ImageIcon img = new ImageIcon("Resources/Imagenes/nano.png");
-    					//label.setIcon(img);
-    					
-    				//}
-					
-				//}
-    			
-            
-            }
+//    		if (column == 3 ) {
+//    			//for (Anuncio anuncio : this.anuncios) {
+//    				//List<String> ftAnuncio  = anuncio.getFotos();
+//    				
+//    				//if(ftAnuncio.size() != 0) {
+//    				//for (String foto : ftAnuncio) {
+//    					//System.out.println("hola");
+//    					System.out.println(value.toString());
+//    					ImageIcon img = new ImageIcon(value.toString());
+//    					ImageIcon imdimensiones = new ImageIcon(img.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
+//    					label.setIcon(imdimensiones);
+//						
+//					//}}
+//    				//else {
+//    					//ImageIcon img = new ImageIcon("Resources/Imagenes/nano.png");
+//    					//label.setIcon(img);
+//    					
+//    				//}
+//					
+//				//}
+//    			
+//            
+//            }
+    		
+    	    if (value instanceof ArrayList) {
+
+    	        ArrayList<String> photos = (ArrayList<String>) value;
+    	        
+    	        if (!photos.isEmpty()) {
+
+    	            ImageIcon img = new ImageIcon(photos.get(0));
+    	            ImageIcon imdimensiones = new ImageIcon(img.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
+    	            label.setIcon(imdimensiones);
+    	        } else {
+
+    	            label.setText("No Photo");
+    	        }
+    	    } else {
+
+    	        label.setText(value.toString());
+    	    }
     		label.setOpaque(true);
     		return label;
     	};
@@ -332,9 +350,9 @@ tablaUsuarioAnuncios.addMouseListener(new MouseListener() {
 //				}
 //				
 //			}
-    		if(column == 3) {
-    			System.out.println(label);
-    		}
+//    		if(column == 3) {
+//    			System.out.println(label);
+//    		}
     		
     		if(column == 0 ) {
     			label.setHorizontalAlignment(JLabel.RIGHT);
