@@ -43,7 +43,7 @@ public class BD {
 	
 	public static void crearTablas(Connection con) {
 		String sql = "CREATE TABLE IF NOT EXISTS Anuncio (id int, nombre String, "
-				+ "usuario String, descripcion String, precio float, fotos String)";
+				+ "dniUsuario String, descripcion String, precio float, fotos String)";
 		
 		try {
 			Statement st = con.createStatement();
@@ -55,8 +55,8 @@ public class BD {
 	}
 	
 	public static void insertarAnuncio(Connection con, Anuncio p) {
-			String sql = String.format("INSERT INTO Anuncio VALUES('%s','%s','%s','%s');"
-					, p.getId(),p.getNombre(),p.getUsuario(),p.getDescripcion(),p.getPrecio(),p.getFotos().toString());
+			String sql = String.format("INSERT INTO Anuncio VALUES('%s','%s','%s','%s','%s','%s');"
+					, p.getId(),p.getNombre(),p.getUsuario().getDni(),p.getDescripcion(),p.getPrecio(),p.getFotos().toString());
 			try {
 				Statement st = con.createStatement();
 				st.executeUpdate(sql);
@@ -69,7 +69,7 @@ public class BD {
 	}
 
 	public static List<Anuncio> obtenerAnuncios(Connection con){
-		String sql = "SELECT * FROM Persona";
+		String sql = "SELECT * FROM Anuncio";
 		List<Anuncio> l = new ArrayList<>();
 		try {
 			Statement st = con.createStatement();

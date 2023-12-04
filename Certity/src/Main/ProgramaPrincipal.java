@@ -35,7 +35,12 @@ public class ProgramaPrincipal {
         Anuncio anuncio1Usuario1 = new Anuncio(1, "Anuncio 1", usuario1, "Descripción del anuncio 1", (float) 100.0, fotosAnuncio1);
         Anuncio anuncio2Usuario1 = new Anuncio(2, "Anuncio 2", usuario1, "Descripción del anuncio 2", (float)150.0, fotosAnuncio1);
         BD.insertarAnuncio(con, anuncio1Usuario1);
-
+        //System.out.println(BD.obtenerAnuncios(con));
+        
+        for (int i = 0; i < BD.obtenerAnuncios(con).size(); i++) {
+            System.out.println("Elemento en la posición " + i + ": " + BD.obtenerAnuncios(con).get(i));
+        }
+        
         ArrayList<String> fotosAnuncio2 = new ArrayList<>();
         
         fotosAnuncio2.add("Resources/Imagenes/5.jpg");
