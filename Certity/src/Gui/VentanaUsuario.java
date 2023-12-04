@@ -380,7 +380,7 @@ tablaUsuarioAnuncios.addMouseListener(new MouseListener() {
     	};
 
     	this.tablaVentasUsuario.setRowHeight(15);
-    	//this.tablaVentasUsuario.setDefaultRenderer(Object.class, tablerenderer);
+    	this.tablaVentasUsuario.setDefaultRenderer(Object.class, tablerenderer);
         
         frame.getContentPane().add(this.scrollAnuncios, BorderLayout.CENTER);
         frame.setSize(600, 400);
