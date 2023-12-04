@@ -141,54 +141,10 @@ public class VentanaUsuario extends JFrame {
     }
 	
 
-//	public void initTable() {
-//		this.tablaUsuarioAnuncios = new JTable(new AnuncioUsuarioTableModel(this.anuncios, this.usuario));
-//		
-//    	TableCellRenderer tablerenderer = (table, value, isSelected, hasFocus, row, column) -> {
-//    		JLabel label = new JLabel(value != null ? value.toString() : "");
-//    		
-//    		if(isSelected) {
-//    			label.setBackground(table.getSelectionBackground());
-//    			label.setForeground(table.getSelectionForeground());
-//    		}
-//    		
-//    		if(row % 2 != 0) {
-//    			label.setBackground(new Color(0,0,139));
-//    			label.setForeground(Color.WHITE);
-//    		}
-//    		label.setOpaque(true);
-//    		return label;
-//    	};
-//
-//    	this.tablaUsuarioAnuncios.setRowHeight(15);
-//    	this.tablaUsuarioAnuncios.setDefaultRenderer(Object.class, tablerenderer);
-//	}
-	
-    private void mostrarTablaAnuncios() {
-        JFrame frame = new JFrame("Anuncios de Usuario");
-        ArrayList<Anuncio> anunciosUsuario = new ArrayList<>();
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-		for (Anuncio anuncio : anuncios) {
-			//System.out.println(this.usuario);
-			//System.out.println(anuncio);
-			//System.out.println(anuncio.getUsuario());
-			if(anuncio.getUsuario().equals(this.usuario)) {
-				System.out.println(anuncio.getFotos());
-				anunciosUsuario.add(anuncio);
-			}
-		}
+	public void initTable() {
 		
-		 
-	        
-	    
-		System.out.println(anunciosUsuario);
-
-        this.tablaUsuarioAnuncios = new JTable(new AnuncioUsuarioTableModel(this.anuncios, this.usuario));
-        this.scrollAnuncios = new JScrollPane(this.tablaUsuarioAnuncios);
-        scrollAnuncios.setBorder(new TitledBorder("Anuncios publicados por ti"));
-        
-        tablaUsuarioAnuncios.addMouseListener(new MouseListener() {
+		this.tablaUsuarioAnuncios = new JTable(new AnuncioUsuarioTableModel(this.anuncios, this.usuario));
+tablaUsuarioAnuncios.addMouseListener(new MouseListener() {
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -222,6 +178,73 @@ public class VentanaUsuario extends JFrame {
 				tablaUsuarioAnuncios.repaint();
 			}
 		});
+    	TableCellRenderer tablerenderer = (table, value, isSelected, hasFocus, row, column) -> {
+    		JLabel label = new JLabel(value != null ? value.toString() : "");
+    		
+    		if(isSelected) {
+    			label.setBackground(table.getSelectionBackground());
+    			label.setForeground(table.getSelectionForeground());
+    		}
+    		
+    		if(row % 2 != 0) {
+    			label.setBackground(new Color(0,0,139));
+    			label.setForeground(Color.WHITE);
+    		}if (column == 3 ) {
+    			//for (Anuncio anuncio : this.anuncios) {
+				//List<String> ftAnuncio  = anuncio.getFotos();
+				
+				//if(ftAnuncio.size() != 0) {
+				//for (String foto : ftAnuncio) {
+					//System.out.println("hola");
+				System.out.println(value.toString());
+					ImageIcon img = new ImageIcon(value.toString());
+					ImageIcon imdimensiones = new ImageIcon(img.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
+					label.setIcon(imdimensiones);
+					
+				//}}
+				//else {
+					//ImageIcon img = new ImageIcon("Resources/Imagenes/nano.png");
+					//label.setIcon(img);
+					
+				//}
+				
+			//}
+			
+        
+        }
+    		label.setOpaque(true);
+    		return label;
+    	};
+
+    	this.tablaUsuarioAnuncios.setRowHeight(15);
+    	this.tablaUsuarioAnuncios.setDefaultRenderer(Object.class, tablerenderer);
+	}
+	
+    private void mostrarTablaAnuncios() {
+        JFrame frame = new JFrame("Anuncios de Usuario");
+        ArrayList<Anuncio> anunciosUsuario = new ArrayList<>();
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+		for (Anuncio anuncio : anuncios) {
+			//System.out.println(this.usuario);
+			//System.out.println(anuncio);
+			//System.out.println(anuncio.getUsuario());
+			if(anuncio.getUsuario().equals(this.usuario)) {
+				System.out.println(anuncio.getFotos());
+				anunciosUsuario.add(anuncio);
+			}
+		}
+		
+		 
+	        
+	    
+		System.out.println(anunciosUsuario);
+
+        this.tablaUsuarioAnuncios = new JTable(new AnuncioUsuarioTableModel(this.anuncios, this.usuario));
+        this.scrollAnuncios = new JScrollPane(this.tablaUsuarioAnuncios);
+        scrollAnuncios.setBorder(new TitledBorder("Anuncios publicados por ti"));
+        
+        
         
     	TableCellRenderer tablerenderer = (table, value, isSelected, hasFocus, row, column) -> {
     		JLabel label = new JLabel(value.toString());
@@ -339,10 +362,12 @@ public class VentanaUsuario extends JFrame {
     	};
 
     	this.tablaVentasUsuario.setRowHeight(15);
-    	this.tablaVentasUsuario.setDefaultRenderer(Object.class, tablerenderer);
+    	//this.tablaVentasUsuario.setDefaultRenderer(Object.class, tablerenderer);
         
         frame.getContentPane().add(this.scrollAnuncios, BorderLayout.CENTER);
         frame.setSize(600, 400);
         frame.setVisible(true);
     }
+    
+    
 }
