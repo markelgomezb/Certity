@@ -34,7 +34,7 @@ public class ProgramaPrincipal {
         fotosAnuncio1.add("Resources/Imagenes/nano.png");
         Anuncio anuncio1Usuario1 = new Anuncio(1, "Anuncio 1", usuario1, "Descripción del anuncio 1", (float) 100.0, fotosAnuncio1);
         Anuncio anuncio2Usuario1 = new Anuncio(2, "Anuncio 2", usuario1, "Descripción del anuncio 2", (float)150.0, fotosAnuncio1);
-        BD.insertarAnuncio(con, anuncio2Usuario1);
+        //BD.insertarAnuncio(con, anuncio2Usuario1);
         //System.out.println(BD.obtenerAnuncios(con));
         
         for (int i = 0; i < BD.obtenerAnuncios(con).size(); i++) {
@@ -47,7 +47,7 @@ public class ProgramaPrincipal {
         fotosAnuncio2.add("Resources/Imagenes/nano.png");
         Anuncio anuncio1Usuario2 = new Anuncio(3, "Anuncio 1", usuario2, "Descripción del anuncio 1", (float)200.0, fotosAnuncio2);
         Anuncio anuncio2Usuario2 = new Anuncio(4, "Anuncio 2", usuario2, "Descripción del anuncio 2", (float)250.0, fotosAnuncio2);
-        System.out.println(fotosAnuncio2);
+        System.out.println(anuncio1Usuario1);
         
         ArrayList<String> fotosAnuncio3 = new ArrayList<>();
         fotosAnuncio3.add("Resources/Imagenes/5.jpg");
