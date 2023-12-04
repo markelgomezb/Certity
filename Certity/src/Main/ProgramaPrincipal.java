@@ -32,8 +32,8 @@ public class ProgramaPrincipal {
         ArrayList<String> fotosAnuncio1 = new ArrayList<>();
         fotosAnuncio1.add("Resources/Imagenes/5.jpg");
         fotosAnuncio1.add("Resources/Imagenes/nano.png");
-        Anuncio anuncio1Usuario1 = new Anuncio(1, "Anuncio 1", usuario1, "Descripción del anuncio 1", (float) 100.0, fotosAnuncio1);
-        Anuncio anuncio2Usuario1 = new Anuncio(2, "Anuncio 2", usuario1, "Descripción del anuncio 2", (float)150.0, fotosAnuncio1);
+        Anuncio anuncio1Usuario1 = new Anuncio(1, "Anuncio 1", usuario1, "Montaje mueble ikea", (float) 100.0, fotosAnuncio1);
+        Anuncio anuncio2Usuario1 = new Anuncio(2, "Anuncio 2", usuario1, "Chequeo de tuberias", (float)150.0, fotosAnuncio1);
         //BD.insertarAnuncio(con, anuncio2Usuario1);
         //System.out.println(BD.obtenerAnuncios(con));
         //BD.borrarAnuncio(con, 1);

@@ -2,7 +2,8 @@ package Gui;
 import javax.swing.*;
 
 import javax.swing.border.TitledBorder;
-
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.TableCellRenderer;
 
 import java.awt.BorderLayout;
@@ -42,6 +43,7 @@ public class VentanaPrincipal extends JFrame {
 	private Usuario usuario1;
 	private JCheckBox precioDesc, precioAsc;
 
+
 	
     public VentanaPrincipal(ArrayList<Anuncio> anuncios, Usuario u, ArrayList<Acuerdo> acuerdos) {
     	
@@ -51,7 +53,7 @@ public class VentanaPrincipal extends JFrame {
         this.anuncios = anuncios;
 
         
-        this.initTable();
+        this.initTable(this.anuncios);
         JPanel panelNorte = new JPanel(new GridLayout(2,1));
         /*
         for (Anuncio anuncio : anuncios) {
@@ -66,7 +68,7 @@ public class VentanaPrincipal extends JFrame {
         panelArriba.add(lblUsuario);
         
         JPanel panelFiltro = new JPanel();
-        lblBusca = new JLabel("Busca productos/ofertas:");
+        lblBusca = new JLabel("Busca ofertas:");
         txtBusqueda = new JTextField(14);
         precioDesc = new JCheckBox("Ordenar precio descendiente");
         precioAsc = new JCheckBox("Ordenar precio ascendiente");
@@ -218,6 +220,27 @@ public class VentanaPrincipal extends JFrame {
 			
 		});
         
+        
+        this.txtBusqueda.getDocument().addDocumentListener(new DocumentListener() {
+			
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				filtrarComics();
+			}
+			
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				filtrarComics();
+			}
+			
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setLocationRelativeTo(null); 
@@ -225,14 +248,14 @@ public class VentanaPrincipal extends JFrame {
         setVisible(true);
     }
     
-    public void initTable() {
+    public void initTable(ArrayList<Anuncio> anuncios) {
 //    	Vector<String> cabeceraAnuncios = new Vector<String>(Arrays.asList("USUARIO", "FOTOS", "DESCRIPCION", "LOCALIDAD", "PRECIO"));
 //    	
 //    	this.modeloAnuncios = new DefaultTableModel(new Vector<Vector<Object>>(),cabeceraAnuncios);
 //    	
 //    	this.tablaAnuncios = new JTable(this.modeloAnuncios);
 //    	
-    	this.tablaAnuncios = new JTable(new AnuncioTableModel(this.anuncios));
+    	this.tablaAnuncios = new JTable(new AnuncioTableModel(anuncios));
     	
     	TableCellRenderer tablerenderer = (table, value, isSelected, hasFocus, row, column) -> {
     		JLabel label = new JLabel(value.toString());
@@ -360,5 +383,32 @@ public class VentanaPrincipal extends JFrame {
 		}else{
 			return null;
 		}
+	}
+    
+	private void filtrarComics() {
+
+		ArrayList<Anuncio> ann = new ArrayList<Anuncio>();
+//    case 0:
+//        return "ID";
+//    case 1:
+//        return "Nombre";
+//    case 2:
+//        return "Usuario";
+//    case 3:
+//        return "Descripción";
+//    case 4:
+//        return "Precio";
+//    case 5:
+//        return "Fotos";
+		//Se añaden a la tabla sólo los comics que contengan el texto del filtro
+		this.anuncios.forEach(c -> {
+			if (c.getDescripcion().contains(this.txtBusqueda.getText())) {
+				
+				ann.add(c);
+				
+				
+			}
+		});
+		initTable(ann);
 	}
 }

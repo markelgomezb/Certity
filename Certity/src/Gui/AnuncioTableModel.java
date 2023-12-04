@@ -16,19 +16,19 @@ public class AnuncioTableModel extends DefaultTableModel{
 	private static final long serialVersionUID = 1L;
 	
 	private ArrayList<Anuncio> anuncios;
-
 	 
 	 public AnuncioTableModel(ArrayList<Anuncio> anuncios) {
 		 this.anuncios = anuncios;
+		 System.out.println(anuncios.size());
 		 
 	 }
 	 
 	public ArrayList<Anuncio> getAnuncios(){
-		return this.anuncios;
+		return anuncios;
 	}
 	 @Override
 		public int getRowCount() {
-			if (this.anuncios != null) {
+			if (anuncios != null) {
 				return anuncios.size();
 			} else {
 				return 0;
