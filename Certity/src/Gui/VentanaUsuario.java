@@ -7,6 +7,8 @@ import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -167,25 +169,65 @@ public class VentanaUsuario extends JFrame {
         ArrayList<Anuncio> anunciosUsuario = new ArrayList<>();
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-		for (Anuncio anuncio : this.anuncios) {
-			System.out.println(this.usuario);
-			System.out.println(anuncio);
-			System.out.println(anuncio.getUsuario());
+		for (Anuncio anuncio : anuncios) {
+			//System.out.println(this.usuario);
+			//System.out.println(anuncio);
+			//System.out.println(anuncio.getUsuario());
 			if(anuncio.getUsuario().equals(this.usuario)) {
 				System.out.println(anuncio.getFotos());
 				anunciosUsuario.add(anuncio);
 			}
 		}
+		
+		 
+	        
+	    
 		System.out.println(anunciosUsuario);
 
         this.tablaUsuarioAnuncios = new JTable(new AnuncioUsuarioTableModel(this.anuncios, this.usuario));
         this.scrollAnuncios = new JScrollPane(this.tablaUsuarioAnuncios);
         scrollAnuncios.setBorder(new TitledBorder("Anuncios publicados por ti"));
         
+        tablaUsuarioAnuncios.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Point p = e.getPoint();
+				int fila = tablaUsuarioAnuncios.rowAtPoint(p);
+				((AnuncioTableModel)tablaUsuarioAnuncios.getModel()).getAnuncio(fila).siguienteFoto();
+				tablaUsuarioAnuncios.repaint();
+			}
+		});
+        
     	TableCellRenderer tablerenderer = (table, value, isSelected, hasFocus, row, column) -> {
     		JLabel label = new JLabel(value.toString());
     		label.setSize(150, 150);
     		table.setRowHeight(row, 150);
+    		
     		if(isSelected) {
     			label.setBackground(table.getSelectionBackground());
     			label.setForeground(table.getSelectionForeground());
@@ -201,7 +243,8 @@ public class VentanaUsuario extends JFrame {
     				
     				//if(ftAnuncio.size() != 0) {
     				//for (String foto : ftAnuncio) {
-    				
+    					//System.out.println("hola");
+    				System.out.println(value.toString());
     					ImageIcon img = new ImageIcon(value.toString());
     					ImageIcon imdimensiones = new ImageIcon(img.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
     					label.setIcon(imdimensiones);

@@ -215,6 +215,7 @@ public class VentanaPrincipal extends JFrame {
     				
     				//if(ftAnuncio.size() != 0) {
     				//for (String foto : ftAnuncio) {
+    			System.out.println(value.toString());
     					ImageIcon img = new ImageIcon(value.toString());
     					ImageIcon imdimensiones = new ImageIcon(img.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
     					label.setIcon(imdimensiones);

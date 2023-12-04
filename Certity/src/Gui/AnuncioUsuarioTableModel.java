@@ -32,7 +32,7 @@ public class AnuncioUsuarioTableModel extends DefaultTableModel{
 			}
 		}
 		
-		System.out.println(anunciosUsuario);
+		//System.out.println(anunciosUsuario);
 //		mapAnuncios = new HashMap<Usuario, ArrayList<Anuncio>>();
 //		anuncios.forEach(e ->{
 //			mapAnuncios.putIfAbsent(e.getUsuario(), new ArrayList<Anuncio>());
@@ -83,7 +83,7 @@ public class AnuncioUsuarioTableModel extends DefaultTableModel{
 	    // TODO Auto-generated method stub
 
 	        Anuncio anuncio = anunciosUsuario.get(row);
-	        System.out.println(anuncio);
+	        //System.out.println(anuncio);
 	        switch(column) {
 	            case 0: 
 	                return anuncio.getId();
