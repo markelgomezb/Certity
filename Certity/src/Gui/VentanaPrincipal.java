@@ -279,7 +279,7 @@ public class VentanaPrincipal extends JFrame {
 				
 				
 				Usuario c = new Usuario(dni, fecha, nombre, nombre_usuario, localidad, email, foto, contrasenia);
-				if(buscarCliente(dni)==null)
+				if(buscarUsuario(dni)==null)
 					usuarios.add(c);
 			}
 			sc.close();
@@ -289,7 +289,7 @@ public class VentanaPrincipal extends JFrame {
 		
 	}
     
-    public static void guardarClientesEnFichero(String nomfich) {
+    public static void guardarUsuariosEnFichero(String nomfich) {
 		try {
 			PrintWriter pw = new PrintWriter(nomfich);
 			for(Usuario c : usuarios) {
@@ -303,7 +303,7 @@ public class VentanaPrincipal extends JFrame {
 		}
 	}
     
-    public static Usuario buscarCliente(String dni) {
+    public static Usuario buscarUsuario(String dni) {
 		boolean enc = false;
 		int pos = 0;
 		Usuario c = null;

@@ -6,10 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import Domain.Anuncio;
 import Domain.Usuario;
+import Gui.VentanaPrincipal;
 
 public class BD {
 	
@@ -78,13 +80,13 @@ public class BD {
 				String usu = rs.getString("usuario");
 				String desc = rs.getString("descripcion");
 				Float precio = rs.getFloat("precio");
-				String fotos = rs.getString("fotos");
 				
+				String[] fotosArray = rs.getString("fotos").split(",");
+				//anuncio.setFotos(new ArrayList<>(Arrays.asList(fotosArray)));
 				
-				
-				//Anuncio p = new Anuncio(id, nom, usu, desc, precio, fotos);
-				System.out.println(fotos);
-				//l.add(p);
+				Usuario usuario = VentanaPrincipal.buscarUsuario(usu);
+				Anuncio p = new Anuncio(id, nom, usuario, desc, precio, new ArrayList<>(Arrays.asList(fotosArray)));
+				l.add(p);
 			}
 			rs.close();
 			st.close();

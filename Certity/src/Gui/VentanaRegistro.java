@@ -169,7 +169,7 @@ public class VentanaRegistro extends JFrame{
 			
 				VentanaPrincipal.aniadirUsuario(c);
 				JOptionPane.showMessageDialog(null, "Cliente registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
-				VentanaPrincipal.guardarClientesEnFichero(nomfichUsuarios);
+				VentanaPrincipal.guardarUsuariosEnFichero(nomfichUsuarios);
 			
 			dispose();
 			VentanaInicioSesion2 vis = new VentanaInicioSesion2(this.anuncios, this.acuerdos);
