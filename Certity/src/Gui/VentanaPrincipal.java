@@ -12,12 +12,16 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import Domain.*;
@@ -36,6 +40,7 @@ public class VentanaPrincipal extends JFrame {
 	private JTextField txtBusqueda;
 	private static List<Usuario> usuarios = new ArrayList<>();
 	private Usuario usuario1;
+	private JCheckBox precioDesc, precioAsc;
 
 	
     public VentanaPrincipal(ArrayList<Anuncio> anuncios, Usuario u, ArrayList<Acuerdo> acuerdos) {
@@ -63,8 +68,12 @@ public class VentanaPrincipal extends JFrame {
         JPanel panelFiltro = new JPanel();
         lblBusca = new JLabel("Busca productos/ofertas:");
         txtBusqueda = new JTextField(14);
+        precioDesc = new JCheckBox("Ordenar precio descendiente");
+        precioAsc = new JCheckBox("Ordenar precio ascendiente");
         panelFiltro.add(lblBusca);
         panelFiltro.add(txtBusqueda);
+        panelFiltro.add(precioDesc);
+        panelFiltro.add(precioAsc);
         
         panelNorte.add(panelArriba);
         panelNorte.add(panelFiltro);
@@ -99,17 +108,6 @@ public class VentanaPrincipal extends JFrame {
 				
 			}
 		});
-        
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        pack();
-        setLocationRelativeTo(null); 
-        this.setSize(800, 600);
-        try {
-//        this.loadAnuncios();
-        }catch (Exception e) {
-			// TODO: handle exception
-        	System.out.println(e);
-		}
         
         
         // boton
@@ -183,6 +181,47 @@ public class VentanaPrincipal extends JFrame {
 			}
 		});
         
+        precioDesc.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				// TODO Auto-generated method stub
+				if(precioDesc.isSelected()) {
+				    AnuncioTableModel modelo = (AnuncioTableModel) tablaAnuncios.getModel();
+				    ArrayList<Anuncio> listaAnuncios = modelo.getAnuncios();
+					Comparator<Anuncio> comparator = (a1,a2) ->{
+						return Float.compare(a1.getPrecio(), a2.getPrecio());
+					};
+					Collections.sort(listaAnuncios, comparator.reversed());
+					 modelo.fireTableDataChanged();
+				}
+			}
+			
+		});
+        
+        precioAsc.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				// TODO Auto-generated method stub
+				if(precioAsc.isSelected()) {
+				    AnuncioTableModel modelo = (AnuncioTableModel) tablaAnuncios.getModel();
+				    ArrayList<Anuncio> listaAnuncios = modelo.getAnuncios();
+					Comparator<Anuncio> comparator = (a1,a2) ->{
+						return Float.compare(a1.getPrecio(), a2.getPrecio());
+					};
+					Collections.sort(listaAnuncios, comparator);
+					 modelo.fireTableDataChanged();
+				}
+
+			}
+			
+		});
+        
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        pack();
+        setLocationRelativeTo(null); 
+        this.setSize(800, 600);
         setVisible(true);
     }
     
