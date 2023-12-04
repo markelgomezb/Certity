@@ -96,6 +96,17 @@ public class BD {
 		}
 		return l;
 	}
+	
+	public static void borrarAnuncio(Connection con, int id) {
+		String sql = String.format("DELETE FROM Anuncio WHERE id=%d", id);
+		try {
+			Statement st = con.createStatement();
+			st.executeUpdate(sql);
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 		
 		
 	
