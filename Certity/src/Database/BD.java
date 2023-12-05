@@ -98,6 +98,33 @@ public class BD {
 		return l;
 	}
 	
+	
+	public static List<Integer> obteneridAnuncios(Connection con){
+		String sql = "SELECT id FROM Anuncio";
+		List<Integer> l = new ArrayList<>();
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				int id = rs.getInt("id");
+				
+				
+				//String[] fotosArray = rs.getString("fotos").split(",");
+				//anuncio.setFotos(new ArrayList<>(Arrays.asList(fotosArray)));
+				
+				//Usuario usuario = VentanaPrincipal.buscarUsuario(usu);
+				//Anuncio p = new Anuncio(id, nom, usuario, desc, precio, new ArrayList<>(Arrays.asList(fotosArray)));
+				l.add(id);
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return l;
+	}
+	
 	public static void borrarAnuncio(Connection con, int id) {
 		String sql = String.format("DELETE FROM Anuncio WHERE id=%d", id);
 		try {
