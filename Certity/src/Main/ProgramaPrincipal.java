@@ -11,9 +11,10 @@ import Gui.VentanaInicioSesion2;
 import Gui.VentanaPrincipal;
 
 public class ProgramaPrincipal {
+	public static Connection con;
 	public static void main(String[] args) throws ParseException {
 		
-		Connection con = BD.initBD("certity.db");
+		con = BD.initBD("certity.db");
 		BD.crearTablas(con);
 		
 		

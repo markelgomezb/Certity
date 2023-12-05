@@ -247,7 +247,7 @@ tablaUsuarioAnuncios.addMouseListener(new MouseListener() {
         
         
     	TableCellRenderer tablerenderer = (table, value, isSelected, hasFocus, row, column) -> {
-    		JLabel label = new JLabel(value.toString());
+    		JLabel label = new JLabel();
     		label.setSize(150, 150);
     		table.setRowHeight(row, 150);
     		

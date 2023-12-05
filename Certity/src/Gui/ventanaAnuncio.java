@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class ventanaAnuncio extends JFrame {
@@ -29,7 +30,7 @@ public class ventanaAnuncio extends JFrame {
     private JTextField txtPrecio;
     private JButton btnTodo;
     private String destino1;
-    private ArrayList<Integer> ids;
+    private List<Integer> ids;
     
 
     public ventanaAnuncio() {
@@ -99,7 +100,7 @@ public class ventanaAnuncio extends JFrame {
         		 Random rand = new Random();
         	     int numeroAleatorio = rand.nextInt(100);
         	     
-        	     //ids= BD.obteneridAnuncios();
+        	     ids= BD.obteneridAnuncios(ProgramaPrincipal.con);
         	     
         		
         	}
