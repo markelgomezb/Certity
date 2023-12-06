@@ -1,10 +1,11 @@
-11111111A;11-10-0015;Juan;juano123;Ciudad A;juan@example.com;Resources/Imagenes/nano.png;a
-23456789B;07-04-0021;María;mar321;Ciudad B;maria@example.com;/Resources/Imagenes/nano.png;foto2.jpgpassword456
-34567890C;09-12-0025;Carlos;carl99;Ciudad C;carlos@example.com;/Resources/Imagenes/nano.png;foto3.jpgclave789
-45678901D;01-08-0030;Laura;lau22;Ciudad D;laura@example.com;/Resources/Imagenes/nano.png;foto4.jpgsecreto123
+11111111A;11-10-0015;Juan;Ciudad A;juano123;juan@example.com;Resources/Imagenes/nano.png;a
+23456789B;07-04-0021;María;Ciudad B;mar321;maria@example.com;/Resources/Imagenes/nano.png;foto2.jpgpassword456
+34567890C;09-12-0025;Carlos;Ciudad C;carl99;carlos@example.com;/Resources/Imagenes/nano.png;foto3.jpgclave789
+45678901D;01-08-0030;Laura;Ciudad D;lau22;laura@example.com;/Resources/Imagenes/nano.png;foto4.jpgsecreto123
 m;01-01-1970;m;m;m;m;Resources/Imagenes/nano.png;a
 q;12-12-2003;q;q;q;q;Resources/Imagenes/nan.jpeg;q
-w;12-12-1200;w;q;w;w;Resources/Imagenes/67184349.png;w
-123456789A;10-05-1990;Usuario1;user1;Ciudad1;usuario1@example.com;Resources/Imagenes/nano.png;contrasenia123
-123123123A;21-02-2003;Nando Alonso;nano33;Oviedo;nano33AM@gmail.com;Resources\Imagenes\goitis.PNG;nano33
-456456456A;22-10-2000;Pedro Jose;jdiolsehjf;KLK;klñk@gfh.vjmwikldh;Resources\Imagenes\beeetle.jpg;456456456A
+w;12-12-1200;w;w;q;w;Resources/Imagenes/67184349.png;w
+123456789A;10-05-1990;Usuario1;Ciudad1;user1;usuario1@example.com;Resources/Imagenes/nano.png;contrasenia123
+123123123A;21-02-2003;Nando Alonso;Oviedo;nano33;nano33AM@gmail.com;Resources\Imagenes\goitis.PNG;nano33
+456456456A;22-10-2000;Pedro Jose;KLK;jdiolsehjf;klñk@gfh.vjmwikldh;Resources\Imagenes\beeetle.jpg;456456456A
+789789789A;04-04-2004;rfsegws fwef wsfesf;wfersgd;fsgdfg;esyhgfgjhfgsd.getdsrg;null;789789789A
