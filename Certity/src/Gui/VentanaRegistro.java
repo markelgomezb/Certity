@@ -168,9 +168,10 @@ public class VentanaRegistro extends JFrame{
 			
 			Usuario c = new Usuario(dni, fNac, nom, loc, usuario, email, destino1, con );
 			
-				VentanaPrincipal.aniadirUsuario(c);
+//				VentanaPrincipal.aniadirUsuario(c);
 				UsuarioLogger.creacionUsuario(c);
 				JOptionPane.showMessageDialog(null, "Cliente registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
+				VentanaPrincipal.aniadirUsuario(c);
 				VentanaPrincipal.guardarUsuariosEnFichero(nomfichUsuarios);
 			
 			dispose();

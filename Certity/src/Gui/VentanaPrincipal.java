@@ -226,19 +226,22 @@ public class VentanaPrincipal extends JFrame {
 			@Override
 			public void removeUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
+				System.out.println("1 " + e);
 				filtrarComics();
 			}
 			
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
+				System.out.println("2 " + e);
 				filtrarComics();
 			}
 			
 			@Override
 			public void changedUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
-				
+				System.out.println("3 " + e);
+				filtrarComics();
 			}
 		});
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -277,7 +280,7 @@ public class VentanaPrincipal extends JFrame {
     				
     				//if(ftAnuncio.size() != 0) {
     				//for (String foto : ftAnuncio) {
-    			System.out.println(value.toString());
+//    			System.out.println(value.toString());
     					ImageIcon img = new ImageIcon(value.toString());
     					ImageIcon imdimensiones = new ImageIcon(img.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
     					label.setIcon(imdimensiones);
