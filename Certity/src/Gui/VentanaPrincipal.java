@@ -1,11 +1,7 @@
 package Gui;
 import javax.swing.*;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
+
 import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -26,6 +22,8 @@ import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
+
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -33,8 +31,7 @@ import java.util.List;
 import java.util.Scanner;
 import Domain.*;
 
-import java.io.IOException;
-import java.io.File;
+
 
 import java.net.URL;
 
@@ -54,9 +51,6 @@ public class VentanaPrincipal extends JFrame {
 	private static List<Usuario> usuarios = new ArrayList<>();
 	private Usuario usuario1;
 	private JCheckBox precioDesc, precioAsc;
-	
-	private static boolean audioReproducido = false;
-	private static Clip clip;
 
 
 	
@@ -260,10 +254,6 @@ public class VentanaPrincipal extends JFrame {
 			}
 		});
         
-        if (!audioReproducido) {
-        	iniciarReproduccionAudio();
-        	audioReproducido= true;
-        }
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setLocationRelativeTo(null); 
@@ -435,19 +425,4 @@ public class VentanaPrincipal extends JFrame {
 		initTable(ann);
 	}
 	
-	private void iniciarReproduccionAudio() {
-		try {
-			URL url = getClass().getResource("Resources/Audio/audi.wav");
-			File audioFile = new File(url.getPath());
-			
-			AudioInputStream audioInput = AudioSystem.getAudioInputStream(audioFile);
-			clip = AudioSystem.getClip();
-			clip.open(audioInput);
-			clip.start();
-			clip.loop(Clip.LOOP_CONTINUOUSLY);
-			
-			} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-				e.printStackTrace();
-			}
-	}
 }
