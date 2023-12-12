@@ -183,4 +183,53 @@ public class VentanaRegistro extends JFrame{
      
 
 	}
+	//metodos
+		public boolean validarContrasenia(String contrasenia) throws IllegalArgumentException {
+			
+			if (!contrasenia.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$")) {
+				throw new IllegalArgumentException("el formato del correo no es válido.");
+			}
+			return true;
+			
+		}
+		
+		public boolean validarEmail(String email) throws IllegalArgumentException, IllegalAccessException {
+			
+			if (!email.matches("[a-zA-Z0-9._%+-]+@gmail.com")) {
+				throw new IllegalAccessException("La contraseña tiene que tener al menos 8 caracteres, uan letra mayúscula, una minúscula y un número.");
+			}
+			return true;
+		}
+		
+		public boolean registrarUsuario(String email, String contrasenia) {
+			try {
+				validarEmail(email);
+				validarContrasenia(contrasenia);
+				
+				Usuario c = new Usuario(
+			            txtDni.getText(),
+			            txtFechaNac.getText(),
+			            txtNombre.getText(),
+			            txtLocalidad.getText(),
+			            txtUsuario.getText(),
+			            email,
+			            destino1,
+			            contrasenia
+			        );
+				
+				VentanaPrincipal.aniadirUsuario(c);
+		        VentanaPrincipal.guardarUsuariosEnFichero(nomfichUsuarios);
+		        
+		        dispose();
+		        VentanaInicioSesion2 vis = new VentanaInicioSesion2(this.anuncios, this.acuerdos);
+		        vis.setVisible(true);
+
+				
+				return true;
+			} catch (IllegalAccessException e) {
+				System.out.println("Error: " + e.getMessage());
+				return false;
+			}
+		}
+	
 }
