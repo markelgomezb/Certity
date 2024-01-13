@@ -1,5 +1,7 @@
 package Gui;
 import java.util.ArrayList;
+
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Domain.Anuncio;
 import Domain.Usuario;
+
 
 public class AnuncioUsuarioTableModel extends DefaultTableModel{
 	/**

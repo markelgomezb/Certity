@@ -2,7 +2,7 @@ package Gui;
 
 import java.util.ArrayList;
 
-
+import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -89,6 +89,12 @@ public class AnuncioTableModel extends DefaultTableModel{
             default:
                 return "";
         }
+		}
+		
+		public void setAnnouncements(List<Anuncio> newAnnouncements) {
+			this.anuncios = (ArrayList<Anuncio>) newAnnouncements;
+			fireTableDataChanged(); 
+			//notifica tabla del update,
 		}
 	}
 

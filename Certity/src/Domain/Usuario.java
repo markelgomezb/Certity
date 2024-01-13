@@ -1,9 +1,17 @@
 package Domain;
 
 import java.text.SimpleDateFormat;
+
+
 import java.util.Date;
 import java.util.Objects;
 import java.text.ParseException;
+
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class Usuario {
@@ -74,6 +82,8 @@ public class Usuario {
 		this.nombre_usuario = nombre_usuario;
 	}
 
+
+
     @Override
     public String toString() {
         return  nombre_usuario;
@@ -116,6 +126,11 @@ public class Usuario {
 	    Usuario otherUser = (Usuario) obj;
 	    return this.dni.equals(otherUser.dni); // Comparar por el atributo que identifica un usuario de manera única
 	}
+	
+	//
+	
+	
+
 	
 
 

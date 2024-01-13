@@ -1,5 +1,7 @@
 package Gui;
 import javax.swing.*;
+
+
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.TableCellRenderer;
@@ -15,6 +17,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import Domain.*;
 
@@ -386,6 +389,8 @@ tablaUsuarioAnuncios.addMouseListener(new MouseListener() {
         frame.setSize(600, 400);
         frame.setVisible(true);
     }
+    
+    
     
     
 }

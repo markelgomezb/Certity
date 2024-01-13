@@ -2,10 +2,13 @@ package Gui;
 import javax.swing.*;
 
 
+
 import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.TableCellRenderer;
+
+import Database.BD;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -34,6 +37,7 @@ import Domain.*;
 
 
 import java.net.URL;
+import java.sql.Connection;
 
 
 public class VentanaPrincipal extends JFrame {
@@ -51,15 +55,19 @@ public class VentanaPrincipal extends JFrame {
 	private static List<Usuario> usuarios = new ArrayList<>();
 	private Usuario usuario1;
 	private JCheckBox precioDesc, precioAsc;
+	
+	
 
 
 	
     public VentanaPrincipal(ArrayList<Anuncio> anuncios, Usuario u, ArrayList<Acuerdo> acuerdos) {
     	
+    	
         super("Anuncios");
         
 		
         this.anuncios = anuncios;
+           
 
         
         this.initTable(this.anuncios);
@@ -120,15 +128,16 @@ public class VentanaPrincipal extends JFrame {
 			}
 		});
         
+        //boton recursividad
+        
+
         
         // boton
 
         JButton btnAgregar = new JButton("Agregar");
 
         btnAgregar.setBackground(Color.ORANGE);
-
-
-
+        
         
 
         btnAgregar.addActionListener(new ActionListener() {

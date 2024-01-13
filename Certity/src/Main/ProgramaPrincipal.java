@@ -1,5 +1,7 @@
  package Main;
 import java.sql.Connection;
+
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -67,6 +69,13 @@ public class ProgramaPrincipal {
         anuncios.add(anuncio1Usuario3);
         anuncios.add(anuncio2Usuario3);
         
+
+        //llamada funcion recursiva y presupuesto de ejemplo
+        
+        float presupuestoEjemplo = 500.0f;
+        
+        int maxServicios = ServiciosRecursividad.maximoServiciosConPresupuesto(anuncios, presupuestoEjemplo);
+        System.out.println("Con un presupuesto de " + presupuestoEjemplo + ", puedes contratar hasta " + maxServicios + "s4rvicios");
         
         // Crear acuerdos con los datos proporcionados
 
