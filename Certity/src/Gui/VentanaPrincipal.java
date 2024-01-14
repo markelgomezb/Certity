@@ -3,6 +3,7 @@ import javax.swing.*;
 
 
 
+
 import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -33,8 +34,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import Domain.*;
-
-
+import Main.ProgramaPrincipal;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -77,6 +77,8 @@ public class VentanaPrincipal extends JFrame {
         	//System.out.println(anuncio.getFotos());
 			
 		}*/
+        
+        
         
     
         
@@ -128,9 +130,34 @@ public class VentanaPrincipal extends JFrame {
 			}
 		});
         
-        //boton recursividad
+        //boton recursividad, para calcular número máximo de servicios
         
+        JButton btnCalcularServicios = new JButton("Calcular servicios por presupuesto");
 
+        btnCalcularServicios.addActionListener(new ActionListener() {
+        	
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	
+            	//aqui se hace (PP.con) aprovechando que la conexion en el main era public static)
+            	List<Anuncio> anunciosActualizados = BD.obtenerAnuncios(ProgramaPrincipal.con);
+                // se muestra cuadro de dialogo 
+                String presupuestoStr = JOptionPane.showInputDialog(VentanaPrincipal.this, "Ingresa tu presupuesto:");
+                try {
+                	
+                    float presupuesto = Float.parseFloat(presupuestoStr);
+                    
+                    int maxServicios = ServiciosRecursividad.maximoServiciosConPresupuesto(anunciosActualizados, presupuesto);
+                    JOptionPane.showMessageDialog(VentanaPrincipal.this, "Puedes contratar hasta " + maxServicios + " servicios con ese presupuesto.");
+                    
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(VentanaPrincipal.this, "Inegresa un número válido.");
+                }
+            }
+        });
+
+        
+      
         
         // boton
 
@@ -157,7 +184,8 @@ public class VentanaPrincipal extends JFrame {
         JPanel panelSur = new JPanel();
 
         panelSur.add(btnAgregar);
-
+        
+        panelSur.add(btnCalcularServicios);
 
 
         

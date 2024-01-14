@@ -2,10 +2,12 @@
 import java.sql.Connection;
 
 
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import Database.BD;
 import Domain.*;
@@ -70,12 +72,28 @@ public class ProgramaPrincipal {
         anuncios.add(anuncio2Usuario3);
         
 
-        //llamada funcion recursiva y presupuesto de ejemplo
+        //llamada funcion recursiva y presupuesto de ejemplon 
+        //esta implementación permite ver como funciona la función recursiva con los datos actuales
         
         float presupuestoEjemplo = 500.0f;
         
         int maxServicios = ServiciosRecursividad.maximoServiciosConPresupuesto(anuncios, presupuestoEjemplo);
         System.out.println("Con un presupuesto de " + presupuestoEjemplo + ", puedes contratar hasta " + maxServicios + "s4rvicios");
+        
+        
+        //en cmabio este codigo de prueba que decidimos poner en el main, nos permite probarlo en diferentes ocasiones o escenarios, con diferentes conjuntos de datos
+        
+       /*
+        List<Anuncio> anunciosDePrueba = crearAnunciosDePrueba();
+
+        // Prueba con diferentes presupuestos
+        float[] presupuestosDePrueba = {100.0f, 200.0f, 300.0f, 400.0f, 500.0f};
+        for (float presupuesto : presupuestosDePrueba) {
+            int maxServicios = ServiciosRecursividad.maximoServiciosConPresupuesto(anunciosDePrueba, presupuesto);
+            System.out.println("Con un presupuesto de " + presupuesto + ", puedes contratar hasta " + maxServicios + " servicios");
+        }
+        
+        */
         
         // Crear acuerdos con los datos proporcionados
 
@@ -105,4 +123,18 @@ public class ProgramaPrincipal {
 
 	}
 	
+	//metodo para prueba
+	/*
+	 private static List<Anuncio> crearAnunciosDePrueba() {
+	        List<Anuncio> anuncios = new ArrayList<>();
+	        // Suponiendo que cada anuncio tiene un precio fijo, añadir algunos anuncios de ejemplo
+	        anuncios.add(new Anuncio(1, "Servicio 1", null, "Descripción 1", 50.0f, null)); 
+	        anuncios.add(new Anuncio(2, "Servicio 2", null, "Descripción 2", 75.0f, null)); 
+	        anuncios.add(new Anuncio(3, "Servicio 3", null, "Descripción 3", 100.0f, null));
+	        anuncios.add(new Anuncio(4, "Servicio 4", null, "Descripción 4", 150.0f, null)); 
+	        anuncios.add(new Anuncio(5, "Servicio 5", null, "Descripción 5", 200.0f, null)); 
+	        
+	        return anuncios;
+	    }
+	*/
 }
