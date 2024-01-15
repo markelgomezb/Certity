@@ -21,6 +21,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
@@ -55,6 +57,7 @@ public class VentanaPrincipal extends JFrame {
 	private static List<Usuario> usuarios = new ArrayList<>();
 	private Usuario usuario1;
 	private JCheckBox precioDesc, precioAsc;
+	public static Anuncio anuncio1;
 	
 	
 
@@ -291,6 +294,18 @@ public class VentanaPrincipal extends JFrame {
 			}
 		});
         
+        tablaAnuncios.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if ((e.getKeyCode() == KeyEvent.VK_E) && ((e.getModifiersEx() & KeyEvent.CTRL_DOWN_MASK) != 0)) {
+                    int selectedRow = tablaAnuncios.getSelectedRow();
+                    if (selectedRow != -1) {
+                        Anuncio anuncioSeleccionado = ((AnuncioTableModel)tablaAnuncios.getModel()).getAnuncio(selectedRow);
+                        anuncio1 = anuncioSeleccionado;
+                    }
+                }
+            }
+        });
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setLocationRelativeTo(null); 
@@ -357,6 +372,8 @@ public class VentanaPrincipal extends JFrame {
 //    		this.modeloAnuncios.addRow(new Object[] {e.getUsuario(),e.getFotos(),e.getDescripcion(),e.getUsuario().getLocalidad(),e.getPrecio()});
 //    	});
 //    }
+    
+   
     
   
     public Usuario guardarUsuarioPorDNI(String dni) {
@@ -434,6 +451,8 @@ public class VentanaPrincipal extends JFrame {
 			return null;
 		}
 	}
+    
+    
     
 	private void filtrarComics() {
 

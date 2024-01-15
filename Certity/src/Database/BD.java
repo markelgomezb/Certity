@@ -4,6 +4,7 @@ import java.sql.Connection;
 
 
 
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import Domain.Acuerdo;
 import Domain.Anuncio;
 import Domain.Usuario;
 import Gui.VentanaPrincipal;
@@ -48,10 +50,14 @@ public class BD {
 	public static void crearTablas(Connection con) {
 		String sql = "CREATE TABLE IF NOT EXISTS Anuncio (id int, nombre String, "
 				+ "dniUsuario String, descripcion String, precio float, fotos String)";
+		String sql1 = "CREATE TABLE NOT EXISTS Acuerdos (idAnuncio String, usuarioContratador String, fechaAcordada String)";
+
 		
 		try {
 			Statement st = con.createStatement();
 			st.executeUpdate(sql);
+			st.executeUpdate(sql1);
+
 			st.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -71,6 +77,20 @@ public class BD {
 			}
 		
 	}
+	
+	public static void insertarAcuerdo(Connection con, Acuerdo p) {
+		String sql = String.format("INSERT INTO Anuncio VALUES('%s','%s','%s','%s','%s','%s');"
+				, p.getAnuncio().getId(),p.getContratador().getDni(),p.getFecha_hora_acordada());
+		try {
+			Statement st = con.createStatement();
+			st.executeUpdate(sql);
+			st.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+}
 
 	public static List<Anuncio> obtenerAnuncios(Connection con){
 		String sql = "SELECT * FROM Anuncio";
@@ -101,6 +121,27 @@ public class BD {
 		return l;
 	}
 	
+	
+	public static List<Acuerdo> obtenerListaAcuerdos(Connection con) {
+	    List<Acuerdo> acuerdos = new ArrayList<>();
+	    String sql = "SELECT * FROM Acuerdos;";
+	    try (Statement st = con.createStatement();
+	         ResultSet rs = st.executeQuery(sql)) {
+	        while (rs.next()) {
+	            int idAnuncio = rs.getInt("idAnuncio");
+	            String usuarioContratadorDNI = rs.getString("usuarioContratador");
+	            String fechaAcordada = rs.getString("fechaAcordada");
+
+	            Usuario usuarioContratador = VentanaPrincipal.buscarUsuario(usuarioContratadorDNI);
+	            Anuncio anuncio = VentanaPrincipal.anuncio1;
+
+	            acuerdos.add(new Acuerdo(anuncio, usuarioContratador, fechaAcordada));
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return acuerdos;
+	}
 	
 	public static List<Integer> obteneridAnuncios(Connection con){
 		String sql = "SELECT id FROM Anuncio";
@@ -138,6 +179,19 @@ public class BD {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void borrarAcuerdo(Connection con, int id) {
+		String sql = String.format("DELETE FROM Acuerdo WHERE id=%d", id);
+		try {
+			Statement st = con.createStatement();
+			st.executeUpdate(sql);
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 		
 	public static void modificarNombreAnuncio(Connection con, int id, String nuevoNombre) {
 		String sql = String.format("UPDATE Anuncio SET nom='%s' WHERE id='%s'",nuevoNombre,id);
@@ -182,8 +236,7 @@ public class BD {
             e.printStackTrace();
         }
     }
-	
-	
-	
-
 }
+
+
+
