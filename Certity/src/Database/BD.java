@@ -188,6 +188,7 @@ public class BD {
 			st.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			
 		}
 	}
 	
