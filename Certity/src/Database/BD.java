@@ -228,16 +228,19 @@ public class BD {
 		}	
 	}
 	
+	//he hecho cambio en este metodo para que el test fuera bien, no interfiere en test anuncios ni nada
 	public static void agregarFotoAnuncio(Connection con, int id, String nuevaFoto) {
-        String sql = String.format("UPDATE Anuncio SET foto='%s' WHERE id='%s'",nuevaFoto, id);
-        try  {
-        	Statement st = con.createStatement();
-            st.executeUpdate(sql);
-            st.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+	    //porque fotos se almacenaba como string
+	    String sql = "UPDATE Anuncio SET fotos = fotos || ',' || ? WHERE id = ?";//fotos || ',' || ? se concatena cadena actual en columna
+	    
+	    try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+	        pstmt.setString(1, nuevaFoto);
+	        pstmt.setInt(2, id);
+	        pstmt.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
 }
 
 
