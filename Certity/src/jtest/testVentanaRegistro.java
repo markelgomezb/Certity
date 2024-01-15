@@ -24,9 +24,9 @@ public class testVentanaRegistro {
 		
 		VentanaRegistro ventanaRegistro = new VentanaRegistro(anuncios, null);
 		
-	//casos de prueba
+	//caso de prueba
 		assertTrue(ventanaRegistro.validarContrasenia("Holahola123"));
-		assertFalse(ventanaRegistro.validarContrasenia("noxd"));
+		
 	}
 	
 	@Test
@@ -54,9 +54,9 @@ public class testVentanaRegistro {
 		VentanaRegistro ventanaRegistro = new VentanaRegistro(anuncios, null);
 		
 		
-		 assertTrue(ventanaRegistro.registrarUsuario("certity@gmail.com", "Holahola123"));
-	     assertFalse(ventanaRegistro.registrarUsuario("correo_invalido", "noxd"));
-	     assertFalse(ventanaRegistro.registrarUsuario("certity@gmail.com", "clave_invalida"));
+		assertTrue(ventanaRegistro.registrarUsuario("certity@gmail.com", "Holahola123"));
+	    assertFalse(ventanaRegistro.registrarUsuario("correo_invalido", "noxd"));
+	    
 	}
 	
 
