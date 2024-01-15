@@ -479,6 +479,7 @@ public class VentanaPrincipal extends JFrame {
 			}
 		});
 		initTable(ann);
+		tablaAnuncios.repaint();
 	}
 	
 }

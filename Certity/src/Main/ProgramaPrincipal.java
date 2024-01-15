@@ -72,6 +72,8 @@ public class ProgramaPrincipal {
         anuncios.add(anuncio2Usuario3);
         
 
+        ArrayList<Anuncio> anunciosBD = new ArrayList<>();
+        anunciosBD = (ArrayList<Anuncio>) BD.obtenerAnuncios(con);
         //llamada funcion recursiva y presupuesto de ejemplon 
         //esta implementación permite ver como funciona la función recursiva con los datos actuales
         
