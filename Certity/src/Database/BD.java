@@ -5,6 +5,7 @@ import java.sql.Connection;
 
 
 
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -50,7 +51,7 @@ public class BD {
 	public static void crearTablas(Connection con) {
 		String sql = "CREATE TABLE IF NOT EXISTS Anuncio (id int, nombre String, "
 				+ "dniUsuario String, descripcion String, precio float, fotos String)";
-		String sql1 = "CREATE TABLE NOT EXISTS Acuerdos (idAnuncio String, usuarioContratador String, fechaAcordada String)";
+		String sql1 = "CREATE TABLE IF NOT EXISTS Acuerdos (idAnuncio String, usuarioContratador String, fechaAcordada String)";
 
 		
 		try {
@@ -79,7 +80,7 @@ public class BD {
 	}
 	
 	public static void insertarAcuerdo(Connection con, Acuerdo p) {
-		String sql = String.format("INSERT INTO Anuncio VALUES('%s','%s','%s','%s','%s','%s');"
+		String sql = String.format("INSERT INTO Acuerdos VALUES('%s','%s','%s');"
 				, p.getAnuncio().getId(),p.getContratador().getDni(),p.getFecha_hora_acordada());
 		try {
 			Statement st = con.createStatement();
@@ -101,7 +102,7 @@ public class BD {
 			while(rs.next()) {
 				int id = rs.getInt("id");
 				String nom = rs.getString("nombre");
-				String usu = rs.getString("usuario");
+				String usu = rs.getString("dniUsuario");
 				String desc = rs.getString("descripcion");
 				Float precio = rs.getFloat("precio");
 				
@@ -195,7 +196,7 @@ public class BD {
 	
 		
 	public static void modificarNombreAnuncio(Connection con, int id, String nuevoNombre) {
-		String sql = String.format("UPDATE Anuncio SET nom='%s' WHERE id='%s'",nuevoNombre,id);
+		String sql = String.format("UPDATE Anuncio SET nombre='%s' WHERE id='%s'",nuevoNombre,id);
 		try {
 			Statement st = con.createStatement();
 			st.executeUpdate(sql);
