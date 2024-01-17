@@ -3,6 +3,8 @@ import java.sql.Connection;
 
 
 
+import io.FicheroCSV;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ public class ProgramaPrincipal {
 		
 //		InicioSesion v = new InicioSesion();
 		
-		VentanaPrincipal.cargarUsuarioEnLista("Resources/Ficheros/Usuarios.csv");
+		List<Usuario> usuarios = FicheroCSV.cargarUsuarioEnLista("Resources/Ficheros/Usuarios.csv");
 		
 		
 		//IAG DATOS DE PRUEBA
@@ -120,6 +122,8 @@ public class ProgramaPrincipal {
         
         new VentanaInicioSesion2(anuncios,acuerdos);
 //        new VentanaPrincipal(anuncios, usuario1);
+        
+        FicheroCSV.guardarUsuariosEnFichero(usuarios, "Resources/Ficheros/Usuarios.csv");
 	
 		BD.closeBD(con);
 
