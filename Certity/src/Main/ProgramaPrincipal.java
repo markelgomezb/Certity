@@ -148,6 +148,11 @@ public class ProgramaPrincipal {
 		acuerdos.add(acuerdo2);
 		acuerdos.add(acuerdo3);
         
+		
+//		for(Acuerdo a : acuerdos) {
+//			BD.insertarAcuerdo(con, a);
+//		}
+		
         anuncios.forEach(e ->{
         	System.out.println(e);
         });
