@@ -15,6 +15,7 @@ import Database.BD;
 import Domain.*;
 import Gui.VentanaInicioSesion2;
 import Gui.VentanaPrincipal;
+import io.UsuarioLogger;
 
 public class ProgramaPrincipal {
 	public static Connection con = null;
@@ -22,6 +23,7 @@ public class ProgramaPrincipal {
 		
 		con = BD.initBD("certity.db");
 		BD.crearTablas(con);
+		UsuarioLogger.configurarLogger();
 		
 		
 //		InicioSesion v = new InicioSesion();

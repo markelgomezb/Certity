@@ -41,7 +41,7 @@ public class VentanaRegistro extends JFrame{
 	private JLabel lblCon = new JLabel("Contraseña:");
 	private JLabel lblEmail = new JLabel("Email:");
 	private JTextField txtDni = new JTextField(9);
-	private JTextField txtFechaNac = new JTextField("Ej: 21/02/2003", 15);
+	private JTextField txtFechaNac = new JTextField("Ej: 21-02-2003", 15);
 	private JTextField txtNombre = new JTextField(30);
 	private JTextField txtUsuario = new JTextField(20);
 	private JTextField txtLocalidad = new JTextField(20);
@@ -171,6 +171,7 @@ public class VentanaRegistro extends JFrame{
 			Usuario c = new Usuario(dni, fNac, nom, loc, usuario, email, destino1, con );
 			
 //				VentanaPrincipal.aniadirUsuario(c);
+
 				UsuarioLogger.creacionUsuario(c);
 				JOptionPane.showMessageDialog(null, "Cliente registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
 				VentanaPrincipal.aniadirUsuario(c);
