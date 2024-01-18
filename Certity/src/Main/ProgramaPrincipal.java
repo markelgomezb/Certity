@@ -1,4 +1,5 @@
 package Main;
+import java.io.FileReader;
 import java.sql.Connection;
 
 
@@ -10,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 import Database.BD;
 import Domain.*;
@@ -22,16 +24,35 @@ public class ProgramaPrincipal {
 	public static Connection con = null;
 	public static List<Anuncio> anuncios1;
 	private static List<Anuncio> anuncios12 = new ArrayList<>();
+	
+	private static String DATABASE_FILE;
+	private static String USUARIOS_CSV;
+	
+	
 	public static void main(String[] args) throws ParseException {
 		
-		con = BD.initBD("certity.db");
+		try {
+			//Se crea el Properties y se actualizan los 3 parámetros
+			Properties connectionProperties = new Properties();
+			connectionProperties.load(new FileReader("conf/parametros.properties"));
+			
+			DATABASE_FILE = connectionProperties.getProperty("DATABASE_FILE");
+			USUARIOS_CSV = connectionProperties.getProperty("USUARIOS_CSV");
+
+			
+		} catch (Exception ex) {
+			System.err.format("\n* error", ex.getMessage());
+			ex.printStackTrace();
+		}
+		
+		con = BD.initBD(DATABASE_FILE);
 		BD.crearTablas(con);
 		UsuarioLogger.configurarLogger();
 		
 		
 //		InicioSesion v = new InicioSesion();
 		
-		VentanaPrincipal.cargarUsuarioEnLista("Resources/Ficheros/Usuarios.csv");
+		VentanaPrincipal.cargarUsuarioEnLista(USUARIOS_CSV);
 		
 		
 		//IAG DATOS DE PRUEBA
@@ -170,7 +191,7 @@ public class ProgramaPrincipal {
         
         anuncios1=BD.obtenerAnuncios(con);
         List<Usuario> usuariosq = new ArrayList<>();
-        usuariosq = VentanaPrincipal.cargarUsuarioEnLista("Resources/Ficheros/Usuarios.csv");
+        usuariosq = VentanaPrincipal.cargarUsuarioEnLista(USUARIOS_CSV);
         System.out.println(usuariosq);
         for(Anuncio a : anuncios1) {
         	System.out.println(a.getUsuario1());
