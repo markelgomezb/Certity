@@ -4,8 +4,6 @@ import javax.swing.*;
 
 
 
-
-
 import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -393,6 +391,48 @@ public class VentanaPrincipal extends JFrame {
 		usuarios.add(c);
 	}
     
+    public static void cargarUsuarioEnLista(String nomfich) {
+		try {
+			Scanner sc = new Scanner(new FileReader(nomfich));
+			String linea;
+			while(sc.hasNext()) {
+				linea = sc.nextLine();
+				String [] partes = linea.split(";");
+				String dni = partes[0];
+				String fecha = partes[1];
+				String nombre = partes[2];
+				String nombre_usuario = partes[3];
+				String localidad = partes[4];
+				String email = partes[5];
+				String foto = partes[6];
+				String contrasenia = partes[7];
+				
+				
+				Usuario c = new Usuario(dni, fecha, nombre, nombre_usuario, localidad, email, foto, contrasenia);
+				if(buscarUsuario(dni)==null)
+					usuarios.add(c);
+			}
+			sc.close();
+		} catch (FileNotFoundException e) {
+			
+		}
+		
+	}
+    
+    public static void guardarUsuariosEnFichero(String nomfich) {
+		try {
+			PrintWriter pw = new PrintWriter(nomfich);
+			for(Usuario c : usuarios) {
+				pw.println(c.getDni()+";"+c.getFecha()+";"+c.getNombre()+";"+c.getNombre_usuario()+
+						";"+c.getLocalidad()+";"+c.getEmail()+";"+c.getFoto()+";"+c.getContrasenia());
+			}
+			pw.flush();
+			pw.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+    
     public static Usuario buscarUsuario(String dni) {
 		boolean enc = false;
 		int pos = 0;
@@ -440,6 +480,7 @@ public class VentanaPrincipal extends JFrame {
 		});
 		initTable(ann);
 		tablaAnuncios.repaint();
-	}
 	
+	}
 }
+	

@@ -2,8 +2,6 @@ package Gui;
 import java.awt.Color;
 
 
-import io.FicheroCSV;
-
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -173,13 +170,11 @@ public class VentanaRegistro extends JFrame{
 			
 			Usuario c = new Usuario(dni, fNac, nom, loc, usuario, email, destino1, con );
 			
-			List<Usuario> usuarios = FicheroCSV.cargarUsuarioEnLista("Resources/Ficheros/Usuarios.csv");
-			usuarios.add(c);
-			
-//			VentanaPrincipal.aniadirUsuario(c);
-			UsuarioLogger.creacionUsuario(c);
-			JOptionPane.showMessageDialog(null, "Cliente registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
-			FicheroCSV.guardarUsuariosEnFichero(usuarios, "Resources/Ficheros/Usuarios.csv");
+//				VentanaPrincipal.aniadirUsuario(c);
+				UsuarioLogger.creacionUsuario(c);
+				JOptionPane.showMessageDialog(null, "Cliente registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
+				VentanaPrincipal.aniadirUsuario(c);
+				VentanaPrincipal.guardarUsuariosEnFichero(nomfichUsuarios);
 			
 			dispose();
 			VentanaInicioSesion2 vis = new VentanaInicioSesion2(this.anuncios, this.acuerdos);
@@ -223,14 +218,10 @@ public class VentanaRegistro extends JFrame{
 			            destino1,
 			            contrasenia
 			        );
-				//carga de lista para que se muestre actualizado
-				List<Usuario> usuarios = FicheroCSV.cargarUsuarioEnLista("Resources/Ficheros/Usuarios.csv");
-				usuarios.add(c);
-				FicheroCSV.guardarUsuariosEnFichero(usuarios, "Resources/Ficheros/Usuarios.csv");
 				
-				UsuarioLogger.creacionUsuario(c);
-				JOptionPane.showMessageDialog(null, "Cliente registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
-				
+				VentanaPrincipal.aniadirUsuario(c);
+		        VentanaPrincipal.guardarUsuariosEnFichero(nomfichUsuarios);
+		        
 		        dispose();
 		        VentanaInicioSesion2 vis = new VentanaInicioSesion2(this.anuncios, this.acuerdos);
 		        vis.setVisible(true);

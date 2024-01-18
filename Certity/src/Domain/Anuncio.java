@@ -90,14 +90,7 @@ public class Anuncio {
 		this.fotos = fotos;
 	}
 	
-    @Override
-    public String toString() {
-        return "Anuncio{" +
-               "id='" + id + '\'' +
-               ", nombre='" + nombre + '\'' +
-               ", usuario=" + usuario +
-               '}';
-    }
+ 
     //prueba conexion
 
 	public String getUsuario1() {
@@ -106,6 +99,12 @@ public class Anuncio {
 
 	public void setUsuario1(String usuario1) {
 		this.usuario1 = usuario1;
+	}
+
+	@Override
+	public String toString() {
+		return "Anuncio [id=" + id + ", nombre=" + nombre + ", usuario=" + usuario + ", descripcion=" + descripcion
+				+ ", precio=" + precio + ", cont=" + cont + ", fotos=" + fotos + "]";
 	}
     
 

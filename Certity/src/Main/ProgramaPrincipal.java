@@ -3,7 +3,7 @@ import java.sql.Connection;
 
 
 
-import io.FicheroCSV;
+
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,7 +26,7 @@ public class ProgramaPrincipal {
 		
 //		InicioSesion v = new InicioSesion();
 		
-		List<Usuario> usuarios = FicheroCSV.cargarUsuarioEnLista("Resources/Ficheros/Usuarios.csv");
+		VentanaPrincipal.cargarUsuarioEnLista("Resources/Ficheros/Usuarios.csv");
 		
 		
 		//IAG DATOS DE PRUEBA
@@ -98,14 +98,16 @@ public class ProgramaPrincipal {
         System.out.println("dat is basura");
         
         ArrayList<Anuncio> anunciosBD1 = new ArrayList<>();
-        for(Anuncio a : anunciosBD1) {
+        for(Anuncio a : anunciosBD) {
         	Anuncio p = new Anuncio(a.getId(),a.getNombre(),VentanaPrincipal.buscarUsuario(a.getUsuario1()),a.getDescripcion(),a.getPrecio(),a.getFotos());
         	anunciosBD1.add(p);
         }
         
         System.out.println("hola");
         for(Anuncio a : anunciosBD1) {
+        	System.out.println(2);
         System.out.println(a);
+        
         }
         
         //en cmabio este codigo de prueba que decidimos poner en el main, nos permite probarlo en diferentes ocasiones o escenarios, con diferentes conjuntos de datos
@@ -143,14 +145,19 @@ public class ProgramaPrincipal {
         	System.out.println(e);
         });
         
-        new VentanaInicioSesion2(anunciosBD1,acuerdos);
+        //System.out.println(usuarios);
+        
+        System.out.println(anunciosBD1);
+        System.out.println(anuncios);
+        new VentanaInicioSesion2(anuncios,acuerdos);
 //        new VentanaPrincipal(anuncios, usuario1);
         
-        FicheroCSV.guardarUsuariosEnFichero(usuarios, "Resources/Ficheros/Usuarios.csv");
+        //FicheroCSV.guardarUsuariosEnFichero(usuarios, "Resources/Ficheros/Usuarios.csv");
 	
 		//BD.closeBD(con);
 
 	}
+	
 	
 	//metodo para prueba
 	/*
