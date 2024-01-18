@@ -122,6 +122,8 @@ public class ventanaAnuncio extends JFrame {
                 }
             }
         });
+        
+        
         btnTodo.addActionListener((e)->{
         	String nom= txtNombre.getText();
         	String desc =  txtDescripcion.getText();
@@ -144,7 +146,7 @@ public class ventanaAnuncio extends JFrame {
         	
         	
         	
-        	u= VentanaPrincipal.buscarUsuario(VentanaInicioSesion2.dniUsuario);
+        	u = VentanaPrincipal.buscarUsuario(VentanaInicioSesion2.dniUsuario);
         	
         	lista.add(destino1);
         	
@@ -152,6 +154,7 @@ public class ventanaAnuncio extends JFrame {
         	Anuncio c = new Anuncio(numeroAleatorio,nom,u, desc, precio,lista);
         	if (ProgramaPrincipal.con != null) {
                 BD.insertarAnuncio(ProgramaPrincipal.con, c);
+                this.dispose();
             } else {
                 System.out.println("La conexión a la base de datos es nula.");
             }
