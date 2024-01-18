@@ -199,7 +199,7 @@ tablaUsuarioAnuncios.addMouseListener(new MouseListener() {
 				//if(ftAnuncio.size() != 0) {
 				//for (String foto : ftAnuncio) {
 					//System.out.println("hola");
-				System.out.println(value.toString());
+//				System.out.println(value.toString());
 					ImageIcon img = new ImageIcon(value.toString());
 					ImageIcon imdimensiones = new ImageIcon(img.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
 					label.setIcon(imdimensiones);
@@ -320,7 +320,7 @@ tablaUsuarioAnuncios.addMouseListener(new MouseListener() {
         JFrame frame = new JFrame("Ventas de Usuario");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        
+
         this.tablaVentasUsuario = new JTable(new VentasUsuarioTableModel(this.usuario, this.acuerdos));
         this.scrollAnuncios = new JScrollPane(this.tablaVentasUsuario);
         scrollAnuncios.setBorder(new TitledBorder("Anuncios publicados por ti"));

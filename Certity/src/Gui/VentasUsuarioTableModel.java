@@ -27,18 +27,21 @@ public class VentasUsuarioTableModel extends DefaultTableModel{
 		this.usuario = usuario;
 		this.acuerdos =acuerdos;
 		acuerdosUsuario = new ArrayList<Acuerdo>();
-		
+		System.out.println(acuerdos);
+		System.out.println(this.usuario);
 		acuerdosUsuario = new ArrayList<>();
-		for (Acuerdo acuerdo : acuerdos) {
+		for (Acuerdo acuerdo : this.acuerdos) {
 //			System.out.println(u);
 //			System.out.println(anuncio);
 //			System.out.println(anuncio.getUsuario());
-			if(acuerdo.getAnuncio().getUsuario().equals(usuario)) {
+			if(this.usuario.equals(acuerdo.getContratador())) {
 //				System.out.println(anuncio.getUsuario());
 				acuerdosUsuario.add(acuerdo);
 			}
 		}
+		System.out.println(acuerdosUsuario);
 	}
+
 	
 	public ArrayList<Acuerdo> getAcuerdo(){
 		return this.acuerdos;
