@@ -37,7 +37,7 @@ public class VentanaInicioSesion2 extends JFrame{
 	private JTextField txtdni = new JTextField(20);
 	private JPasswordField JPsswd = new JPasswordField(20);
 	private JLabel lblregistro = new JLabel("<html><a href =''>Registrarse</a></html>");
-	private ImageIcon logo = new ImageIcon(LOGO);
+	private ImageIcon logo ;
 	static String dniUsuario = " ";
 
 
@@ -50,6 +50,7 @@ public class VentanaInicioSesion2 extends JFrame{
 			connectionProperties.load(new FileReader("conf/parametros.properties"));
 			
 			LOGO = connectionProperties.getProperty("LOGO");
+			System.out.println(LOGO);
 			
 		} catch (Exception ex) {
 			System.err.format("\n* error", ex.getMessage());
@@ -62,6 +63,7 @@ public class VentanaInicioSesion2 extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
 		JPanel pArriba = new JPanel();
+		logo = new ImageIcon(LOGO);
 		lblLogo.setIcon(logo);
 		pArriba.add(lblLogo);
 		pArriba.add(lblTitle);
