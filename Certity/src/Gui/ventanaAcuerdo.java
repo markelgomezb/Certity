@@ -28,6 +28,8 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -46,7 +48,7 @@ public class ventanaAcuerdo extends JFrame {
     private ArrayList<Anuncio> anuncioss;
     private Usuario usuario;
     private ArrayList<Anuncio> anunciosDisponibles;
-    private ArrayList<Acuerdo> acuerdos;
+    private ArrayList<Acuerdo> acuerdoss;
 	private JTable tablaAnuncios;
 	private JScrollPane scrollAnuncios;
 	private AnunciosVentanaAcuerdosTableModel tableModel;
@@ -56,7 +58,7 @@ public class ventanaAcuerdo extends JFrame {
         super("Crear Anuncio");
         this.anuncioss = anuncios;
         this.usuario = u;
-        this.acuerdos = acuerdos;
+        this.acuerdoss = acuerdos;
         this.anunciosDisponibles = new ArrayList<Anuncio>();
         
 
@@ -77,7 +79,7 @@ public class ventanaAcuerdo extends JFrame {
 		
         btnTodo = new JButton("Crear acuerdo");
         txtHoraAcordada = new JTextField("dd/MM/yyyy HH:mm");
-        JLabel lblIntro = new JLabel(this.usuario + "!Aquí tienes los anuncios disponibles!");
+        JLabel lblIntro = new JLabel(this.usuario + " !Aquí tienes los anuncios disponibles!");
 
         JPanel panelNorte = new JPanel();
         JPanel panelAnuncio = new JPanel();
@@ -131,7 +133,7 @@ public class ventanaAcuerdo extends JFrame {
                     if (validarFormatoFecha(texto)) {
                         JOptionPane.showMessageDialog(ventanaAcuerdo.this, "El formato de fecha es válido. Acuerdo guardado.");
                         Acuerdo acuerdo = new Acuerdo(anuncio_quitar, usuario, texto);
-                        acuerdos.add(acuerdo);
+                        acuerdoss.add(acuerdo);
                         System.out.println(acuerdo);
                         System.out.println(anuncio_quitar);
                         for(Anuncio a : anuncioss) {
@@ -141,7 +143,7 @@ public class ventanaAcuerdo extends JFrame {
                         	
                         }
                         dispose();
-                        new VentanaPrincipal(anuncioss, usuario, acuerdos);
+                        new VentanaPrincipal(anuncioss, usuario, acuerdoss);
                         
                     } else {
                         JOptionPane.showMessageDialog(ventanaAcuerdo.this, "Formato de fecha no válido. Vuelva a introducir la fecha.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -194,6 +196,54 @@ public class ventanaAcuerdo extends JFrame {
 			}
 		});
         
+		
+		addWindowListener(new WindowListener() {
+			
+			@Override
+			public void windowOpened(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowIconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowClosing(WindowEvent e) {
+				// TODO Auto-generated method stub
+				new VentanaPrincipal(anuncioss, usuario, acuerdoss);
+				 
+				
+			}
+			
+			@Override
+			public void windowClosed(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowActivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(800, 600);
         setLocationRelativeTo(null);
