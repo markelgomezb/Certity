@@ -131,8 +131,8 @@ public class BD {
 				String[] fotosArray = rs.getString("fotos").split(",");
 				//anuncio.setFotos(new ArrayList<>(Arrays.asList(fotosArray)));
 				
-				Usuario usuario = VentanaPrincipal.buscarUsuario(usu);
-				Anuncio p = new Anuncio(id, nom, usuario.getNombre_usuario(), desc, precio, new ArrayList<>(Arrays.asList(fotosArray)));
+//				Usuario usuario = VentanaPrincipal.buscarUsuario(usu);
+				Anuncio p = new Anuncio(id, nom, usu, desc, precio, new ArrayList<>(Arrays.asList(fotosArray)));
 				l.add(p);
 			}
 			rs.close();
