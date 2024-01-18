@@ -12,9 +12,12 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.TableCellRenderer;
 
+import Database.BD;
 import Domain.Acuerdo;
 import Domain.Anuncio;
 import Domain.Usuario;
+import Main.ProgramaPrincipal;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -134,11 +137,25 @@ public class ventanaAcuerdo extends JFrame {
                         JOptionPane.showMessageDialog(ventanaAcuerdo.this, "El formato de fecha es válido. Acuerdo guardado.");
                         Acuerdo acuerdo = new Acuerdo(anuncio_quitar, usuario, texto);
                         acuerdoss.add(acuerdo);
+      
+                    	if (ProgramaPrincipal.con != null) {
+                    		BD.insertarAcuerdo(ProgramaPrincipal.con, acuerdo);
+                        } else {
+                            System.out.println("La conexión a la base de datos es nula.");
+                        }
+                    	
                         System.out.println(acuerdo);
                         System.out.println(anuncio_quitar);
+                        
                         for(Anuncio a : anuncioss) {
                         	if(anuncio_quitar.equals(a)) {
                         		anuncioss.remove(anuncio_quitar);
+                        		
+                        		if (ProgramaPrincipal.con != null) {
+                        			BD.borrarAnuncio(ProgramaPrincipal.con, anuncio_quitar.getId());
+                                } else {
+                                    System.out.println("La conexión a la base de datos es nula.");
+                                }
                         	}
                         	
                         }
