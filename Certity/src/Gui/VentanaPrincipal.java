@@ -72,7 +72,7 @@ public class VentanaPrincipal extends JFrame {
 		 */
 
 		JPanel panelArriba = new JPanel();
-		lblUsuario = new JLabel("¡Bienvenido " + u.toString() + "!");
+		lblUsuario = new JLabel("¡Bienvenido " + u.getNombre() + "!");
 		panelArriba.add(lblUsuario);
 
 		JPanel panelFiltro = new JPanel();
@@ -386,7 +386,7 @@ public class VentanaPrincipal extends JFrame {
 				String foto = partes[6];
 				String contrasenia = partes[7];
 
-				Usuario c = new Usuario(dni, fecha, nombre, nombre_usuario, localidad, email, foto, contrasenia);
+				Usuario c = new Usuario(dni, fecha, nombre, localidad, nombre_usuario, email, foto, contrasenia);
 				if (buscarUsuario1(dni)==null)
 			
 					usuarios.add(c);
