@@ -15,6 +15,7 @@ import Database.BD;
 import Domain.*;
 import Gui.VentanaInicioSesion2;
 import Gui.VentanaPrincipal;
+import io.FicheroBinario;
 import io.UsuarioLogger;
 
 public class ProgramaPrincipal {
@@ -181,9 +182,25 @@ public class ProgramaPrincipal {
         }
         
         
+        List<Acuerdo> acuerdosq = new ArrayList<>();
+        ArrayList<Acuerdo> acuerdosq1 = new ArrayList<>();
+
+        acuerdosq = BD.obtenerListaAcuerdos(con);
+
+        for(Acuerdo a : acuerdosq) {
+        	//System.out.println("acuerdos:");
+        	//System.out.println(a);
+        	System.out.println(a.getIdAnuncio());
+        	Acuerdo p = new Acuerdo(VentanaPrincipal.buscarAnuncio(a.getIdAnuncio(), anuncios12),a.getContratador(),a.getFecha_hora_acordada().toString());
+        acuerdosq1.add(p);
+        }
+
+    	System.out.println("acuerdos:");
+    	System.out.println(acuerdosq1);
+        
         //System.out.println(anuncios12);
         //System.out.println(anuncios);
-        new VentanaInicioSesion2(anuncios12,acuerdos);
+        new VentanaInicioSesion2(anuncios12,acuerdosq1);
         
         
 //        new VentanaPrincipal(anuncios, usuario1);

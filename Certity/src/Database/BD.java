@@ -29,6 +29,7 @@ public class BD {
 	
 	public static Connection initBD(String nombreBD) {
 		
+		
 		try {
 			//Se crea el Properties y se actualizan los 3 parámetros
 			Properties connectionProperties = new Properties();
@@ -156,9 +157,9 @@ public class BD {
 	            String fechaAcordada = rs.getString("fechaAcordada");
 
 	            Usuario usuarioContratador = VentanaPrincipal.buscarUsuario1(usuarioContratadorDNI);
-	            Anuncio anuncio = VentanaPrincipal.anuncio1;
+	            //Anuncio anuncio = VentanaPrincipal.anuncio1;
 
-	            acuerdos.add(new Acuerdo(anuncio, usuarioContratador, fechaAcordada));
+	            acuerdos.add(new Acuerdo(idAnuncio, usuarioContratador, fechaAcordada));
 	        }
 	    } catch (SQLException e) {
 	        e.printStackTrace();

@@ -8,8 +8,10 @@ import java.util.Date;
 
 public class Acuerdo {
 	private Anuncio anuncio;
+	private int idAnuncio;
 	private Usuario contratador;
 	private Date fecha_hora_acordada;
+	
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 	
 	public Acuerdo(Anuncio anuncio, Usuario contratador, String fecha_hora_acordada) {
@@ -22,6 +24,30 @@ public class Acuerdo {
 			this.fecha_hora_acordada = new Date(0);
 		}
 	}
+	
+	
+	public Acuerdo(int idAnuncio, Usuario contratador, String fecha_hora_acordada){
+		this.idAnuncio=idAnuncio;
+		this.contratador = contratador;
+        try {
+			this.fecha_hora_acordada = sdf.parse(fecha_hora_acordada);
+		} catch (ParseException e) {
+			this.fecha_hora_acordada = new Date(0);
+		}
+		
+	}
+	
+	
+	public int getIdAnuncio() {
+		return idAnuncio;
+	}
+
+
+	public void setIdAnuncio(int idAnuncio) {
+		this.idAnuncio = idAnuncio;
+	}
+
+
 	public Anuncio getAnuncio() {
 		return anuncio;
 	}

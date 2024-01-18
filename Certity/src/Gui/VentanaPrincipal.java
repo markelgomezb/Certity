@@ -117,6 +117,7 @@ public class VentanaPrincipal extends JFrame {
 			}
 		});
 
+		
 		// boton recursividad, para calcular número máximo de servicios
 
 		JButton btnCalcularServicios = new JButton("Calcular servicios por presupuesto");
@@ -440,6 +441,25 @@ public class VentanaPrincipal extends JFrame {
 		while (!enc && pos < usuarios.size()) {
 			c = usuarios.get(pos);
 			if (c.getDni().equals(dni)) {
+				enc = true;
+			} else {
+				pos++;
+			}
+		}
+		if (enc) {
+			return c;
+		} else {
+			return null;
+		}
+	}
+	
+	public static Anuncio buscarAnuncio(int id, List<Anuncio> anuncios ) {
+		boolean enc = false;
+		int pos = 0;
+		Anuncio c = null;
+		while (!enc && pos < anuncios.size()) {
+			c = anuncios.get(pos);
+			if (c.getId()==id) {
 				enc = true;
 			} else {
 				pos++;
