@@ -1,5 +1,6 @@
 package Domain;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Anuncio {
     private int id;
@@ -108,6 +109,24 @@ public class Anuncio {
 		return "Anuncio [id=" + id + ", nombre=" + nombre + ", usuario=" + usuario + ", descripcion=" + descripcion
 				+ ", precio=" + precio + ", cont=" + cont + ", fotos=" + fotos + "]";
 	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Anuncio other = (Anuncio) obj;
+		return cont == other.cont && Objects.equals(descripcion, other.descripcion)
+				&& Objects.equals(fotos, other.fotos) && id == other.id && Objects.equals(nombre, other.nombre)
+				&& Float.floatToIntBits(precio) == Float.floatToIntBits(other.precio)
+				&& Objects.equals(usuario, other.usuario) && Objects.equals(usuario1, other.usuario1);
+	}
+	
+	
     
 
 }

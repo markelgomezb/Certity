@@ -8,17 +8,13 @@ import javax.swing.JTable;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JFileChooser;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.TableCellRenderer;
 
-import Database.BD;
 import Domain.Acuerdo;
 import Domain.Anuncio;
 import Domain.Usuario;
-import Main.ProgramaPrincipal;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -32,19 +28,12 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.List;
-import java.util.Properties;
-import java.util.Random;
 
 public class ventanaAcuerdo extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -61,7 +50,7 @@ public class ventanaAcuerdo extends JFrame {
 	private JTable tablaAnuncios;
 	private JScrollPane scrollAnuncios;
 	private AnunciosVentanaAcuerdosTableModel tableModel;
-	private JCheckBox precioDesc, precioAsc;
+	private JCheckBox precioDescendiente, precioAscendiente;
 
     public ventanaAcuerdo(ArrayList<Anuncio> anuncios, Usuario u, ArrayList<Acuerdo> acuerdos) {
         super("Crear Anuncio");
@@ -83,8 +72,8 @@ public class ventanaAcuerdo extends JFrame {
 		this.scrollAnuncios = new JScrollPane(this.tablaAnuncios);
 		scrollAnuncios.setBorder(new TitledBorder("Anuncios"));
 		
-		precioDesc = new JCheckBox("Ordenar precio descendiente");
-		precioAsc = new JCheckBox("Ordenar precio ascendiente");
+		precioDescendiente = new JCheckBox("Ordenar precio descendiente");
+		precioAscendiente = new JCheckBox("Ordenar precio ascendiente");
 		
         btnTodo = new JButton("Crear acuerdo");
         txtHoraAcordada = new JTextField("dd/MM/yyyy HH:mm");
@@ -99,8 +88,8 @@ public class ventanaAcuerdo extends JFrame {
         panelAnuncio1.add(new JLabel("Día y hora de llegada:"));
         panelAnuncio1.add(txtHoraAcordada);
         panelNorte.add(lblIntro);
-        panelNorte.add(precioDesc);
-        panelNorte.add(precioAsc);
+        panelNorte.add(precioDescendiente);
+        panelNorte.add(precioAscendiente);
 
         //panelAnuncio.add(new JLabel("Guardar Anuncio:"));
         panelAnuncio1.add(btnTodo);
@@ -118,12 +107,12 @@ public class ventanaAcuerdo extends JFrame {
                 if (filaSeleccionada != -1) {
                     int id = (Integer) tablaAnuncios.getValueAt(filaSeleccionada, 0); 
                     String nombre = (String) tablaAnuncios.getValueAt(filaSeleccionada, 1);
-                    String usuaio = (String) tablaAnuncios.getValueAt(filaSeleccionada, 2);
+                    
                     String desc = (String) tablaAnuncios.getValueAt(filaSeleccionada, 3);
                     float precio = (float) tablaAnuncios.getValueAt(filaSeleccionada, 4);
 
 					ArrayList<String> fotos = (ArrayList<String>) tablaAnuncios.getValueAt(filaSeleccionada, 5);
-                    anuncio_quitar = new Anuncio(id, nombre, usuaio, desc, precio, fotos);
+                    anuncio_quitar = new Anuncio(id, nombre, VentanaPrincipal.buscarAnuncio(id, anuncioss).getUsuario(), desc, precio, fotos);
                     elegido = 1;
 
 
@@ -142,10 +131,17 @@ public class ventanaAcuerdo extends JFrame {
                     if (validarFormatoFecha(texto)) {
                         JOptionPane.showMessageDialog(ventanaAcuerdo.this, "El formato de fecha es válido. Acuerdo guardado.");
                         Acuerdo acuerdo = new Acuerdo(anuncio_quitar, usuario, texto);
-//                        acuerdos.add(acuerdo);
+                        acuerdos.add(acuerdo);
                         System.out.println(acuerdo);
                         System.out.println(anuncio_quitar);
-
+                        for(Anuncio a : anuncioss) {
+                        	if(anuncio_quitar.equals(a)) {
+                        		anuncioss.remove(anuncio_quitar);
+                        	}
+                        	
+                        }
+                        dispose();
+                        new VentanaPrincipal(anuncioss, usuario, acuerdos);
                         
                     } else {
                         JOptionPane.showMessageDialog(ventanaAcuerdo.this, "Formato de fecha no válido. Vuelva a introducir la fecha.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -158,13 +154,13 @@ public class ventanaAcuerdo extends JFrame {
             }
         });
         
-		precioDesc.addItemListener(new ItemListener() {
+        precioDescendiente.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				// TODO Auto-generated method stub
-				if (precioDesc.isSelected()) {
+				if (precioDescendiente.isSelected()) {
 					// SE DESHABILITA EL OTRO CRITERIO DE ORDENACIÓN
-					precioAsc.setSelected(false);
+					precioDescendiente.setSelected(false);
 					
 					Comparator<Anuncio> comparator = (a1, a2) -> {
 						return Float.compare(a1.getPrecio(), a2.getPrecio());
@@ -179,13 +175,13 @@ public class ventanaAcuerdo extends JFrame {
 
 		});
 
-		precioAsc.addItemListener(new ItemListener() {
+		precioAscendiente.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				// TODO Auto-generated method stub
-				if (precioAsc.isSelected()) {
+				if (precioAscendiente.isSelected()) {
 					// SE DESHABILITA EL OTRO CRITERIO DE ORDENACIÓN
-					precioDesc.setSelected(false);
+					precioAscendiente.setSelected(false);
 										
 					Comparator<Anuncio> comparator = (a1, a2) -> {
 						return Float.compare(a1.getPrecio(), a2.getPrecio());
