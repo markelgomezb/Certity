@@ -6,9 +6,11 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Properties;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -30,9 +32,12 @@ public class VentanaRegistro extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	
+	private static String LOGO;
+	private static String IMAGENES;
+	
 	private JLabel lblTitle =new JLabel("Registro de nuevo usuario");
 	private JLabel lblLogo = new JLabel();
-	private ImageIcon logo = new ImageIcon("Resources/Imagenes/LOGO_CERTITY.jpg");
+	private ImageIcon logo = new ImageIcon(LOGO);
 	private JLabel lblDni = new JLabel("DNI/NIE:");
 	private JLabel lblFecha = new JLabel("Fecha de nacimiento:");
 	private JLabel lblNombre = new JLabel("Nombre y apellidos:");
@@ -61,6 +66,20 @@ public class VentanaRegistro extends JFrame{
 
 	
 	public VentanaRegistro(ArrayList<Anuncio> anuncios, ArrayList<Acuerdo> acuerdos) {
+		
+		try {
+			//Se crea el Properties y se actualizan los 3 parámetros
+			Properties connectionProperties = new Properties();
+			connectionProperties.load(new FileReader("conf/parametros.properties"));
+			
+			LOGO = connectionProperties.getProperty("LOGO");
+			IMAGENES = connectionProperties.getProperty("IMAGENES");
+			
+		} catch (Exception ex) {
+			System.err.format("\n* error", ex.getMessage());
+			ex.printStackTrace();
+		}
+		
 		this.anuncios = anuncios;
 		this.acuerdos = acuerdos;
         setTitle("Inicio de sesion");
@@ -139,7 +158,7 @@ public class VentanaRegistro extends JFrame{
                     File selectedFile = fileChooser.getSelectedFile();
 
                     try {
-                        String rutaDestino = "Resources/Imagenes/";
+                        String rutaDestino = IMAGENES;
 
                         File destino = new File(rutaDestino + selectedFile.getName());
 

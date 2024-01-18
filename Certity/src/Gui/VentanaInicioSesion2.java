@@ -9,7 +9,9 @@ import java.awt.event.KeyEvent;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Properties;
 
 import javax.swing.ImageIcon;
 
@@ -25,6 +27,7 @@ import io.UsuarioLogger;
 public class VentanaInicioSesion2 extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
+	private static String LOGO;
 	
 	private JLabel lbldni = new JLabel("Dni:");
 	private JLabel lblContra = new JLabel("Contraseña:");
@@ -34,12 +37,25 @@ public class VentanaInicioSesion2 extends JFrame{
 	private JTextField txtdni = new JTextField(20);
 	private JPasswordField JPsswd = new JPasswordField(20);
 	private JLabel lblregistro = new JLabel("<html><a href =''>Registrarse</a></html>");
-	private ImageIcon logo = new ImageIcon("Resources/Imagenes/LOGO_CERTITY.jpg");
+	private ImageIcon logo = new ImageIcon(LOGO);
 	static String dniUsuario = " ";
 
 
 	
 	public VentanaInicioSesion2(ArrayList<Anuncio> anuncios, ArrayList<Acuerdo> acuerdos) {
+		
+		try {
+			//Se crea el Properties y se actualizan los 3 parámetros
+			Properties connectionProperties = new Properties();
+			connectionProperties.load(new FileReader("conf/parametros.properties"));
+			
+			LOGO = connectionProperties.getProperty("LOGO");
+			
+		} catch (Exception ex) {
+			System.err.format("\n* error", ex.getMessage());
+			ex.printStackTrace();
+		}
+		
         setTitle("Inicio de sesion");
         setSize(650,650);
         setLocationRelativeTo(null);

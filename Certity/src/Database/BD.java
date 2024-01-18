@@ -1,5 +1,6 @@
 package Database;
 
+import java.io.FileReader;
 import java.sql.Connection;
 
 
@@ -14,6 +15,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 
 import Domain.Acuerdo;
 import Domain.Anuncio;
@@ -21,12 +23,32 @@ import Domain.Usuario;
 import Gui.VentanaPrincipal;
 
 public class BD {
+	private static String DRIVER_NAME;
+	private static String DATABASE_FILE;
+	private static String CONNECTION_STRING;
 	
 	public static Connection initBD(String nombreBD) {
+		
+		try {
+			//Se crea el Properties y se actualizan los 3 parámetros
+			Properties connectionProperties = new Properties();
+			connectionProperties.load(new FileReader("conf/parametros.properties"));
+			
+			DRIVER_NAME = connectionProperties.getProperty("DRIVER_NAME");
+			DATABASE_FILE = connectionProperties.getProperty("DATABASE_FILE");
+			CONNECTION_STRING = connectionProperties.getProperty("CONNECTION_STRING") + DATABASE_FILE;
+			
+			//Cargar el diver SQLite
+			Class.forName(DRIVER_NAME);
+		} catch (Exception ex) {
+			System.err.format("\n* Error al cargar el driver de BBDD: %s", ex.getMessage());
+			ex.printStackTrace();
+		}
+		
 		Connection con = null;
 		try {
-			Class.forName("org.sqlite.JDBC");
-			con = DriverManager.getConnection("jdbc:sqlite:"+nombreBD);
+			Class.forName(DRIVER_NAME);
+			con = DriverManager.getConnection(CONNECTION_STRING);
 					
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -109,8 +131,8 @@ public class BD {
 				String[] fotosArray = rs.getString("fotos").split(",");
 				//anuncio.setFotos(new ArrayList<>(Arrays.asList(fotosArray)));
 				
-				//Usuario usuario = VentanaPrincipal.buscarUsuario(usu);
-				Anuncio p = new Anuncio(id, nom, usu, desc, precio, new ArrayList<>(Arrays.asList(fotosArray)));
+				Usuario usuario = VentanaPrincipal.buscarUsuario(usu);
+				Anuncio p = new Anuncio(id, nom, usuario.getNombre_usuario(), desc, precio, new ArrayList<>(Arrays.asList(fotosArray)));
 				l.add(p);
 			}
 			rs.close();

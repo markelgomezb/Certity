@@ -19,14 +19,19 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.Random;
 
 public class ventanaAnuncio extends JFrame {
     private static final long serialVersionUID = 1L;
+    
+    private static String IMAGENES;
+    
     private JButton btnSubirFoto;
     private JTextField txtDescripcion;
     private JTextField txtLocalidad;
@@ -46,6 +51,19 @@ public class ventanaAnuncio extends JFrame {
 
     public ventanaAnuncio() {
         super("Crear Anuncio");
+        
+		try {
+			//Se crea el Properties y se actualizan los 3 parámetros
+			Properties connectionProperties = new Properties();
+			connectionProperties.load(new FileReader("conf/parametros.properties"));
+			
+
+			IMAGENES = connectionProperties.getProperty("IMAGENES");
+			
+		} catch (Exception ex) {
+			System.err.format("\n* error", ex.getMessage());
+			ex.printStackTrace();
+		}
 
         btnSubirFoto = new JButton("Subir Foto");
         btnTodo = new JButton("Guardar cambios");
@@ -89,7 +107,7 @@ public class ventanaAnuncio extends JFrame {
                     File selectedFile = fileChooser.getSelectedFile();
 
                     try {
-                        String rutaDestino = "Resources/Imagenes/";
+                        String rutaDestino = IMAGENES;
                         File destino = new File(rutaDestino + selectedFile.getName());
                         destino1= destino.toString();
                         if (!destino.exists()) {
