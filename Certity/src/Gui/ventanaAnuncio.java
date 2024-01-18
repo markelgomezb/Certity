@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 
 import Database.BD;
 import Domain.Anuncio;
+import Domain.Usuario;
 import Main.ProgramaPrincipal;
 
 import javax.swing.JLabel;
@@ -30,9 +31,17 @@ public class ventanaAnuncio extends JFrame {
     private JTextField txtDescripcion;
     private JTextField txtLocalidad;
     private JTextField txtPrecio;
+    private JTextField txtNombre;
+
     private JButton btnTodo;
     private String destino1;
     private List<Integer> ids;
+    private ArrayList<String> lista;
+    int numeroAleatorio = 0;
+    Random rand = new Random();
+    boolean a = false;
+    private Usuario u;
+
     
 
     public ventanaAnuncio() {
@@ -43,12 +52,16 @@ public class ventanaAnuncio extends JFrame {
         txtDescripcion = new JTextField(20);
         txtLocalidad = new JTextField(20);
         txtPrecio = new JTextField(10);
+        txtNombre = new JTextField(20);
+        lista = new ArrayList<String>();
 
         JPanel panelAnuncio = new JPanel();
         JPanel panelAnuncio1 = new JPanel();
-        panelAnuncio.setLayout(new GridLayout(4, 2));
+        panelAnuncio.setLayout(new GridLayout(5, 2));
         panelAnuncio1.setLayout(new GridLayout(1, 1));
-
+        
+        panelAnuncio.add(new JLabel("Nombre:"));
+        panelAnuncio.add(txtNombre);
         panelAnuncio.add(new JLabel("Descripción:"));
         panelAnuncio.add(txtDescripcion);
         panelAnuncio.add(new JLabel("Localidad:"));
@@ -78,7 +91,7 @@ public class ventanaAnuncio extends JFrame {
                     try {
                         String rutaDestino = "Resources/Imagenes/";
                         File destino = new File(rutaDestino + selectedFile.getName());
-
+                        destino1= destino.toString();
                         if (!destino.exists()) {
                             Files.copy(selectedFile.toPath(), destino.toPath());
                             System.out.println("Foto guardada en: " + destino.getAbsolutePath());
@@ -92,21 +105,38 @@ public class ventanaAnuncio extends JFrame {
             }
         });
         btnTodo.addActionListener((e)->{
+        	String nom= txtNombre.getText();
         	String desc =  txtDescripcion.getText();
         	String loc = txtLocalidad.getText();
         	String precio1= txtPrecio.getText();
         	float precio = Float.parseFloat(precio1);
+        	ids= BD.obteneridAnuncios(ProgramaPrincipal.con);
         	Boolean a = false;
         	while(a == false) {
-        		 Random rand = new Random();
         	     int numeroAleatorio = rand.nextInt(100);
         	     
         	     ids= BD.obteneridAnuncios(ProgramaPrincipal.con);
+        	     //aqui
+        	     if (!ids.contains(numeroAleatorio)) {
+        	            a = true;
+        	        }
         	     
         		
         	}
         	
-        	//Anuncio c = new Anuncio
+        	
+        	
+        	u= VentanaPrincipal.buscarUsuario(VentanaInicioSesion2.dniUsuario);
+        	
+        	lista.add(destino1);
+        	
+        	
+        	Anuncio c = new Anuncio(numeroAleatorio,nom,u, desc, precio,lista);
+        	if (ProgramaPrincipal.con != null) {
+                BD.insertarAnuncio(ProgramaPrincipal.con, c);
+            } else {
+                System.out.println("La conexión a la base de datos es nula.");
+            }
         	
         	
         });

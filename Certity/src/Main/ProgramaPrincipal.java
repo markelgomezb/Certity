@@ -17,7 +17,7 @@ import Gui.VentanaInicioSesion2;
 import Gui.VentanaPrincipal;
 
 public class ProgramaPrincipal {
-	public static Connection con;
+	public static Connection con = null;
 	public static void main(String[] args) throws ParseException {
 		
 		con = BD.initBD("certity.db");
