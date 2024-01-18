@@ -128,7 +128,6 @@ public class ventanaAcuerdo extends JFrame {
         btnTodo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	boolean quitar = false;
                 // Obtener el texto del JTextField
             	if(elegido == 1) {
                     String texto = txtHoraAcordada.getText();
@@ -150,17 +149,15 @@ public class ventanaAcuerdo extends JFrame {
                         
                         for(Anuncio a : anuncioss) {
                         	if(anuncio_quitar.equals(a)) {
-                        		quitar = true;
+                        		anuncioss.remove(anuncio_quitar);
+                        		
+                        		if (ProgramaPrincipal.con != null) {
+                        			BD.borrarAnuncio(ProgramaPrincipal.con, anuncio_quitar.getId());
+                                } else {
+                                    System.out.println("La conexión a la base de datos es nula.");
+                                }
                         	}
-                        }
-                        if(quitar) {
-                        	anuncioss.remove(anuncio_quitar);
-                    		
-                    		if (ProgramaPrincipal.con != null) {
-                    			BD.borrarAnuncio(ProgramaPrincipal.con, anuncio_quitar.getId());
-                            } else {
-                                System.out.println("La conexión a la base de datos es nula.");
-                            }
+                        	
                         }
                         dispose();
                         new VentanaPrincipal(anuncioss, usuario, acuerdoss);
