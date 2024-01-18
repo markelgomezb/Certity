@@ -35,6 +35,8 @@ public class Anuncio {
     	//siguienteFoto();
     	return fotos.get(cont);
     }
+    
+
 
     public void siguienteFoto() {
     	cont++;

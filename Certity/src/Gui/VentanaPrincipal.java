@@ -56,6 +56,7 @@ public class VentanaPrincipal extends JFrame {
 	private Usuario usuario1;
 	private JCheckBox precioDesc, precioAsc;
 	public static Anuncio anuncio1;
+	private JButton btnAcuerdo;
 
 	// El modelo es un atributo de clase para que se pueda modificar fácilmente
 	private AnuncioTableModel tableModel;
@@ -166,10 +167,21 @@ public class VentanaPrincipal extends JFrame {
 			}
 
 		});
+		btnAcuerdo = new JButton("Acuerdo");
+		
+		btnAcuerdo.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				new ventanaAcuerdo(anuncios, u, acuerdos);
+			}
+		});
 
 		JPanel panelSur = new JPanel();
 
 		panelSur.add(btnAgregar);
+		panelSur.add(btnAcuerdo);
 
 		panelSur.add(btnCalcularServicios);
 

@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -33,6 +35,7 @@ public class VentanaUsuario extends JFrame {
 	private JTable tablaUsuarioAnuncios, tablaVentasUsuario;
 	private JScrollPane scrollAnuncios;
 	private Usuario usuario;
+	
 
 	public VentanaUsuario(Usuario usuario, ArrayList<Anuncio> anuncios, ArrayList<Acuerdo> acuerdos) {
         super("Detalles del Usuario");
@@ -133,7 +136,52 @@ public class VentanaUsuario extends JFrame {
         pTodo.add(pnlFecha);
         pTodo.add(pnlLocalidad);
 
-       
+       addWindowListener(new WindowListener() {
+		
+		@Override
+		public void windowOpened(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void windowIconified(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void windowDeiconified(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void windowDeactivated(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void windowClosing(WindowEvent e) {
+			// TODO Auto-generated method stub
+			new VentanaPrincipal(anuncios, usuario, acuerdos);
+			 
+			
+		}
+		
+		@Override
+		public void windowClosed(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void windowActivated(WindowEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+	});
         
 
         add(pTodo); 
