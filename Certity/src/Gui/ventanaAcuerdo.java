@@ -173,45 +173,6 @@ public class ventanaAcuerdo extends JFrame {
             }
         });
         
-        precioDescendiente.addItemListener(new ItemListener() {
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				// TODO Auto-generated method stub
-				if (precioDescendiente.isSelected()) {
-					// SE DESHABILITA EL OTRO CRITERIO DE ORDENACIÓN
-					precioDescendiente.setSelected(false);
-					
-					Comparator<Anuncio> comparator = (a1, a2) -> {
-						return Float.compare(a1.getPrecio(), a2.getPrecio());
-					};
-
-					// SE ORDENA LA LISTA DE ANUNCIOS
-					Collections.sort(anuncioss, comparator.reversed());
-					
-
-				}
-			}
-
-		});
-
-		precioAscendiente.addItemListener(new ItemListener() {
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				// TODO Auto-generated method stub
-				if (precioAscendiente.isSelected()) {
-					// SE DESHABILITA EL OTRO CRITERIO DE ORDENACIÓN
-					precioAscendiente.setSelected(false);
-										
-					Comparator<Anuncio> comparator = (a1, a2) -> {
-						return Float.compare(a1.getPrecio(), a2.getPrecio());
-					};
-					
-					Collections.sort(anuncioss, comparator);
-					
-
-				}
-			}
-		});
         
 		
 		addWindowListener(new WindowListener() {
