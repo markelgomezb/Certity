@@ -108,7 +108,7 @@ public class VentanaInicioSesion2 extends JFrame{
 					String dni = txtdni.getText();
 					char[] psswd = JPsswd.getPassword();
 					String psswdString = new String(psswd);
-					Usuario c = VentanaPrincipal.buscarUsuario(dni);
+					Usuario c = VentanaPrincipal.buscarUsuario1(dni);
 					if(c == null) {
 						JOptionPane.showMessageDialog(null, "Para poder iniciar sesión tienes que estar registrado","ERROR",JOptionPane.ERROR_MESSAGE);
 					}else {

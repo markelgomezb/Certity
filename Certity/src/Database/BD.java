@@ -155,7 +155,7 @@ public class BD {
 	            String usuarioContratadorDNI = rs.getString("usuarioContratador");
 	            String fechaAcordada = rs.getString("fechaAcordada");
 
-	            Usuario usuarioContratador = VentanaPrincipal.buscarUsuario(usuarioContratadorDNI);
+	            Usuario usuarioContratador = VentanaPrincipal.buscarUsuario1(usuarioContratadorDNI);
 	            Anuncio anuncio = VentanaPrincipal.anuncio1;
 
 	            acuerdos.add(new Acuerdo(anuncio, usuarioContratador, fechaAcordada));

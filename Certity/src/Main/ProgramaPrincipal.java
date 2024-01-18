@@ -1,4 +1,4 @@
- package Main;
+package Main;
 import java.sql.Connection;
 
 
@@ -19,6 +19,8 @@ import io.UsuarioLogger;
 
 public class ProgramaPrincipal {
 	public static Connection con = null;
+	public static List<Anuncio> anuncios1;
+	private static List<Anuncio> anuncios12 = new ArrayList<>();
 	public static void main(String[] args) throws ParseException {
 		
 		con = BD.initBD("certity.db");
@@ -75,7 +77,7 @@ public class ProgramaPrincipal {
         anuncios.add(anuncio1Usuario3);
         anuncios.add(anuncio2Usuario3);
         
-        //ArrayList<Anuncio> anuncios1 = new ArrayList<>();
+//        ArrayList<Anuncio> anuncios1 = new ArrayList<>();
 //        for(Anuncio a : anuncios) {
 //        	BD.insertarAnuncio(con, a);
 //        }
@@ -83,6 +85,8 @@ public class ProgramaPrincipal {
         
        
 
+       
+        /*
         ArrayList<Anuncio> anunciosBD = new ArrayList<>();
         anunciosBD = (ArrayList<Anuncio>) BD.obtenerAnuncios(con);
         //llamada funcion recursiva y presupuesto de ejemplon 
@@ -126,6 +130,7 @@ public class ProgramaPrincipal {
         
         */
         
+        
         // Crear acuerdos con los datos proporcionados
 
         ArrayList<Acuerdo> acuerdos = new ArrayList<>();
@@ -147,11 +152,35 @@ public class ProgramaPrincipal {
         	System.out.println(e);
         });
         
+        
         //System.out.println(usuarios);
         
-        System.out.println(anunciosBD1);
-        System.out.println(anuncios);
-        new VentanaInicioSesion2(anuncios,acuerdos);
+        List<Anuncio> anuncios1 = new ArrayList<>();
+        ArrayList<Anuncio> anuncios12 = new ArrayList<>();
+
+//        for(Anuncio a : anuncios) {
+//        	BD.insertarAnuncio(con, a);
+//        }
+        
+        anuncios1=BD.obtenerAnuncios(con);
+        List<Usuario> usuariosq = new ArrayList<>();
+        usuariosq = VentanaPrincipal.cargarUsuarioEnLista("Resources/Ficheros/Usuarios.csv");
+        System.out.println(usuariosq);
+        for(Anuncio a : anuncios1) {
+        	System.out.println(a.getUsuario1());
+        	
+        
+        	//System.out.println(VentanaPrincipal.buscarUsuario(a.getUsuario1(),usuariosq));
+        	Anuncio p = new Anuncio(a.getId(),a.getNombre(),VentanaPrincipal.buscarUsuario(a.getUsuario1(),usuariosq),a.getDescripcion(),a.getPrecio(),a.getFotos());
+        	anuncios12.add(p);
+        }
+        
+        
+        //System.out.println(anuncios12);
+        //System.out.println(anuncios);
+        new VentanaInicioSesion2(anuncios12,acuerdos);
+        
+        
 //        new VentanaPrincipal(anuncios, usuario1);
         
         //FicheroCSV.guardarUsuariosEnFichero(usuarios, "Resources/Ficheros/Usuarios.csv");

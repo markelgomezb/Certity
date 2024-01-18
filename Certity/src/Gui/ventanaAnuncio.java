@@ -146,7 +146,7 @@ public class ventanaAnuncio extends JFrame {
         	
         	
         	
-        	u = VentanaPrincipal.buscarUsuario(VentanaInicioSesion2.dniUsuario);
+        	u = VentanaPrincipal.buscarUsuario1(VentanaInicioSesion2.dniUsuario);
         	
         	lista.add(destino1);
         	

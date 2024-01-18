@@ -2,6 +2,7 @@ package Gui;
 
 import javax.swing.*;
 
+
 import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -40,6 +41,7 @@ import java.sql.Connection;
 
 public class VentanaPrincipal extends JFrame {
 
+	
 	/**
 	 * 
 	 */
@@ -284,6 +286,7 @@ public class VentanaPrincipal extends JFrame {
 		});
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		pack();
 		setLocationRelativeTo(null);
 		this.setSize(800, 600);
@@ -367,7 +370,7 @@ public class VentanaPrincipal extends JFrame {
 		usuarios.add(c);
 	}
 
-	public static void cargarUsuarioEnLista(String nomfich) {
+	public static List<Usuario> cargarUsuarioEnLista(String nomfich) {
 		try {
 			Scanner sc = new Scanner(new FileReader(nomfich));
 			String linea;
@@ -384,13 +387,16 @@ public class VentanaPrincipal extends JFrame {
 				String contrasenia = partes[7];
 
 				Usuario c = new Usuario(dni, fecha, nombre, nombre_usuario, localidad, email, foto, contrasenia);
-				if (buscarUsuario(dni) == null)
+				if (buscarUsuario1(dni)==null)
+			
 					usuarios.add(c);
 			}
+			
 			sc.close();
 		} catch (FileNotFoundException e) {
 
 		}
+		return usuarios;
 
 	}
 
@@ -408,7 +414,26 @@ public class VentanaPrincipal extends JFrame {
 		}
 	}
 
-	public static Usuario buscarUsuario(String dni) {
+	public static Usuario buscarUsuario(String dni, List<Usuario> usuarios ) {
+		boolean enc = false;
+		int pos = 0;
+		Usuario c = null;
+		while (!enc && pos < usuarios.size()) {
+			c = usuarios.get(pos);
+			if (c.getDni().equals(dni)) {
+				enc = true;
+			} else {
+				pos++;
+			}
+		}
+		if (enc) {
+			return c;
+		} else {
+			return null;
+		}
+	}
+	
+	public static Usuario buscarUsuario1(String dni ) {
 		boolean enc = false;
 		int pos = 0;
 		Usuario c = null;
