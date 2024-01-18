@@ -5,6 +5,7 @@ public class Anuncio {
     private int id;
     private String nombre;
     private Usuario usuario;
+    private String usuario1;
     private String descripcion;
     private float precio;
     private int cont;
@@ -14,6 +15,16 @@ public class Anuncio {
         this.id = id;
         this.nombre = nombre;
         this.usuario = usuario;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.fotos = fotos;
+        this.cont = 0;
+    }
+    
+    public Anuncio(int id, String nombre, String usuario1, String descripcion, float precio, ArrayList<String> fotos) {
+        this.id = id;
+        this.nombre = nombre;
+        this.setUsuario1(usuario1);
         this.descripcion = descripcion;
         this.precio = precio;
         this.fotos = fotos;
@@ -88,6 +99,14 @@ public class Anuncio {
                '}';
     }
     //prueba conexion
+
+	public String getUsuario1() {
+		return usuario1;
+	}
+
+	public void setUsuario1(String usuario1) {
+		this.usuario1 = usuario1;
+	}
     
 
 }

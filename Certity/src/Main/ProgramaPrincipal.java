@@ -73,6 +73,13 @@ public class ProgramaPrincipal {
         anuncios.add(anuncio1Usuario3);
         anuncios.add(anuncio2Usuario3);
         
+        //ArrayList<Anuncio> anuncios1 = new ArrayList<>();
+//        for(Anuncio a : anuncios) {
+//        	BD.insertarAnuncio(con, a);
+//        }
+        
+        
+       
 
         ArrayList<Anuncio> anunciosBD = new ArrayList<>();
         anunciosBD = (ArrayList<Anuncio>) BD.obtenerAnuncios(con);
@@ -84,6 +91,22 @@ public class ProgramaPrincipal {
         int maxServicios = ServiciosRecursividad.maximoServiciosConPresupuesto(anuncios, presupuestoEjemplo);
         System.out.println("Con un presupuesto de " + presupuestoEjemplo + ", puedes contratar hasta " + maxServicios + "s4rvicios");
         
+        System.out.println("hola");
+        for(Anuncio a : anunciosBD) {
+        System.out.println(a);
+        }
+        System.out.println("dat is basura");
+        
+        ArrayList<Anuncio> anunciosBD1 = new ArrayList<>();
+        for(Anuncio a : anunciosBD1) {
+        	Anuncio p = new Anuncio(a.getId(),a.getNombre(),VentanaPrincipal.buscarUsuario(a.getUsuario1()),a.getDescripcion(),a.getPrecio(),a.getFotos());
+        	anunciosBD1.add(p);
+        }
+        
+        System.out.println("hola");
+        for(Anuncio a : anunciosBD1) {
+        System.out.println(a);
+        }
         
         //en cmabio este codigo de prueba que decidimos poner en el main, nos permite probarlo en diferentes ocasiones o escenarios, con diferentes conjuntos de datos
         
@@ -120,12 +143,12 @@ public class ProgramaPrincipal {
         	System.out.println(e);
         });
         
-        new VentanaInicioSesion2(anuncios,acuerdos);
+        new VentanaInicioSesion2(anunciosBD1,acuerdos);
 //        new VentanaPrincipal(anuncios, usuario1);
         
         FicheroCSV.guardarUsuariosEnFichero(usuarios, "Resources/Ficheros/Usuarios.csv");
 	
-		BD.closeBD(con);
+		//BD.closeBD(con);
 
 	}
 	
