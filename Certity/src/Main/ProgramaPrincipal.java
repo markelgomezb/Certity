@@ -185,7 +185,7 @@ public class ProgramaPrincipal {
         List<Anuncio> anuncios1 = new ArrayList<>();
         ArrayList<Anuncio> anuncios12 = new ArrayList<>();
 
-//        for(Anuncio a : anuncios) {
+//      for(Anuncio a : anuncios) {
 //        	BD.insertarAnuncio(con, a);
 //        }
         
@@ -195,11 +195,9 @@ public class ProgramaPrincipal {
         System.out.println(usuariosq);
         for(Anuncio a : anuncios1) {
         	System.out.println(a.getUsuario1());
-        	
-        
-        	//System.out.println(VentanaPrincipal.buscarUsuario(a.getUsuario1(),usuariosq));
-        	Anuncio p = new Anuncio(a.getId(),a.getNombre(),VentanaPrincipal.buscarUsuario(a.getUsuario1(),usuariosq),a.getDescripcion(),a.getPrecio(),a.getFotos());
-        	anuncios12.add(p);
+        	Usuario usuario = VentanaPrincipal.buscarUsuario(a.getUsuario1(), usuariosq);
+            Anuncio p = new Anuncio(a.getId(), a.getNombre(), usuario, a.getDescripcion(), a.getPrecio(), a.getFotos());
+            anuncios12.add(p);
         }
         
         
@@ -217,7 +215,9 @@ public class ProgramaPrincipal {
         }
 
     	System.out.println("acuerdos:");
-    	System.out.println(acuerdosq1);
+    	System.out.println(anuncios.get(0));
+    	System.out.println(anuncios1.get(0));
+
         
         //System.out.println(anuncios12);
         //System.out.println(anuncios);

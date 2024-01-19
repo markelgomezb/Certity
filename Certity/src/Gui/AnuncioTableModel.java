@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
+import Domain.Acuerdo;
 import Domain.Anuncio;
 
 public class AnuncioTableModel extends DefaultTableModel{
@@ -18,6 +19,7 @@ public class AnuncioTableModel extends DefaultTableModel{
 	private ArrayList<Anuncio> anuncios;
 	 
 	 public AnuncioTableModel(ArrayList<Anuncio> anuncios) {
+		 
 		 this.anuncios = anuncios;
 		 System.out.println(anuncios.size());
 		 
@@ -64,6 +66,14 @@ public class AnuncioTableModel extends DefaultTableModel{
 		case 5:
 			//System.out.println(anuncio.getFotos());
 			//return anuncio.getFotos();
+			if(anuncio.getFoto()==null){
+		        ArrayList<String> ac = new ArrayList<>();
+		        ac.add("Resources/Imagenes/nano.png");
+		        ac.add("Resources/Imagenes/5.jpg");
+
+
+				return ac;
+			}else;
 			return anuncio.getFoto();
 		default:
 			return null;

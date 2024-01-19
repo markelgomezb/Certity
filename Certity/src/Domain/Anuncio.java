@@ -7,6 +7,8 @@ public class Anuncio {
     private String nombre;
     private Usuario usuario;
     private String usuario1;
+    private String fotos1;
+
     private String descripcion;
     private float precio;
     private int cont;
@@ -32,7 +34,9 @@ public class Anuncio {
         this.cont = 0;
     }
     
-    public String getFoto(){
+   
+
+	public String getFoto(){
     	//siguienteFoto();
     	return fotos.get(cont);
     }
@@ -88,6 +92,8 @@ public class Anuncio {
 	public ArrayList<String> getFotos() {
 		return fotos;
 	}
+	
+
 
 	public void setFotos(ArrayList<String> fotos) {
 		this.fotos = fotos;

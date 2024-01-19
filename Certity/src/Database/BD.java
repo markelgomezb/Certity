@@ -71,6 +71,7 @@ public class BD {
 		}
 	}
 	
+	
 	public static void crearTablas(Connection con) {
 		String sql = "CREATE TABLE IF NOT EXISTS Anuncio (id int, nombre String, "
 				+ "dniUsuario String, descripcion String, precio float, fotos String)";
@@ -89,8 +90,10 @@ public class BD {
 	}
 	
 	public static void insertarAnuncio(Connection con, Anuncio p) {
+	    String fotosString = String.join(",", p.getFotos());
+
 			String sql = String.format("INSERT INTO Anuncio VALUES('%s','%s','%s','%s','%s','%s');"
-					, p.getId(),p.getNombre(),p.getUsuario().getDni(),p.getDescripcion(),p.getPrecio(),p.getFotos().toString());
+					, p.getId(),p.getNombre(),p.getUsuario().getDni(),p.getDescripcion(),p.getPrecio(),fotosString);
 			try {
 				Statement st = con.createStatement();
 				st.executeUpdate(sql);
@@ -131,9 +134,9 @@ public class BD {
 				
 				String[] fotosArray = rs.getString("fotos").split(",");
 				//anuncio.setFotos(new ArrayList<>(Arrays.asList(fotosArray)));
-				
+	            ArrayList<String> fotosList = new ArrayList<>(Arrays.asList(fotosArray));
 //				Usuario usuario = VentanaPrincipal.buscarUsuario(usu);
-				Anuncio p = new Anuncio(id, nom, usu, desc, precio, new ArrayList<>(Arrays.asList(fotosArray)));
+				Anuncio p = new Anuncio(id, nom, usu, desc, precio, fotosList);
 				l.add(p);
 			}
 			rs.close();
