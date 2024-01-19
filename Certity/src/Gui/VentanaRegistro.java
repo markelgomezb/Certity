@@ -2,6 +2,7 @@ package Gui;
 import java.awt.Color;
 
 
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +26,7 @@ import Domain.Acuerdo;
 import Domain.Anuncio;
 import Domain.Usuario;
 import io.UsuarioLogger;
+
 
 
 public class VentanaRegistro extends JFrame{
@@ -54,7 +56,7 @@ public class VentanaRegistro extends JFrame{
 	private JTextField txtEmail = new JTextField(20);
 	private JButton btnRegistro = new JButton("Registrarse");
 	private JButton btnCancelar = new JButton("Cancelar");
-	private JButton btnRegistroInicio = new JButton("Registrarse e iniciar sesion");
+
 	private JButton btnCargarFoto = new JButton("Cargar Foto");
 	private JLabel lblFoto = new JLabel("Cargar foto:");
 	private ArrayList<Anuncio> anuncios;
@@ -126,10 +128,10 @@ public class VentanaRegistro extends JFrame{
         
         JPanel pBotones = new JPanel();
         btnRegistro.setBackground(Color.GREEN);
-        btnRegistroInicio.setBackground(Color.CYAN);
+        
         btnCancelar.setBackground(Color.ORANGE);
         pBotones.add(btnRegistro);
-        pBotones.add(btnRegistroInicio);
+        
         pBotones.add(btnCancelar);
         
         JPanel pTodo = new JPanel();
@@ -147,6 +149,19 @@ public class VentanaRegistro extends JFrame{
 
         
         add(pTodo);
+        
+        btnCancelar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				dispose();
+				
+				VentanaInicioSesion2 v = new VentanaInicioSesion2(anuncios, acuerdos);
+				v.setVisible(true);
+				
+			}
+		});
         
         btnCargarFoto.addActionListener(new ActionListener() {
             @Override
